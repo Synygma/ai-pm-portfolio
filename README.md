@@ -8,9 +8,9 @@
 
 I work at the intersection of enterprise technology and AI-driven product strategy. My approach to product problems is research-led: combine real user data with AI-assisted synthesis, hold every finding to a real-vs-synthetic standard, and arrive at recommendations precise enough to act on.
 
-This portfolio is updated as new projects are completed. **Project 1** and **Project 2** below are live now; additional work will be added as it is finished.
+This portfolio is updated as new projects are completed. **Project 1**, **Project 2**, and **Project 3** below are live now; additional work will be added as it is finished.
 
-This portfolio documents two projects built from the ground up: a consumer research study and a full market intelligence report, each executed end-to-end with the rigor expected of a strategy function inside a product organization.
+This portfolio documents projects built from the ground up — consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
 
 **Connect:** [LinkedIn](#) · [Email](#)
 
@@ -59,6 +59,24 @@ This portfolio documents two projects built from the ground up: a consumer resea
 
 ---
 
+## Project 3 — SunQuote AI
+### Solar Panel Installation Quotation Manager
+
+**What it is:** An AI-powered quotation management tool for solar panel installation businesses. Automates system sizing, feasibility checking, and cost estimation — reducing what typically takes a site engineer days into an instant, transparent first-pass assessment.
+
+**Process:**
+- Mapped the manual quotation workflow (customer enquiry → feasibility check → cost estimation → leadership approval → sent) into a structured 4-layer architecture — Frontend, API, Backend, Database
+- Designed role-based access control across 3 user types — Sales, Site Engineer, Manager — each restricted to their own workflow and data visibility, with no cross-role access
+- Built an AI layer that estimates system size (kW), cost (with subsidy), and feasibility from customer inputs (electricity bill, roof type, roof area, shading conditions)
+- Implemented a confidence-based safety mechanism — low-confidence cases are automatically flagged and routed to a human Site Engineer instead of the AI silently guessing
+- Iteratively tested and fixed access-control and status-transition bugs across each user role before finalizing
+
+**Key Skill Demonstrated:** Applying a structured product architecture (RBAC + AI validation discipline) to a real business workflow — not just prompting an AI tool to generate an app, but deliberately designing where AI should make autonomous decisions and where it must defer to a human.
+
+🔗 [Live Demo](your-base44-live-link-here)
+
+---
+
 ## What These Projects Demonstrate
 
 | Skill | Where It Shows |
@@ -66,8 +84,9 @@ This portfolio documents two projects built from the ground up: a consumer resea
 | Real vs AI-synthesized data discipline | Consumer Persona project — REAL/IMPLIED/AI tagging throughout |
 | Structured AI-assisted research at scale | Market Intelligence Report — 6 independent research phases, fully documented |
 | Strategic synthesis | Tracing 6 recommendations back to one root metric (sub-3% conversion) |
+| Applied product architecture design | SunQuote AI — role-based access control and AI confidence-routing built from a mapped business process |
 | Narrative & communication | Translating dense research into a clear, presentation-ready story |
-| Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma — used deliberately, limitations documented honestly |
+| Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma, Base44 — used deliberately, limitations documented honestly |
 
 ---
 
