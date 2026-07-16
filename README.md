@@ -73,7 +73,7 @@ This portfolio documents projects built from the ground up — consumer research
 
 **Key Skill Demonstrated:** Applying a structured product architecture (RBAC + AI validation discipline) to a real business workflow — not just prompting an AI tool to generate an app, but deliberately designing where AI should make autonomous decisions and where it must defer to a human.
 
-🔗 [Live Demo](your-base44-live-link-here)
+🔗 [Live Demo](https://tidy-solar-quote-flow.base44.app)
 
 ---
 
