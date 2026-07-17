@@ -90,6 +90,23 @@ This portfolio documents projects built from the ground up — consumer research
 
 ---
 
+## Project 4 — Ticket Triage Assistant
+### AI-Powered Salesforce Support Ticket Categorization & Effort Estimation
+
+**What it is:** An AI-powered triage tool that takes a raw support ticket description and instantly returns its category, estimated resolution effort, priority level, recommended first troubleshooting step, and a draft response — replacing inconsistent manual triage with a repeatable, pattern-grounded process.
+
+**Process:**
+- Documented the manual triage workflow support leads actually follow — category → effort estimate → priority → first action → response
+- Built a Claude AI project trained on a knowledge base of real resolved-ticket patterns (Configuration Change, Apex/Code Bug, Integration Issue, Data Fix, Training/How-To)
+- Validated the model's output against known past tickets before treating any estimate as reliable
+- Converted the validated logic into a working artifact, then into a deployed end-to-end application
+- Instructed the system to flag low-confidence classifications explicitly rather than presenting a guess as certain
+
+**Key Skill Demonstrated:** Taking a validated AI reasoning process — not just a prompt — and turning it into a structured, repeatable tool. Estimates are grounded in documented past patterns rather than the model's untethered judgment, which is the difference between an AI feature and an AI feature you can actually trust in production.
+
+🔗 [Live Demo](https://capable-triage-flow-desk.base44.app)
+
+---
 ## Approach
 
 I treat AI as a research and synthesis accelerator, not a shortcut. Every project in this portfolio follows the same discipline: separate real data from AI-generated extension, trace every recommendation back to a measurable problem, and communicate findings the way a strategy team would present them to leadership — clear, evidence-backed, and free of unnecessary complexity.
