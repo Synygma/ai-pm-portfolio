@@ -108,69 +108,39 @@ This portfolio documents projects built from the ground up — consumer research
 
 ---
 
-# AI Answer Sheet Evaluator (GradeX)
+## Project 5 — GradeX
+### AI-Powered Multi-Evaluator Answer Grading System
 
-A mini prototype exploring how to make AI-based grading trustworthy — 
-not just accurate.
+**What it is:** An AI-powered answer evaluation tool that grades a student's response against a rubric using two independent AI evaluators, then reconciles their scores through a moderator pass — flagging low-confidence checkpoints for human review instead of trusting a single AI's grade blindly.
 
-**Live Demo:** https://gradex-grade-smart.base44.app
+**Process:**
+- Studied a real-world AI exam evaluation system design and identified the core gap: single-model AI grading has no way to signal when its own judgment is uncertain
+- Designed a three-call evaluation pipeline — two independent evaluators score the same answer against rubric checkpoints without seeing each other's output, then a moderator model compares both and assigns per-checkpoint confidence (high/low)
+- Built the app on Base44 with Groq (Llama 3.1 8B Instant) powering all three evaluation calls, using role-differentiated system prompts to simulate independent grading
+- Structured output as a checkpoint-level breakdown rather than a single opaque score — surfacing exactly where a human reviewer should double-check the AI's grading versus where it can be trusted
+- Documented the prototype's current limitation honestly — both evaluators run on the same underlying model, simulating independence via prompt design rather than true model diversity
 
-## The Problem
+**Key Skill Demonstrated:** Designing confidence-aware AI systems — where the product surfaces its own uncertainty instead of presenting every output as equally reliable. This is the same human-in-the-loop discipline applied in Project 3 and Project 4, now applied to a grading/evaluation context.
 
-When AI grades a student's answer, the output is just a number — 
-"3/4 marks." But how do you know when to trust that number, and 
-when to double-check it? A single AI evaluation is a black box: 
-you either accept it blindly, or manually re-check everything, 
-which defeats the purpose of automation.
-
-## The Approach
-
-Instead of a single AI call, this evaluates each answer using:
-
-1. **Two independent evaluators** — the same rubric and answer are 
-   sent to two separate AI calls with distinct evaluator personas, 
-   scoring independently without seeing each other's output.
-2. **A moderator pass** — a third AI call compares both evaluations 
-   checkpoint by checkpoint. Where both evaluators agree, the 
-   result is marked **high confidence**. Where they disagree, it's 
-   flagged **low confidence** for human review.
-
-The output isn't just a score — it's a score plus a map of exactly 
-where a human should double-check the grading, and where they don't 
-need to.
-
-## How It Works
-
-- **Input:** Question, grading rubric (checkpoints), student's answer
-- **Evaluation:** Two independent AI evaluations against the rubric, 
-  checking for conceptual meaning rather than exact keyword matches
-- **Moderation:** A third AI call reconciles both evaluations and 
-  assigns a confidence level per checkpoint
-- **Output:** Final score, checkpoint-by-checkpoint breakdown, and a 
-  flagged "Needs Human Review" section for low-confidence checkpoints
-
-## Tech Stack
-
-- React + Tailwind CSS
-- Groq API (Llama 3.1 8B Instant) for all evaluation calls
-- Built on Base44
-
-## Note
-
-This is a simplified prototype — both evaluators currently use the 
-same underlying model with different system prompts to simulate 
-independent grading, rather than genuinely different model 
-architectures. A production version would use distinct models 
-(e.g. GPT, Claude, Grok) for true evaluator diversity.
-
-## Inspiration
-
-Built after studying a session on designing AI-based exam evaluation 
-systems as part of the IIT Madras AI Product Management program — 
-exploring how to design human-in-the-loop checkpoints into an AI 
-pipeline rather than relying on a single model's output.
+🔗 [Live Demo](https://gradex-grade-smart.base44.app)
 
 ---
+
+## What These Projects Demonstrate
+
+| Skill | Where It Shows |
+|---|---|
+| Real vs AI-synthesized data discipline | Consumer Persona project — REAL/IMPLIED/AI tagging throughout |
+| Structured AI-assisted research at scale | Market Intelligence Report — 6 independent research phases, fully documented |
+| Strategic synthesis | Tracing 6 recommendations back to one root metric (sub-3% conversion) |
+| Applied product architecture design | SunQuote AI — role-based access control and AI confidence-routing built from a mapped business process |
+| Validated, pattern-grounded AI reasoning | Ticket Triage Assistant — estimates grounded in documented past tickets, not untethered model judgment |
+| Confidence-aware AI system design | GradeX — dual-evaluator + moderator pipeline that flags its own uncertainty instead of hiding it |
+| Narrative & communication | Translating dense research into a clear, presentation-ready story |
+| Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma, Base44 — used deliberately, limitations documented honestly |
+
+---
+
 
 ## Approach
 
