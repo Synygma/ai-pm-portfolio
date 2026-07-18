@@ -107,6 +107,71 @@ This portfolio documents projects built from the ground up — consumer research
 🔗 [Live Demo](https://capable-triage-flow-desk.base44.app)
 
 ---
+
+# AI Answer Sheet Evaluator (GradeX)
+
+A mini prototype exploring how to make AI-based grading trustworthy — 
+not just accurate.
+
+**Live Demo:** https://gradex-grade-smart.base44.app
+
+## The Problem
+
+When AI grades a student's answer, the output is just a number — 
+"3/4 marks." But how do you know when to trust that number, and 
+when to double-check it? A single AI evaluation is a black box: 
+you either accept it blindly, or manually re-check everything, 
+which defeats the purpose of automation.
+
+## The Approach
+
+Instead of a single AI call, this evaluates each answer using:
+
+1. **Two independent evaluators** — the same rubric and answer are 
+   sent to two separate AI calls with distinct evaluator personas, 
+   scoring independently without seeing each other's output.
+2. **A moderator pass** — a third AI call compares both evaluations 
+   checkpoint by checkpoint. Where both evaluators agree, the 
+   result is marked **high confidence**. Where they disagree, it's 
+   flagged **low confidence** for human review.
+
+The output isn't just a score — it's a score plus a map of exactly 
+where a human should double-check the grading, and where they don't 
+need to.
+
+## How It Works
+
+- **Input:** Question, grading rubric (checkpoints), student's answer
+- **Evaluation:** Two independent AI evaluations against the rubric, 
+  checking for conceptual meaning rather than exact keyword matches
+- **Moderation:** A third AI call reconciles both evaluations and 
+  assigns a confidence level per checkpoint
+- **Output:** Final score, checkpoint-by-checkpoint breakdown, and a 
+  flagged "Needs Human Review" section for low-confidence checkpoints
+
+## Tech Stack
+
+- React + Tailwind CSS
+- Groq API (Llama 3.1 8B Instant) for all evaluation calls
+- Built on Base44
+
+## Note
+
+This is a simplified prototype — both evaluators currently use the 
+same underlying model with different system prompts to simulate 
+independent grading, rather than genuinely different model 
+architectures. A production version would use distinct models 
+(e.g. GPT, Claude, Grok) for true evaluator diversity.
+
+## Inspiration
+
+Built after studying a session on designing AI-based exam evaluation 
+systems as part of the IIT Madras AI Product Management program — 
+exploring how to design human-in-the-loop checkpoints into an AI 
+pipeline rather than relying on a single model's output.
+
+---
+
 ## Approach
 
 I treat AI as a research and synthesis accelerator, not a shortcut. Every project in this portfolio follows the same discipline: separate real data from AI-generated extension, trace every recommendation back to a measurable problem, and communicate findings the way a strategy team would present them to leadership — clear, evidence-backed, and free of unnecessary complexity.
