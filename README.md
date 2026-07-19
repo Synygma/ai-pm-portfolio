@@ -8,9 +8,7 @@
 
 I work at the intersection of enterprise technology and AI-driven product strategy. My approach to product problems is research-led: combine real user data with AI-assisted synthesis, hold every finding to a real-vs-synthetic standard, and arrive at recommendations precise enough to act on.
 
-This portfolio is updated as new projects are completed. **Project 1**, **Project 2**, and **Project 3** below are live now; additional work will be added as it is finished.
-
-This portfolio documents projects built from the ground up — consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
+This portfolio is updated as new projects are completed. **Six projects** are live below, spanning consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
 
 **Connect:** [LinkedIn](#) · [Email](#)
 
@@ -77,19 +75,6 @@ This portfolio documents projects built from the ground up — consumer research
 
 ---
 
-## What These Projects Demonstrate
-
-| Skill | Where It Shows |
-|---|---|
-| Real vs AI-synthesized data discipline | Consumer Persona project — REAL/IMPLIED/AI tagging throughout |
-| Structured AI-assisted research at scale | Market Intelligence Report — 6 independent research phases, fully documented |
-| Strategic synthesis | Tracing 6 recommendations back to one root metric (sub-3% conversion) |
-| Applied product architecture design | SunQuote AI — role-based access control and AI confidence-routing built from a mapped business process |
-| Narrative & communication | Translating dense research into a clear, presentation-ready story |
-| Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma, Base44 — used deliberately, limitations documented honestly |
-
----
-
 ## Project 4 — Ticket Triage Assistant
 ### AI-Powered Salesforce Support Ticket Categorization & Effort Estimation
 
@@ -126,6 +111,25 @@ This portfolio documents projects built from the ground up — consumer research
 
 ---
 
+## Project 6 — SparkBox
+### AI-Powered Employee Innovation & Suggestion Management Platform
+
+**What it is:** An AI-powered innovation management platform that fixes a common enterprise failure point — employee suggestions that go unread. Employees submit raw, unstructured ideas; AI restructures them into clear proposals; department managers and an innovation lead move them through a defined review-to-implementation pipeline.
+
+**Process:**
+- Identified the three-sided organizational failure this solves: employees can't articulate ideas clearly, managers don't have time to parse unstructured submissions, and leadership has zero visibility into what's being submitted or actioned org-wide
+- Designed role-based access control across 3 user types — Employee, Department Manager, Innovation Head — with Managers strictly isolated to their own department's submissions only
+- Scoped AI to a single, deliberate responsibility: converting a raw submission into a structured proposal (Problem Statement, Proposed Solution, Benefit, Effort Estimate, Cost Estimate) with a stated confidence level — never replacing or hiding the original raw input
+- Mapped a full idea-lifecycle status workflow — Submitted → Under Review → Endorsed/Returned → Approved/Rejected → Implemented — with an Employee-initiated Withdraw path
+- Built the entire application from a single, comprehensive, well-structured prompt on a no-code platform (Base44) rather than iterating with many small piecemeal instructions
+- Validated the role-based access design with named test users across two different departments — confirming true department-level data isolation rather than assuming it worked
+
+**Key Skill Demonstrated:** Designing role-based access control and a deliberate AI-scope boundary *before* writing a single prompt — the product thinking happens ahead of the build tool, not inside it. This is the same human-in-the-loop discipline applied in Project 3, 4, and 5, now applied to an internal enterprise workflow tool.
+
+🔗 [Live Demo](https://sparkbox-idea-flow.base44.app)
+
+---
+
 ## What These Projects Demonstrate
 
 | Skill | Where It Shows |
@@ -136,11 +140,11 @@ This portfolio documents projects built from the ground up — consumer research
 | Applied product architecture design | SunQuote AI — role-based access control and AI confidence-routing built from a mapped business process |
 | Validated, pattern-grounded AI reasoning | Ticket Triage Assistant — estimates grounded in documented past tickets, not untethered model judgment |
 | Confidence-aware AI system design | GradeX — dual-evaluator + moderator pipeline that flags its own uncertainty instead of hiding it |
+| Prompt-first, single-shot product design | SparkBox — full RBAC + AI-scope boundary designed before a single prompt was written, built in one comprehensive prompt |
 | Narrative & communication | Translating dense research into a clear, presentation-ready story |
 | Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma, Base44 — used deliberately, limitations documented honestly |
 
 ---
-
 
 ## Approach
 
