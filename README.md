@@ -8,7 +8,7 @@
 
 I work at the intersection of enterprise technology and AI-driven product strategy. My approach to product problems is research-led: combine real user data with AI-assisted synthesis, hold every finding to a real-vs-synthetic standard, and arrive at recommendations precise enough to act on.
 
-This portfolio is updated as new projects are completed. **Six projects** are live below, spanning consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
+This portfolio is updated as new projects are completed. **Seven projects** are live below, spanning consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
 
 **Connect:** [LinkedIn](#) · [Email](#)
 
@@ -130,6 +130,25 @@ This portfolio is updated as new projects are completed. **Six projects** are li
 
 ---
 
+## Project 7 — InvoiceIQ
+### AI-Powered Vendor Invoice Verification & Approval System
+
+**What it is:** An AI-powered application that automates vendor invoice verification against purchase orders — replacing a manual, error-prone cross-checking process with automated PO matching, duplicate detection, and AI-generated verification reasoning that a Finance Manager can act on immediately.
+
+**Process:**
+- Identified a real operational bottleneck — accounts teams manually cross-checking every vendor invoice against purchase orders, with inconsistent verification and no structured reasoning passed to the approver
+- Designed role-based access control across 2 user types — Accounts Executive (submits invoices) and Finance Manager (reviews and approves/rejects) — each restricted to their own screens and permissions
+- Mapped a full status workflow — Submitted → AI Verified → Flagged → Approved/Rejected → Paid
+- Scoped AI to a single, deliberate responsibility: matching invoice amount against the referenced PO, detecting duplicate invoice numbers, and generating a plain-language explanation for every flag — so the reviewer gets ready-made reasoning instead of a blind approval request
+- Built the entire application from one comprehensive, structured prompt on Base44, covering entities, roles, workflow, and AI logic in a single pass to minimize costly re-generation cycles
+- Iteratively fixed UI-level issues (notification behavior, branding consistency) through scoped follow-up prompts that explicitly preserved existing functionality rather than risking a full re-build
+
+**Key Skill Demonstrated:** Replacing a manual verification step with an AI layer that produces auditable reasoning rather than an opaque score — the same human-in-the-loop discipline applied across Projects 3, 4, 5, and 6, now applied to a finance/procurement workflow. Also demonstrates disciplined, credit-aware prompt engineering on a constrained no-code platform.
+
+🔗 [Live Demo](https://smart-invoice-iq.base44.app)
+
+---
+
 ## What These Projects Demonstrate
 
 | Skill | Where It Shows |
@@ -141,6 +160,7 @@ This portfolio is updated as new projects are completed. **Six projects** are li
 | Validated, pattern-grounded AI reasoning | Ticket Triage Assistant — estimates grounded in documented past tickets, not untethered model judgment |
 | Confidence-aware AI system design | GradeX — dual-evaluator + moderator pipeline that flags its own uncertainty instead of hiding it |
 | Prompt-first, single-shot product design | SparkBox — full RBAC + AI-scope boundary designed before a single prompt was written, built in one comprehensive prompt |
+| AI as auditable decision-support, not a black box | InvoiceIQ — AI generates plain-language reasoning for every flagged invoice instead of a silent score |
 | Narrative & communication | Translating dense research into a clear, presentation-ready story |
 | Tool fluency | Perplexity, SimilarWeb, SEMrush, Claude, Gamma, Base44 — used deliberately, limitations documented honestly |
 
