@@ -8,7 +8,7 @@
 
 I work at the intersection of enterprise technology and AI-driven product strategy. My approach to product problems is research-led: combine real user data with AI-assisted synthesis, hold every finding to a real-vs-synthetic standard, and arrive at recommendations precise enough to act on.
 
-This portfolio is updated as new projects are completed. **Seven projects** are live below, spanning consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
+This portfolio is updated as new projects are completed. **Eight projects** are live below, spanning consumer research, market intelligence, and applied product architecture — each executed end-to-end with the rigor expected of a strategy function inside a product organization.
 
 **Connect:** [LinkedIn](#) · [Email](#)
 
@@ -148,6 +148,65 @@ This portfolio is updated as new projects are completed. **Seven projects** are 
 🔗 [Live Demo](https://smart-invoice-iq.base44.app)
 
 ---
+
+# 📊 Project 8: WealthWise — AI-Powered Personal Investment Advisor & Portfolio Tracker
+
+## What it is
+
+An AI-powered personal finance application that connects an investor's risk profile, financial goals, and actual portfolio holdings into one structured system, with an AI Coach that provides personalized, context-aware guidance instead of generic financial advice.
+
+---
+
+## Process
+
+### Financial Management Gap Analysis
+- Identified a real gap in personal finance management where financial goals, risk profile, and investment holdings typically exist in disconnected systems with no unified view.
+
+### Role-Based Access Design
+- Designed role-based access for two user types:
+  - **Investor:** Completes onboarding, tracks financial goals and portfolio, and interacts with the AI Coach.
+  - **Admin:** Views only aggregate platform statistics while individual investor data remains completely private.
+
+### Multi-Step Onboarding Workflow
+- Designed a multi-step onboarding workflow:
+  - Personal Profile
+  - Risk & Investment Profile
+  - Financial Goals
+  - Existing Investments
+  - Dashboard access is blocked until onboarding is fully completed.
+
+### AI Coach Design & Scope
+- Scoped the AI Coach to a single, well-defined responsibility:
+  - Generates educational financial guidance using the investor's stored risk appetite, financial goals, and portfolio summary.
+  - Includes a mandatory disclaimer on every response.
+  - Does **not** recommend specific investment products or securities.
+
+### Debugging & Issue Resolution
+- Diagnosed and resolved a critical navigation issue where completed onboarding incorrectly redirected users back to the disclaimer page.
+  - **Root Cause:** A stale completion-status check was reading outdated session state instead of the persisted user record.
+
+### Data Persistence Validation
+- Verified data persistence by confirming that investment and financial goal data remained consistent across page navigation and browser session refresh.
+
+### Known Limitation
+- Documented a known cosmetic limitation instead of hiding it:
+  - A display-only inconsistency exists on a secondary settings page.
+  - The issue does **not** impact data integrity or access-control enforcement.
+
+---
+
+## Key Skills Demonstrated
+
+- Designed an AI feature that delivers genuine, context-aware value instead of acting as a generic chatbot.
+- Applied human-in-the-loop and evidence-based AI design principles.
+- Demonstrated real-world debugging by identifying the underlying application state issue instead of implementing a temporary workaround.
+- Built secure role-based access and structured onboarding workflows for a financial application.
+
+---
+
+## Live Demo
+
+🔗 [Live Demo](https://messy-wealth-wise-flow.base44.app)
 
 ## What These Projects Demonstrate
 
