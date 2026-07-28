@@ -149,64 +149,25 @@ This portfolio is updated as new projects are completed. **Eight projects** are 
 
 ---
 
-# 📊 Project 8: WealthWise — AI-Powered Personal Investment Advisor & Portfolio Tracker
+## Project 8 — WealthWise
+### AI-Powered Personal Investment Advisor & Portfolio Tracker
 
-## What it is
+**What it is:** An AI-powered personal finance application that connects an investor's risk profile, financial goals, and actual portfolio holdings into one structured system, with an AI Coach that provides personalized, context-aware guidance instead of generic financial advice.
 
-An AI-powered personal finance application that connects an investor's risk profile, financial goals, and actual portfolio holdings into one structured system, with an AI Coach that provides personalized, context-aware guidance instead of generic financial advice.
+**Process:**
+- Identified a real gap in personal finance management where financial goals, risk profile, and investment holdings typically exist in disconnected systems with no unified view
+- Designed role-based access control across 2 user types — Investor (completes onboarding, tracks financial goals and portfolio, interacts with the AI Coach) and Admin (views only aggregate platform statistics while individual investor data remains completely private)
+- Designed a multi-step onboarding workflow — Personal Profile → Risk & Investment Profile → Financial Goals → Existing Investments — with dashboard access blocked until onboarding is fully completed
+- Scoped the AI Coach to a single, well-defined responsibility: generating educational financial guidance from the investor's stored risk appetite, financial goals, and portfolio summary, with a mandatory disclaimer on every response and no recommendation of specific investment products or securities
+- Diagnosed and resolved a critical navigation bug where completed onboarding incorrectly redirected users back to the disclaimer page — root cause was a stale completion-status check reading outdated session state instead of the persisted user record
+- Verified data persistence by confirming investment and financial goal data remained consistent across page navigation and browser session refresh
+- Documented a known cosmetic limitation instead of hiding it — a display-only inconsistency on a secondary settings page that does not impact data integrity or access-control enforcement
 
----
-
-## Process
-
-### Financial Management Gap Analysis
-- Identified a real gap in personal finance management where financial goals, risk profile, and investment holdings typically exist in disconnected systems with no unified view.
-
-### Role-Based Access Design
-- Designed role-based access for two user types:
-  - **Investor:** Completes onboarding, tracks financial goals and portfolio, and interacts with the AI Coach.
-  - **Admin:** Views only aggregate platform statistics while individual investor data remains completely private.
-
-### Multi-Step Onboarding Workflow
-- Designed a multi-step onboarding workflow:
-  - Personal Profile
-  - Risk & Investment Profile
-  - Financial Goals
-  - Existing Investments
-  - Dashboard access is blocked until onboarding is fully completed.
-
-### AI Coach Design & Scope
-- Scoped the AI Coach to a single, well-defined responsibility:
-  - Generates educational financial guidance using the investor's stored risk appetite, financial goals, and portfolio summary.
-  - Includes a mandatory disclaimer on every response.
-  - Does **not** recommend specific investment products or securities.
-
-### Debugging & Issue Resolution
-- Diagnosed and resolved a critical navigation issue where completed onboarding incorrectly redirected users back to the disclaimer page.
-  - **Root Cause:** A stale completion-status check was reading outdated session state instead of the persisted user record.
-
-### Data Persistence Validation
-- Verified data persistence by confirming that investment and financial goal data remained consistent across page navigation and browser session refresh.
-
-### Known Limitation
-- Documented a known cosmetic limitation instead of hiding it:
-  - A display-only inconsistency exists on a secondary settings page.
-  - The issue does **not** impact data integrity or access-control enforcement.
-
----
-
-## Key Skills Demonstrated
-
-- Designed an AI feature that delivers genuine, context-aware value instead of acting as a generic chatbot.
-- Applied human-in-the-loop and evidence-based AI design principles.
-- Demonstrated real-world debugging by identifying the underlying application state issue instead of implementing a temporary workaround.
-- Built secure role-based access and structured onboarding workflows for a financial application.
-
----
-
-## Live Demo
+**Key Skill Demonstrated:** Designing an AI feature that delivers genuine, context-aware value instead of acting as a generic chatbot, backed by human-in-the-loop and evidence-based AI design principles. Also demonstrates real-world debugging — tracing a bug to its underlying application-state cause rather than applying a temporary workaround. This is the same human-in-the-loop discipline applied across Projects 3–7, now applied to a personal finance context.
 
 🔗 [Live Demo](https://messy-wealth-wise-flow.base44.app)
+
+---
 
 ## What These Projects Demonstrate
 
