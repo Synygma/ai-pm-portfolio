@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+node_modules/
+tools/docgen/*.html
+*.tmp
+~$*
+.DS_Store
+Thumbs.db
+
+# LinkedIn screenshots/recordings show other people in the feed: keep local only (public repo)
+research/runs/*/publish/*.jpg
+research/runs/*/publish/*.png
+research/runs/*/publish/*.gif

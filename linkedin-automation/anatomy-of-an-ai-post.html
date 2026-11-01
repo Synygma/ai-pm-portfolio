@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Anatomy of an AI Post</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (~70ch) with a sticky section index on wide screens; evidence tiers are color-coded chips used consistently everywhere. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#151b26; --muted:#5a6475; --rule:#dde1e8;
+  --accent:#2246c7; --accent-soft:#e6ebfb;
+  --ev-o:#0f6e63; --ev-o-bg:#dcf1ee;   /* LinkedIn official */
+  --ev-d:#2246c7; --ev-d-bg:#e3e9fb;   /* third-party data */
+  --ev-e:#8a5a00; --ev-e-bg:#f8ecd2;   /* expert opinion */
+  --ev-f:#a2264b; --ev-f-bg:#f8e0e7;   /* folklore / unverified */
+  --bar:#2246c7; --bar2:#0f6e63;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f131a; --surface:#171c25; --ink:#e7eaf0; --muted:#9aa4b5; --rule:#2a3140;
+  --accent:#8fa8ff; --accent-soft:#1d2643;
+  --ev-o:#6fd6c6; --ev-o-bg:#123532; --ev-d:#9fb3ff; --ev-d-bg:#1d2747;
+  --ev-e:#f0c46a; --ev-e-bg:#3a2d10; --ev-f:#f49ab3; --ev-f-bg:#3d1826;
+  --bar:#8fa8ff; --bar2:#6fd6c6; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f131a; --surface:#171c25; --ink:#e7eaf0; --muted:#9aa4b5; --rule:#2a3140;
+  --accent:#8fa8ff; --accent-soft:#1d2643;
+  --ev-o:#6fd6c6; --ev-o-bg:#123532; --ev-d:#9fb3ff; --ev-d-bg:#1d2747;
+  --ev-e:#f0c46a; --ev-e-bg:#3a2d10; --ev-f:#f49ab3; --ev-f-bg:#3d1826;
+  --bar:#8fa8ff; --bar2:#6fd6c6; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.62;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+main{min-width:0;max-width:780px}
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-block:40px;font-size:13.5px}
+.toc p{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0 3px 10px;border-left:2px solid var(--rule)}
+.toc a:hover,.toc a:focus-visible{color:var(--ink);border-left-color:var(--accent)}
+header.top{padding-block:48px 28px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.lede{font-size:1.12rem;color:var(--muted);max-width:62ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+h2{font-family:var(--f-display);font-weight:700;font-size:1.85rem;line-height:1.15;letter-spacing:-.01em;margin:0 0 6px;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:700;font-size:1.18rem;margin:28px 0 8px;text-wrap:balance}
+section{padding-block:44px 8px;border-bottom:1px solid var(--rule)}
+section > .num{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.06em}
+p{margin:0 0 14px;max-width:70ch}
+ul,ol{padding-left:1.25em;margin:0 0 14px}
+li{margin-bottom:6px;max-width:68ch}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+strong{font-weight:600}
+.ev{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;border-radius:3px;vertical-align:2px;white-space:nowrap}
+.ev.o{color:var(--ev-o);background:var(--ev-o-bg)}
+.ev.d{color:var(--ev-d);background:var(--ev-d-bg)}
+.ev.e{color:var(--ev-e);background:var(--ev-e-bg)}
+.ev.f{color:var(--ev-f);background:var(--ev-f-bg)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0 0;padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;font-size:13.5px}
+.legend div{display:flex;flex-direction:column;gap:4px}
+.legend span:last-child{color:var(--muted)}
+.cite{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.summary{display:grid;gap:12px;padding:0;list-style:none;counter-reset:s}
+.summary li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;max-width:none}
+.summary li::before{content:counter(s);font-family:var(--f-mono);font-size:12px;color:var(--accent);padding-top:3px}
+.tbl{overflow-x:auto;margin:16px 0 20px;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;font-size:15px}
+.callout p:last-child{margin:0}
+.conflict{border-left-color:var(--ev-f);background:var(--ev-f-bg)}
+/* Anatomy diagram */
+.anat{display:grid;gap:0;margin:22px 0;border:1px solid var(--rule);border-radius:8px;background:var(--surface);overflow:hidden}
+.anat-head{display:flex;gap:12px;align-items:center;padding:14px 16px 10px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);border:1px solid var(--rule);flex:none}
+.anat-head b{display:block;font-size:14px}
+.anat-head small{color:var(--muted);font-size:12px}
+.zone{display:grid;grid-template-columns:132px minmax(0,1fr);border-top:1px solid var(--rule)}
+.zone .lab{padding:12px 12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--bg);border-right:1px solid var(--rule)}
+.zone .lab small{display:block;text-transform:none;letter-spacing:0;color:var(--muted);margin-top:4px;font-size:11px}
+.zone .txt{padding:12px 16px;font-size:14.5px;min-width:0}
+.zone .txt p{margin:0 0 6px}
+.fold{position:relative;border-top:2px dashed var(--ev-f)}
+.fold::after{content:"…see more  (≈140 chars mobile / ≈210 desktop / ~3 lines)";position:absolute;right:10px;top:-11px;background:var(--surface);color:var(--ev-f);font-family:var(--f-mono);font-size:10.5px;padding:0 6px}
+@media (max-width:560px){.zone{grid-template-columns:minmax(0,1fr)}.zone .lab{border-right:0;border-bottom:1px solid var(--rule)}.fold::after{content:"…see more fold";}}
+/* Bars */
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:18px 0}
+.chart{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px}
+.chart h4{margin:0 0 2px;font-family:var(--f-display);font-size:15px}
+.chart .sub{font-size:12px;color:var(--muted);margin:0 0 12px}
+.bars{display:grid;gap:8px;position:relative}
+.bar{display:grid;grid-template-columns:78px minmax(0,1fr) 54px;align-items:center;gap:8px;font-size:12.5px}
+.bar .track{height:14px;background:var(--bg);border-radius:2px;position:relative}
+.bar .fill{height:100%;background:var(--bar);border-radius:2px}
+.chart.two .fill{background:var(--bar2)}
+.bar .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.baseline{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1px dashed var(--muted)}
+.chart .foot{font-size:11.5px;color:var(--muted);margin-top:10px}
+/* Breakdown cards */
+.posts{display:grid;gap:14px;margin:18px 0}
+.post{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;display:grid;gap:8px}
+.post-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:baseline}
+.post-top b{font-family:var(--f-display);font-size:16px}
+.post-top .cite{white-space:normal}
+.stats{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats strong{color:var(--ink);font-weight:500}
+.post dl{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 12px;margin:0;font-size:14px}
+.post dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.post dd{margin:0}
+@media (max-width:520px){.post dl{grid-template-columns:minmax(0,1fr)}.post dt{padding-top:6px}}
+/* Checklist */
+.check{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:6px 28px}
+.check fieldset{border:0;margin:0;padding:0;min-width:0}
+.check legend{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding:10px 0 6px}
+.check label{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:14px;padding:4px 0;cursor:pointer;line-height:1.45}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.check-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 8px;font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+button{font-family:var(--f-mono);font-size:12px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:6px 10px;cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+/* Templates */
+.tpl{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin:18px 0;overflow:hidden}
+.tpl-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--rule)}
+.tpl-head b{font-family:var(--f-display);font-size:17px}
+.tpl-head span{font-size:13px;color:var(--muted)}
+.tpl-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.tpl-col{padding:14px 18px;min-width:0;border-right:1px solid var(--rule)}
+.tpl-col:last-child{border-right:0}
+@media (max-width:640px){.tpl-col{border-right:0;border-bottom:1px solid var(--rule)}}
+.tpl-col h5{margin:0 0 8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:8px}
+pre.post-text{white-space:pre-wrap;word-wrap:break-word;font-family:var(--f-body);font-size:14px;line-height:1.55;margin:0}
+pre.post-text i{font-style:normal;color:var(--accent);background:var(--accent-soft);padding:0 3px;border-radius:2px}
+.tpl-notes{padding:12px 18px;background:var(--bg);font-size:13.5px;border-top:1px solid var(--rule)}
+.tpl-notes p{margin:0}
+.sources{font-size:13.5px;padding-left:1.4em}
+.sources li{margin-bottom:8px;max-width:none;word-break:break-word}
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.box{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;font-size:14.5px}
+.box h4{margin:0 0 8px;font-family:var(--f-display);font-size:15px}
+.box ul{margin:0}
+.yes h4{color:var(--ev-o)} .no h4{color:var(--ev-f)}
+footer{padding-block:28px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Sections">
+  <p>Contents</p>
+  <ol>
+    <li><a href="#summary">Executive summary</a></li>
+    <li><a href="#feed">How the feed works now</a></li>
+    <li><a href="#anatomy">Anatomy of a Post</a></li>
+    <li><a href="#hook">Hook</a></li>
+    <li><a href="#body">Body structure</a></li>
+    <li><a href="#formats">Content types</a></li>
+    <li><a href="#close">Closing &amp; CTA</a></li>
+    <li><a href="#signals">Algorithm signals</a></li>
+    <li><a href="#tone">Tone &amp; positioning</a></li>
+    <li><a href="#mistakes">Reach killers</a></li>
+    <li><a href="#ai">AI-niche playbook</a></li>
+    <li><a href="#breakdowns">8 post breakdowns</a></li>
+    <li><a href="#conflicts">Where sources conflict</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <p class="eyebrow">Research report · AI &amp; AI Product Management niche</p>
+  <h1>Anatomy of an AI Post</h1>
+  <p class="lede">What makes a LinkedIn post perform in late 2026, built from LinkedIn's own engineering and newsroom posts, large post-level datasets, and 8 real AI/AI-PM posts taken apart line by line. Every claim is tagged by how much you can trust it.</p>
+  <div class="meta"><span>Research date: 1 Nov 2026</span><span>~40 sources checked</span><span>8 posts verified on LinkedIn</span></div>
+  <div class="legend" role="list" aria-label="Evidence tiers">
+    <div role="listitem"><span class="ev o">LinkedIn</span><span>LinkedIn's own newsroom, engineering blog or research papers.</span></div>
+    <div role="listitem"><span class="ev d">Data</span><span>Third-party analysis of a large post dataset. Observational: shows correlation, not cause.</span></div>
+    <div role="listitem"><span class="ev e">Expert</span><span>Practitioner opinion or small-sample observation. Plausible, unmeasured.</span></div>
+    <div role="listitem"><span class="ev f">Folklore</span><span>Widely repeated, no traceable source found. Don't build strategy on it.</span></div>
+  </div>
+</header>
+
+<!-- 1 -->
+<section id="summary">
+  <div class="num">01</div>
+  <h2>Executive summary</h2>
+  <ol class="summary">
+    <li><div><strong>The feed now reads your post, not only the reactions to it.</strong> In March 2026 LinkedIn said ranking runs on "Generative Recommenders augmented with LLMs" that "better understand what a post is actually about", and that it uses members' self-reported industry, skills and experience. <span class="ev o">LinkedIn</span> <span class="cite">Newsroom, Mar 2026</span> In practice: a post about eval design from someone whose profile says "AI PM" has a clearer path than the same post from a profile that says nothing about AI. The topic-profile match part is <span class="ev e">Expert</span> inference, not a published rule.</div></li>
+    <li><div><strong>Organic reach is down sharply, so treat each post as a scarce shot.</strong> Van der Blom's datasets report median reach falling roughly 47–60% over 2024–2026, depending on edition. <span class="ev d">Data</span> <span class="cite">Algorithm InSights 2025 &amp; 2026, via summaries</span></div></li>
+    <li><div><strong>Documents (PDF carousels) are the most reliable format; polls get reach but no conversation; video is improving but mixed.</strong> AuthoredUp (Mar 2025–Feb 2026): documents 1.39× reach, polls 1.78× reach but 0.37× engagement, video 0.86× reach. <span class="ev d">Data</span> Buffer (2026): carousels 21.77% median engagement rate against 3.18% for text. <span class="ev d">Data</span></div></li>
+    <li><div><strong>Length helps, up to a point.</strong> Text posts over 1,000 characters got 1.18× reach; posts under 5 sentences got 0.64×. <span class="ev d">Data</span> <span class="cite">AuthoredUp 2026</span> Hard cap is 3,000 characters.</div></li>
+    <li><div><strong>The hook has about 140 characters on mobile before "…see more".</strong> The figure is third-party and the cut is partly line-based, so short lines and blank lines use up the visible space faster. <span class="ev e">Expert</span></div></li>
+    <li><div><strong>Engagement bait is now explicitly demoted.</strong> LinkedIn named "comment to agree" prompts, engagement pods and comment automation in March 2026. <span class="ev o">LinkedIn</span> "Comment ROADMAP and I'll DM you" is not named, but it sits close to that line.</div></li>
+    <li><div><strong>Comments are ranked per viewer (Aug 2026), so a specific comment gets seen and "Great post!" gets buried.</strong> <span class="ev e">Expert</span> <span class="cite">reported by Social Media Today; LinkedIn confirmation is secondhand</span></div></li>
+    <li><div><strong>External links cost reach, but how much is disputed.</strong> Ordinal: −26.5% overall, concentrated on company pages. Van der Blom: −18.8% for one link (2025). Others call it a myth. <span class="ev d">Data</span> (conflicting)</div></li>
+    <li><div><strong>Hashtags no longer help distribution.</strong> LinkedIn removed hashtag following in 2024, and 1–2 hashtags show no measurable reach effect. <span class="ev d">Data</span> Tagging people raises reactions and comments more than hashtags do, but only when the tag is genuine. <span class="ev d">Data</span> <span class="cite">Usera, UTA 2025, n=991</span></div></li>
+    <li><div><strong>In AI content, evidence beats commentary.</strong> In the 8 verified AI posts, short, link-free posts reporting a test or first-hand observation got 9–30 comments per 100 reactions. Link-heavy roadmap posts with a hard CTA got 6–11, even from a 325K-follower account. <span class="ev e">Expert</span> (n=8, confounded by audience)</div></li>
+  </ol>
+</section>
+
+<!-- 2 -->
+<section id="feed">
+  <div class="num">02</div>
+  <h2>How the feed works now (what LinkedIn has actually said)</h2>
+  <p>Most "algorithm" advice is reverse-engineered. These are the points LinkedIn has documented itself, in date order.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>When</th><th>What LinkedIn published</th><th>What it means for a post</th></tr></thead>
+    <tbody>
+      <tr><td class="n">2020</td><td><span class="ev o">LinkedIn</span> Engineering: dwell time is measured "on the feed" from when ≥50% of an update is visible, plus dwell after a click. A skip model, P(skip), predicts if a viewer will scroll past quickly.</td><td>Time spent reading is a modelled signal. Structure that earns the "see more" click and keeps people reading is doing ranking work.</td></tr>
+      <tr><td class="n">Jun 2023</td><td>Dan Roth (LinkedIn editor-in-chief) on prioritizing "knowledge and advice" from people "uniquely qualified to talk about" a topic. <span class="cite">Entrepreneur interview, via secondary coverage</span></td><td>The first public sign that matching a topic to the author's expertise matters.</td></tr>
+      <tr><td class="n">Late 2024</td><td>Hashtag following and the "Talks about" profile section removed; LinkedIn told Social Media Today hashtags are "no longer necessary" because the system reads topics and keywords. <span class="cite">secondary</span></td><td>Hashtags are labels, not distribution levers.</td></tr>
+      <tr><td class="n">Jan 2025</td><td><span class="ev o">LinkedIn</span> research paper <em>360Brew</em>: a ~150B-parameter decoder model that ranks from text descriptions of member history and content, across 30+ tasks. Described as research / pre-production.</td><td>The direction is a model that reads language. Claims that "360Brew is the live feed" are <span class="ev f">unverified</span>.</td></tr>
+      <tr><td class="n">Feb 2025</td><td>LinkedIn: video watch time up 36% YoY; video creation growing about 2× faster than other formats. <span class="cite">TechCrunch / SEJ</span></td><td>LinkedIn is pushing video. The supply of video is rising faster than demand, which helps explain mixed per-post results.</td></tr>
+      <tr><td class="n">Jul 2025</td><td>Member Post Analytics API opened to approved tools. Shield (a popular creator-analytics tool) shut down in 2026 after access was restricted.</td><td>Old Shield-based benchmarks can no longer be refreshed. Treat them as historical.</td></tr>
+      <tr><td class="n">Oct 2025</td><td><span class="ev o">LinkedIn</span> arXiv 2510.14223: LLM-based retrieval narrows hundreds of millions of candidates to a small set for ranking.</td><td>Retrieval is semantic. Clear, specific language about a topic helps the system find the right readers.</td></tr>
+      <tr><td class="n">12 Mar 2026</td><td><span class="ev o">LinkedIn</span> Newsroom "Improving the Feed": Generative Recommenders + LLMs; less "recycled and click-driven" content; demotes "comment to agree" bait, pods, comment automation and videos that don't match their text; boosts "genuine insight, actionable ideas, and thoughtful perspectives"; uses self-shared industry, skills, experience and location.</td><td>The single most important primary source for 2026. Read it in full (linked in Sources).</td></tr>
+      <tr><td class="n">Mar 2026</td><td>LinkedIn Engineering (Danchev): unified LLM-embedding retrieval and a sequential Generative Recommender over 1,000+ past interactions. <span class="cite">via secondary write-ups; original not opened</span></td><td>Your followers' recent behavior sequence matters, not only their static interests.</td></tr>
+      <tr><td class="n">Aug 2026</td><td>Comments ranked by relevance to each viewer. <span class="cite">Social Media Today; flagged by Lindsey Gamble</span></td><td>A comment with a specific example or counterpoint becomes visible; generic praise does not.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><strong>What LinkedIn has <em>not</em> published:</strong> signal weights. "Comments are worth 15× likes", "the first 60 minutes decide everything", and "dwell outweighs likes 3:1" all come from third parties. Some are plausible; none is documented by LinkedIn.</p></div>
+</section>
+
+<!-- 3 -->
+<section id="anatomy">
+  <div class="num">03</div>
+  <h2>Anatomy of a Post</h2>
+  <p>Five parts, plus the first comment. The diagram uses a real-shaped AI PM example; the table below gives each part's job and rules.</p>
+
+  <div class="anat" role="figure" aria-label="Labeled diagram of a LinkedIn post">
+    <div class="anat-head"><div class="avatar" aria-hidden="true"></div><div><b>You · AI Product Manager</b><small>Headline matches the topic: "AI PM · evals &amp; enterprise rollouts"</small></div></div>
+    <div class="zone"><div class="lab">1 · Hook<small>Lines 1–2, ≤140 chars</small></div><div class="txt"><p>We shipped an AI support agent with a 92% eval pass rate.</p><p>Customers hated it. The evals were testing the wrong thing.</p></div></div>
+    <div class="zone fold"><div class="lab">2 · Context<small>1–3 lines: why trust me</small></div><div class="txt"><p>6 weeks, 1,400 real tickets, one very awkward CSAT review.</p></div></div>
+    <div class="zone"><div class="lab">3 · Body<small>The proof, 3–5 beats</small></div><div class="txt"><p>What we measured: answer correctness against the help docs.</p><p>What customers cared about: did it resolve the ticket without a handoff.</p><p>3 changes we made → (short numbered list, one line each, one number per line)</p></div></div>
+    <div class="zone"><div class="lab">4 · Takeaway<small>One sentence they can repeat</small></div><div class="txt"><p>An eval suite is a product spec. If it doesn't encode the user's definition of "done", it's measuring your comfort, not their outcome.</p></div></div>
+    <div class="zone"><div class="lab">5 · CTA<small>Specific question</small></div><div class="txt"><p>If you run evals for an agent in production: what's the one metric you added after launch that you wish you'd had on day one?</p></div></div>
+    <div class="zone"><div class="lab">+ 1st comment<small>Within minutes</small></div><div class="txt"><p>The eval rubric template (link), plus one detail that didn't fit in the post. Gives early commenters something to reply to.</p></div></div>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>Job</th><th>Best practice</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hook</strong></td><td>Earn the "see more" tap from the right reader.</td><td>Front-load the specific: a number, a named tool, a result, a tension. Finish the hook's idea before ~140 characters. Make sure it signals who the post is for (AI PMs, not "everyone").</td><td><span class="ev e">Expert</span> fold length; <span class="ev o">LinkedIn</span> dwell/skip modelling</td></tr>
+      <tr><td><strong>Context</strong></td><td>Answer "why should I believe you?" fast.</td><td>Scope and stakes in one line: time spent, sample size, role, what was at risk. This is where practitioner credibility is established.</td><td><span class="ev o">LinkedIn</span> "insight… from people with expertise" (2023, 2026)</td></tr>
+      <tr><td><strong>Body</strong></td><td>Deliver the insight and hold dwell time.</td><td>3–5 beats. Paragraphs of 1–3 lines (max 4). Use a numbered list only when the content is genuinely a sequence or a set. One idea per line. 900–1,500 characters for text posts.</td><td><span class="ev d">Data</span> length; <span class="ev e">Expert</span> rhythm</td></tr>
+      <tr><td><strong>Takeaway</strong></td><td>Give people something to repeat and save.</td><td>One sentence, quotable, a little contrarian or reframing. The test: would someone screenshot this line?</td><td><span class="ev e">Expert</span></td></tr>
+      <tr><td><strong>CTA</strong></td><td>Start a conversation the feed can rank.</td><td>Ask for experience, not agreement: "What did you change after…?" beats "Agree?". Skip CTAs that trade a resource for a keyword comment.</td><td><span class="ev o">LinkedIn</span> bait demotion 2026; <span class="ev e">Expert</span> question design</td></tr>
+      <tr><td><strong>First comment</strong></td><td>Hold the link and add depth.</td><td>Put the source, repo or doc here. Add one extra detail. Reply to early comments with substance (a follow-up question or example).</td><td><span class="ev d">Data</span> link penalty (contested); <span class="ev d">Data</span> threaded replies up to 2.4× reach (AuthoredUp)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 4 -->
+<section id="hook">
+  <div class="num">04</div>
+  <h2>Hook: the first 2–3 lines</h2>
+  <h3>Where the cut happens</h3>
+  <ul>
+    <li><strong>About 140 characters on mobile and about 210 on desktop</strong> is the commonly cited fold. Sources disagree: some give ~150 mobile, others 250+ desktop, and some say the cut is line-based (about 3 lines, with a blank line counting as a full line). <span class="ev e">Expert</span> Check every hook in a post-preview tool before publishing.</li>
+    <li><strong>Hard limit:</strong> 3,000 characters per post. <span class="ev d">Data</span></li>
+    <li>Since most LinkedIn sessions are mobile, write for the shorter fold. A blank line after line 1 costs you a whole line of preview.</li>
+  </ul>
+  <h3>Hook patterns that work in AI content</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Pattern</th><th>Weak version</th><th>Strong version</th><th>Why it works</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Test result</strong></td><td>Prompt engineering tips you need to know 👇</td><td>We tested "act as an expert" prompts on 200 support tickets. Accuracy didn't move.</td><td>Specific, falsifiable, and it challenges a common belief. This is the Mollick pattern (see breakdown 1).</td></tr>
+      <tr><td><strong>Number + consequence</strong></td><td>AI is transforming enterprises.</td><td>Our Copilot rollout hit 80% activation. Weekly use was 11% by week six.</td><td>The gap between two numbers is the story, and the reader wants the explanation.</td></tr>
+      <tr><td><strong>Paradox</strong></td><td>AI experts are important.</td><td>The best ML engineer on my team was the worst at using our AI product.</td><td>Mollick's "builders aren't the best users" shape. Short, and you have to read on to resolve it.</td></tr>
+      <tr><td><strong>Build log</strong></td><td>I built something cool with AI!</td><td>I built our PRD reviewer in Claude in 3 hours. It caught 2 real gaps and invented 1.</td><td>Includes cost, outcome and a failure, which signals honesty.</td></tr>
+      <tr><td><strong>Scene</strong></td><td>AI is for everyone.</td><td>My 61-year-old procurement lead wrote her first agent prompt last Tuesday. In Tamil.</td><td>A concrete person and detail. This is Allie K. Miller's "64-year-old in NYC" shape (breakdown 5).</td></tr>
+      <tr><td><strong>Prediction with stake</strong></td><td>2026 will be the year of AI agents.</td><td>Voice will replace the prompt box for PMs within 12 months. Here's what I'm seeing in 4 offices.</td><td>A bounded, checkable claim plus first-hand evidence. Allie's voice-AI post (breakdown 4).</td></tr>
+      <tr><td><strong>Fresh-news verdict</strong></td><td>BREAKING: OpenAI just released a new model 🚨</td><td>I had early access to [model] for a week. Better analyst, worse writer. Details:</td><td>Access plus a two-sided verdict. Breakdown 6 got 30 comments per 100 reactions.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two-col">
+    <div class="box no"><h4>Hooks that read as AI-hype or cringe</h4><ul>
+      <li>"🚨 BREAKING" / "This changes everything"</li>
+      <li>"I'm humbled and honored to announce…"</li>
+      <li>"Most people don't know this, but…" with nothing surprising after</li>
+      <li>"Stop using ChatGPT like this" with a generic tip</li>
+      <li>One-word line + blank line + one-word line ("Fired. / Then hired.") stretching across the fold</li>
+    </ul></div>
+    <div class="box yes"><h4>Hook self-test (5 seconds)</h4><ul>
+      <li>Does it contain a number, a named tool or a named situation?</li>
+      <li>Could only someone who did the work have written it?</li>
+      <li>Is the tension resolved <em>below</em> the fold, not above it?</li>
+      <li>Would an AI PM recognize it as relevant to them?</li>
+      <li>Is it true with no exaggeration? (The body has to pay it off.)</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="body">
+  <div class="num">05</div>
+  <h2>Body structure</h2>
+  <h3>Length: what the data says</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Finding</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Text posts 1,000+ characters</td><td class="n">1.18× reach, 1.18× engagement</td><td><span class="ev d">Data</span> AuthoredUp, Mar 2025–Feb 2026</td></tr>
+      <tr><td>Text posts 700–800 characters</td><td class="n">0.98× reach</td><td>AuthoredUp 2026</td></tr>
+      <tr><td>Text posts under 300 characters</td><td class="n">0.88× reach</td><td>AuthoredUp 2026</td></tr>
+      <tr><td>Fewer than 5 sentences / 20+ sentences</td><td class="n">0.64× / 1.14× reach</td><td>AuthoredUp 2026</td></tr>
+      <tr><td>Image captions 800–900 chars; above 1,000 adds nothing</td><td class="n">1.04× reach</td><td>AuthoredUp 2026</td></tr>
+      <tr><td>Document (carousel) captions 0–100 chars</td><td class="n">1.28× reach</td><td>AuthoredUp 2026</td></tr>
+      <tr><td>Video 3 min+ vs 30–60 s</td><td class="n">1.21× vs 0.95× reach</td><td>AuthoredUp, 36,946 videos, Oct 2025–Mar 2026</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout conflict"><p><strong>Counter-evidence from the AI niche:</strong> Ethan Mollick's 50-word and 100-word posts drew 1,600–1,800 reactions and 230–255 comments (breakdowns 1–2). Short posts can work when the author has trusted authority and one sharp finding. Averages describe the median creator, not every case.</p></div>
+  <h3>Rhythm and line breaks</h3>
+  <ul>
+    <li>Paragraphs of 1–3 lines, maximum 4. <span class="ev d">Data</span> <span class="cite">AuthoredUp 2025 guidance</span> Vary the rhythm: a one-line punch after a 3-line paragraph reads as emphasis, while a page of one-liners reads as a manufactured "broetry" pattern. <span class="ev e">Expert</span></li>
+    <li>Use lists only when the content is a real set or sequence (steps, findings, trade-offs). In the AI posts reviewed, numbered observations appeared in the 3 highest-reaction posts. <span class="ev e">Expert</span></li>
+    <li>Emoji as section markers (👍/👎, →) work in moderation for verdict posts (breakdown 6). Emoji in every line signals a template. <span class="ev e">Expert</span></li>
+  </ul>
+  <h3>Storytelling frameworks that fit AI/PM content</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Framework</th><th>Beats</th><th>Best for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Claim → Test → Result → Caveat</strong></td><td>Common belief · what we tried · what happened · where it might not hold</td><td>Prompting, evals, tool comparisons. Most credible for practitioners.</td></tr>
+      <tr><td><strong>Expectation → Reality → Fix</strong></td><td>What we planned · what broke · what we changed · the rule we'd keep</td><td>Rollout post-mortems, enterprise adoption stories</td></tr>
+      <tr><td><strong>Setup → Numbered observations → Reflection</strong></td><td>One-line context · 3–5 learnings · what it means</td><td>Teaching, workshops, building sprints (breakdown 3)</td></tr>
+      <tr><td><strong>Scene → Turn → Lesson</strong></td><td>A person in a moment · the unexpected detail · the broader point</td><td>Adoption and human-impact stories (breakdown 5)</td></tr>
+      <tr><td><strong>Upside / Downside / Verdict</strong></td><td>What's better · what's worse · who should use it</td><td>New model or tool releases (breakdown 6)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Holding attention to the end</h3>
+  <ul>
+    <li><strong>Open a loop in the hook and close it late.</strong> For example, mention "3 changes" early and give the third one last. <span class="ev e">Expert</span></li>
+    <li><strong>Put one number per beat.</strong> Specifics act as reading checkpoints. <span class="ev e">Expert</span></li>
+    <li><strong>Save the takeaway for the last two lines.</strong> If the conclusion is in the hook, readers have no reason to keep reading. <span class="ev e">Expert</span></li>
+  </ul>
+</section>
+
+<!-- 6 -->
+<section id="formats">
+  <div class="num">06</div>
+  <h2>Content types compared</h2>
+  <p>The two biggest public datasets measure different things. AuthoredUp measures <strong>reach</strong> relative to each creator's own median. Buffer measures <strong>median engagement rate</strong>. They agree on documents and disagree on video.</p>
+  <div class="charts">
+    <div class="chart">
+      <h4>Reach multiplier by format</h4>
+      <p class="sub">Personal profiles, vs creator's median. AuthoredUp, Mar 2025–Feb 2026.</p>
+      <div class="bars">
+        <div class="bar"><span>Poll</span><div class="track"><div class="fill" style="width:89%"></div><div class="baseline" style="left:50%"></div></div><span class="v">1.78×</span></div>
+        <div class="bar"><span>Document</span><div class="track"><div class="fill" style="width:69.5%"></div><div class="baseline" style="left:50%"></div></div><span class="v">1.39×</span></div>
+        <div class="bar"><span>Image</span><div class="track"><div class="fill" style="width:60%"></div><div class="baseline" style="left:50%"></div></div><span class="v">1.20×</span></div>
+        <div class="bar"><span>Text</span><div class="track"><div class="fill" style="width:53.5%"></div><div class="baseline" style="left:50%"></div></div><span class="v">1.07×</span></div>
+        <div class="bar"><span>Video</span><div class="track"><div class="fill" style="width:43%"></div><div class="baseline" style="left:50%"></div></div><span class="v">0.86×</span></div>
+      </div>
+      <p class="foot">Scale 0–2×. Dashed line = 1.0× (creator's median). Polls: 0.37× engagement despite top reach.</p>
+    </div>
+    <div class="chart two">
+      <h4>Median engagement rate by format</h4>
+      <p class="sub">LinkedIn, Buffer State of Social Media Engagement, published Mar 2026.</p>
+      <div class="bars">
+        <div class="bar"><span>Carousel</span><div class="track"><div class="fill" style="width:87.1%"></div></div><span class="v">21.77%</span></div>
+        <div class="bar"><span>Video</span><div class="track"><div class="fill" style="width:29.4%"></div></div><span class="v">7.35%</span></div>
+        <div class="bar"><span>Image</span><div class="track"><div class="fill" style="width:26.1%"></div></div><span class="v">6.52%</span></div>
+        <div class="bar"><span>Link</span><div class="track"><div class="fill" style="width:15.2%"></div></div><span class="v">3.81%</span></div>
+        <div class="bar"><span>Text</span><div class="track"><div class="fill" style="width:12.7%"></div></div><span class="v">3.18%</span></div>
+      </div>
+      <p class="foot">Scale 0–25%. Buffer does not define LinkedIn engagement rate; a Buffer staffer notes carousel page-clicks likely count as engagement, inflating that bar.</p>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Format</th><th>What the data shows</th><th>Use it in AI content for</th><th>Watch out for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Text-only</strong></td><td>1.07× reach (AuthoredUp 2026); lowest engagement rate in Buffer (3.18%). Long text beats short.</td><td>Opinions, test results, post-mortems. 5 of the 8 verified AI posts were text-only or text + one image.</td><td>Short text from a small account tends to get little reach.</td></tr>
+      <tr><td><strong>Document / carousel</strong></td><td>1.39× reach, 1.30× engagement; 1.72× reach for top-5% profiles. Leads for accounts above 20K followers. Highest engagement rate in Buffer, Socialinsider, Metricool.</td><td>Eval rubrics, agent architecture diagrams, AI PM interview frameworks, tool comparison matrices.</td><td>Keep the caption under 100 characters. A generic "10 AI tools" deck is now very common.</td></tr>
+      <tr><td><strong>Image</strong></td><td>1.20× reach, 1.33× engagement. Most-used format (57% of posts). Best for accounts under 5K.</td><td>Screenshot of a real eval chart, a whiteboard, a before/after UI.</td><td>Stock or AI-generated hero images add nothing a reader can learn from.</td></tr>
+      <tr><td><strong>Video</strong></td><td>0.86× reach (AuthoredUp) vs 7.35% engagement (Buffer). LinkedIn reports watch time +36% YoY (2025). 3 min+ videos outperform short ones on reach.</td><td>Screen-recorded demos of a build; 2–4 minute walkthroughs.</td><td>LinkedIn demotes videos whose content doesn't match the post text (Mar 2026).</td></tr>
+      <tr><td><strong>Poll</strong></td><td>1.78× reach, 0.37× engagement, 1.2% of posts. LinkedIn said in 2022–23 it reduces poll visibility; the data suggests that has since eased.</td><td>One-off audience research ("Which eval approach does your team use?"), followed by a results post.</td><td>Reach without discussion does little for credibility. Low-effort polls tire the audience.</td></tr>
+      <tr><td><strong>Newsletter / article</strong></td><td>No independent dataset found. Newsletters notify subscribers, which bypasses ranking for that audience. <span class="ev e">Expert</span></td><td>Deep dives (an eval playbook) that a feed post points to.</td><td>"2–3× more engagement" claims for newsletters have no traceable source. <span class="ev f">Folklore</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 7 -->
+<section id="close">
+  <div class="num">07</div>
+  <h2>Closing and CTA</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Ending type</th><th>When to use</th><th>Example (AI niche)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Experience question</strong> (soft)</td><td>Default. Asks for something only practitioners can answer.</td><td>"What's the first eval you added after an agent hit production?"</td></tr>
+      <tr><td><strong>Fork question</strong></td><td>When there is a real trade-off.</td><td>"LLM-as-judge or human-labeled golden set first? Which did you start with and why?"</td></tr>
+      <tr><td><strong>Statement ending</strong></td><td>Strong opinion or finding posts. A clean final line invites rebuttal on its own.</td><td>Mollick's vibefounding and "builders" posts: no question, 232–320 comments.</td></tr>
+      <tr><td><strong>Resource pointer</strong></td><td>When you have a real artifact.</td><td>"Rubric + test set in the first comment." (no keyword gate)</td></tr>
+      <tr><td><strong>Hard CTA</strong> (follow / repost / comment KEYWORD for DM)</td><td>Rarely. Weakest comment ratios in our sample.</td><td>Breakdown 7: three stacked CTAs, 6 comments per 100 reactions.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>What drives meaningful comments</h3>
+  <ul>
+    <li><strong>Ask about the reader's experience, not their opinion of you.</strong> "Agree?" invites one-word replies, which per-viewer comment ranking now buries. <span class="ev e">Expert</span></li>
+    <li><strong>Leave a deliberate gap:</strong> a caveat you didn't resolve, or a second-best option you didn't cover. Practitioners will fill it. <span class="ev e">Expert</span></li>
+    <li><strong>Reply with substance, ideally a follow-up question.</strong> Threaded comments correlate with up to 2.4× reach. <span class="ev d">Data</span> <span class="cite">AuthoredUp 2025</span> Buffer data reported by Social Media Today associates replying with ~30% higher engagement. <span class="ev d">Data</span></li>
+    <li><strong>Avoid "comment to agree" and engagement pods.</strong> Both are named in LinkedIn's March 2026 demotion. <span class="ev o">LinkedIn</span></li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section id="signals">
+  <div class="num">08</div>
+  <h2>Algorithm signals: evidence ledger</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Signal</th><th>Best available evidence</th><th>Tier</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dwell time</strong></td><td>Modelled on-feed and post-click; skip prediction (LinkedIn Eng 2020). No published weight. "Dwell outweighs likes 3:1" is a vendor claim (Supergrow 2025).</td><td><span class="ev o">LinkedIn</span> exists · <span class="ev f">Folklore</span> weight</td><td>Write for the full read: a loop in the hook, the payoff at the end.</td></tr>
+      <tr><td><strong>Comment quality</strong></td><td>Comments ranked per viewer (Aug 2026); comment automation demoted (Mar 2026). Comments ≈2× likes and threaded replies up to 2.4× reach (AuthoredUp 2025).</td><td><span class="ev o">LinkedIn</span> · <span class="ev d">Data</span></td><td>Ask questions that need a paragraph to answer.</td></tr>
+      <tr><td><strong>Saves</strong></td><td>AuthoredUp reports saves as roughly 2× a meaningful comment, its strongest measured signal.</td><td><span class="ev d">Data</span> (single vendor)</td><td>Include something worth saving: a rubric, a checklist, a framework.</td></tr>
+      <tr><td><strong>First hour</strong></td><td>Van der Blom calls the first 60 minutes critical, without a published figure. AuthoredUp describes test windows at 0–60 and 60–120 minutes. Posts can circulate for 2–3 weeks.</td><td><span class="ev e">Expert</span></td><td>Post when you can reply for 60–90 minutes. Don't panic over hour-one numbers.</td></tr>
+      <tr><td><strong>External links</strong></td><td>Ordinal: −26.5% (company pages carry most of it). Van der Blom: −18.8% for one link (Apr 2025). AuthoredUp: 4+ links 3–5× reach vs 1 link. ContentIn: largely a myth. LinkedIn (2025): no intentional penalty.</td><td><span class="ev d">Data</span> (conflicting)</td><td>For personal posts, default to the link in the first comment. Never let a link be the main point of the post.</td></tr>
+      <tr><td><strong>Hashtags</strong></td><td>1–2: no measurable reach effect; 3–5: slight drop; 6+: clear drop (AuthoredUp 2025). Usera (2025, n=991): 2–3 hashtags raise reactions.</td><td><span class="ev d">Data</span> (different outcomes)</td><td>0–2 precise tags (#AIProductManagement), or none.</td></tr>
+      <tr><td><strong>Tagging people</strong></td><td>Tags raise reactions and comments more than hashtags (Usera, SAGE 2025). Pod-style mass tagging falls under the 2026 inauthentic-engagement crackdown.</td><td><span class="ev d">Data</span> · <span class="ev o">LinkedIn</span></td><td>Tag only people who appear in the post or whose work you credit (max ~3).</td></tr>
+      <tr><td><strong>Posting frequency</strong></td><td>Buffer (2M+ posts, 94K accounts, 2025): within-account, 2–5/week +1,182 impressions per post vs 1/week; 6–10 +5,001; 11+ +16,946. AuthoredUp: 4–5/week highest median engagement rate (2.60%).</td><td><span class="ev d">Data</span></td><td>3–5 per week is sustainable. Don't post twice within 24h (<span class="ev e">Expert</span>).</td></tr>
+      <tr><td><strong>Posting time</strong></td><td>Sprout (2024): Monday ~11am CT strong. Hootsuite pages contradict each other (4–6am vs 8–9am Tue/Wed).</td><td><span class="ev f">Folklore</span>-adjacent</td><td>Tue–Thu, before your audience's workday, then check your own analytics after 8–10 posts.</td></tr>
+      <tr><td><strong>Profile–topic match</strong></td><td>LinkedIn uses self-shared industry, skills and experience (Mar 2026). "Off-topic posts are suppressed" is an inference.</td><td><span class="ev o">LinkedIn</span> · <span class="ev e">Expert</span></td><td>Make your headline, About section and skills say "AI product management" explicitly.</td></tr>
+      <tr><td><strong>Editing after posting</strong></td><td>"Editing in the first 10 minutes kills reach": no source found.</td><td><span class="ev f">Folklore</span></td><td>Fix typos when you notice them.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 9 -->
+<section id="tone">
+  <div class="num">09</div>
+  <h2>Tone and positioning</h2>
+  <p>LinkedIn's 2026 language rewards "genuine insight, actionable ideas, and thoughtful perspectives" and demotes "recycled" content. <span class="ev o">LinkedIn</span> Two other signals point the same way. Originality.ai estimates 54% of long LinkedIn posts were likely AI-generated by Oct 2024; Pangram estimates 40.5%. <span class="ev d">Data</span> And UT Arlington's study (n≈1,000) found posts that celebrate or credit others outperform self-promotion. <span class="ev d">Data</span> When polished, generic text is everywhere, specific first-hand detail is what stands out.</p>
+  <div class="two-col">
+    <div class="box yes"><h4>Thought leadership looks like</h4><ul>
+      <li>A claim you could be wrong about, stated plainly</li>
+      <li>Numbers from your own work (anonymized where needed)</li>
+      <li>Mistakes and caveats included without being asked</li>
+      <li>Credit to named colleagues, papers, builders</li>
+      <li>One idea per post, fully developed</li>
+      <li>Your vocabulary: "golden set", "handoff rate", "eval drift"</li>
+    </ul></div>
+    <div class="box no"><h4>"LinkedIn cringe" looks like</h4><ul>
+      <li>An invented life lesson attached to an ordinary event</li>
+      <li>Humblebrags ("humbled to announce…"). Research shows humblebragging reads worse than plain bragging.</li>
+      <li>Vulnerability used as a hook with no lesson after it</li>
+      <li>AI-generated cadence: "Here's the thing:", "Let that sink in.", triplets everywhere</li>
+      <li>Hype with no test ("This will replace PMs")</li>
+      <li>Engagement bait ("Comment 'AI' and I'll send…")</li>
+    </ul></div>
+  </div>
+  <h3>Authenticity vs polish</h3>
+  <p>The rule: <strong>polish the structure, not the voice.</strong> Formatting and line breaks are craft. Smoothing away the specific, slightly awkward details that prove you were there removes the evidence that the post is real. <span class="ev e">Expert</span></p>
+  <h3>Personal stories vs insights</h3>
+  <p>In this niche the best-performing posts combine both: <strong>a personal observation used as evidence for a general insight</strong> (Allie's dictation-on-walks → "typing speed is the bottleneck"). A personal story with no insight reads as a diary entry. An insight with no personal evidence reads as commentary. <span class="ev e">Expert</span></p>
+</section>
+
+<!-- 10 -->
+<section id="mistakes">
+  <div class="num">10</div>
+  <h2>Common mistakes that suppress reach</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Mistake</th><th>Why it hurts</th><th>Tier</th></tr></thead>
+    <tbody>
+      <tr><td>"Comment X to agree" / keyword-for-DM prompts</td><td>Named engagement bait in LinkedIn's March 2026 update (the keyword-for-DM variant is adjacent, not named)</td><td><span class="ev o">LinkedIn</span></td></tr>
+      <tr><td>Engagement pods, comment automation tools, AI-written comments on others' posts</td><td>Explicitly targeted in 2026; per-viewer ranking buries generic comments</td><td><span class="ev o">LinkedIn</span></td></tr>
+      <tr><td>Video unrelated to the caption</td><td>Explicitly demoted in 2026</td><td><span class="ev o">LinkedIn</span></td></tr>
+      <tr><td>Reposting the same take ("recycled" content)</td><td>LinkedIn names recycled content as deprioritized</td><td><span class="ev o">LinkedIn</span></td></tr>
+      <tr><td>Very short text posts (&lt;5 sentences) from a small account</td><td>0.64× reach</td><td><span class="ev d">Data</span></td></tr>
+      <tr><td>6+ hashtags</td><td>Clear reach decline</td><td><span class="ev d">Data</span></td></tr>
+      <tr><td>Link as the post's main point</td><td>Reach drop between ~19% and 27% in most studies; company pages hit hardest</td><td><span class="ev d">Data</span></td></tr>
+      <tr><td>Long caption on a document post</td><td>Documents do best with 0–100 character captions (1.28×)</td><td><span class="ev d">Data</span></td></tr>
+      <tr><td>Off-profile topics (crypto one day, AI PM the next)</td><td>Ranking uses your stated expertise; topic drift confuses retrieval</td><td><span class="ev e">Expert</span></td></tr>
+      <tr><td>Posting and leaving</td><td>No replies means no threaded comments, which lose the 2.4× association</td><td><span class="ev d">Data</span></td></tr>
+      <tr><td>Fully AI-written posts with the default cadence</td><td>Detectable by readers. The ranker's handling of AI text is not published.</td><td><span class="ev e">Expert</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 11 -->
+<section id="ai">
+  <div class="num">11</div>
+  <h2>AI-niche playbook</h2>
+  <h3>What performs in AI content (and how to make each type credible)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Type</th><th>Commentator version</th><th>Practitioner version</th><th>Evidence from sample</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tool breakdown</strong></td><td>"Top 10 AI tools for PMs"</td><td>"I used [tool] for 3 months on real PRDs. 3 things it does better than [alt], 1 dealbreaker."</td><td>Aakash's Figma Make post leads with "3 months of heavy use"</td></tr>
+      <tr><td><strong>Project build</strong></td><td>"Built an AI app over the weekend 🚀"</td><td>Scope, hours, cost, what broke, a screenshot, and what you'd do differently</td><td>Mollick vibefounding: 3,445 reactions, 320 comments</td></tr>
+      <tr><td><strong>Hot take</strong></td><td>"Prompt engineering is dead"</td><td>A take tied to an observation you can describe: "The best AI builder on my team is the worst AI user. Here's why."</td><td>Mollick "builders aren't users": 1,683 reactions, 232 comments, ~50 words</td></tr>
+      <tr><td><strong>News commentary</strong></td><td>Summarizing the press release</td><td>Hands-on verdict within 48h: upside, downside, who should switch</td><td>Allie GPT-5.2: 30 comments per 100 reactions (highest in sample)</td></tr>
+      <tr><td><strong>Research translation</strong></td><td>"New study says AI…"</td><td>One finding, what it changes in practice, link in comments</td><td>Mollick persona prompting: 1,834 reactions, 255 comments</td></tr>
+      <tr><td><strong>Career lesson</strong></td><td>"7 steps to become an AI PM" with 8 links</td><td>"What I got wrong in my first AI PM interview loop" with the actual question</td><td>Roadmap post: 396 reactions, 24 comments from a 325K-follower account</td></tr>
+      <tr><td><strong>Enterprise adoption</strong></td><td>"Enterprises must embrace AI"</td><td>Activation vs retention numbers, the stakeholder who blocked it, the change that unblocked it</td><td>No sample post. This is an under-supplied gap you can fill. <span class="ev e">Expert</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>Five rules for avoiding generic "AI hype"</h3>
+  <ol>
+    <li><strong>No claim without a mechanism or a measurement.</strong> "Agents will change PM" becomes "Our agent cut triage time from 9 min to 3. Escalations went up 12%."</li>
+    <li><strong>Name the model, version, and date.</strong> AI facts expire fast; a dated claim reads as careful.</li>
+    <li><strong>Include the failure.</strong> Every build post includes what didn't work. It's the strongest credibility signal available to you.</li>
+    <li><strong>Translate to a PM decision.</strong> End on what a product team should do differently on Monday.</li>
+    <li><strong>Pick 3 lanes and stay in them</strong>, for example evals, enterprise rollout, AI PM careers. This builds the topic-profile match the 2026 ranker uses.</li>
+  </ol>
+  <h3>Practitioner credibility ladder</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Level</th><th>Signal</th><th>Post example</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>I read about it</td><td>Summary of a launch (lowest credibility)</td></tr>
+      <tr><td class="n">2</td><td>I tried it</td><td>Hands-on review with screenshots</td></tr>
+      <tr><td class="n">3</td><td>I measured it</td><td>Small test with a number ("200 tickets, 3 prompt variants")</td></tr>
+      <tr><td class="n">4</td><td>I shipped it</td><td>Production post-mortem with user outcome data</td></tr>
+      <tr><td class="n">5</td><td>I made it reusable</td><td>Rubric, template or repo others adopt, posted as a document</td></tr>
+    </tbody>
+  </table></div>
+  <p>Aim for most posts at levels 3–5. Levels 1–2 are fine for speed on news, as long as you add a verdict.</p>
+</section>
+
+<!-- 12 -->
+<section id="breakdowns">
+  <div class="num">12</div>
+  <h2>8 real AI posts, broken down</h2>
+  <p>Each post was opened on LinkedIn's public page and paraphrased; no text is reproduced. Counts are reactions and comments as shown in Nov 2026 (reposts weren't displayed). Posts date from late 2025 to early 2026. <strong>Note:</strong> a third-party "top posts" site gave nonsensical totals for these posts (e.g. "29M"), so only counts read from LinkedIn itself are used.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Author · topic</th><th class="n">Reactions</th><th class="n">Comments</th><th class="n">Comments / 100 reactions</th><th>Link in body</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Mollick · persona prompting test</td><td class="n">1,834</td><td class="n">255</td><td class="n">13.9</td><td>No (comments)</td></tr>
+      <tr><td>2</td><td>Mollick · builders aren't the best users</td><td class="n">1,683</td><td class="n">232</td><td class="n">13.8</td><td>No</td></tr>
+      <tr><td>3</td><td>Mollick · vibefounding MBA class</td><td class="n">3,445</td><td class="n">320</td><td class="n">9.3</td><td>No</td></tr>
+      <tr><td>4</td><td>Miller · voice AI in 2026</td><td class="n">2,801</td><td class="n">462</td><td class="n">16.5</td><td>No</td></tr>
+      <tr><td>5</td><td>Miller · 64-year-old's first prompt</td><td class="n">669</td><td class="n">103</td><td class="n">15.4</td><td>No</td></tr>
+      <tr><td>6</td><td>Miller · GPT-5.2 early-access verdict</td><td class="n">460</td><td class="n">140</td><td class="n">30.4</td><td>No</td></tr>
+      <tr><td>7</td><td>Gupta · AI PM roadmap 2026</td><td class="n">396</td><td class="n">24</td><td class="n">6.1</td><td>~8 links</td></tr>
+      <tr><td>8</td><td>Gupta · CEO acting as PM</td><td class="n">440</td><td class="n">48</td><td class="n">10.9</td><td>6 links</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="posts">
+    <article class="post">
+      <div class="post-top"><b>1 · Prompting myth, tested</b><span class="cite">Ethan Mollick (Wharton) · text-only · ~100 words</span></div>
+      <div class="stats"><span><strong>1,834</strong> reactions</span><span><strong>255</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Test result: a widely used prompting tactic (assigning an expert persona) doesn't improve accuracy.</dd>
+      <dt>Flow</dt><dd>Claim → what was tested (physics/law persona prompts, no significant accuracy change) → caveat (personas still change style) → one-line takeaway.</dd>
+      <dt>CTA</dt><dd>"Link in comments" only. No question.</dd>
+      <dt>Lesson</dt><dd>One falsifiable finding plus a caveat gets a lot of discussion. The caveat gives commenters something to argue with.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>2 · The paradox post</b><span class="cite">Ethan Mollick · text-only · ~50 words</span></div>
+      <div class="stats"><span><strong>1,683</strong> reactions</span><span><strong>232</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Paradox: people who build AI aren't necessarily the best at using it.</dd>
+      <dt>Flow</dt><dd>Three sentences: observation → why (general-purpose tool, capabilities poorly mapped) → implication (map it in your own field first).</dd>
+      <dt>CTA</dt><dd>None; an implicit challenge to the reader.</dd>
+      <dt>Lesson</dt><dd>It contradicts the "1,000+ characters" average. With established authority, compression works. Don't copy the length unless you have the authority.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>3 · Teaching field report</b><span class="cite">Ethan Mollick · text-only · ~380 words</span></div>
+      <div class="stats"><span><strong>3,445</strong> reactions</span><span><strong>320</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>A novel setup: MBA students get four days to found and launch a company with AI.</dd>
+      <dt>Flow</dt><dd>Setup → 4 numbered observations (faster/better output; non-coders shipping; domain experience as an advantage; new kinds of work) → reflective close.</dd>
+      <dt>CTA</dt><dd>None.</dd>
+      <dt>Lesson</dt><dd>A first-hand experiment with a cohort is practitioner evidence. Numbered observations make a dense post easy to scan.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>4 · Prediction backed by field notes</b><span class="cite">Allie K. Miller · text + image · ~190 words</span></div>
+      <div class="stats"><span><strong>2,801</strong> reactions</span><span><strong>462</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Bounded prediction: voice AI takes off in 2026.</dd>
+      <dt>Flow</dt><dd>4 numbered proof points: own dictation habit → phone booths at AI company offices → desk mics at a startup → a product leader's quote that typing speed is the bottleneck.</dd>
+      <dt>CTA</dt><dd>None; ends on a punchy line about fingers holding us back.</dd>
+      <dt>Lesson</dt><dd>Most comments in the sample. A prediction backed by things the author observed lets readers add their own sightings.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>5 · Human-scale adoption story</b><span class="cite">Allie K. Miller · plain prose · ~200 words</span></div>
+      <div class="stats"><span><strong>669</strong> reactions</span><span><strong>103</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Scene: a 64-year-old in NYC with no email who watches YouTube daily.</dd>
+      <dt>Flow</dt><dd>Background → hears about ChatGPT → Thanksgiving demo → punchline detail (first prompt dictated in her native language) → one-line takeaway.</dd>
+      <dt>CTA</dt><dd>None; tags OpenAI.</dd>
+      <dt>Lesson</dt><dd>Scene → turn → lesson. The specific detail (native language, dislikes typing) also supports the author's voice-AI thesis from post 4.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>6 · Model release verdict</b><span class="cite">Allie K. Miller · text + emoji markers · ~370 words</span></div>
+      <div class="stats"><span><strong>460</strong> reactions</span><span><strong>140</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Release + early-access disclosure + mixed verdict.</dd>
+      <dt>Flow</dt><dd>👍 upsides (reasoning, depth) → 👎 downsides (rigid tone, verbose formatting) → bullets on what it's optimized for → personal preference among models.</dd>
+      <dt>CTA</dt><dd>None.</dd>
+      <dt>Lesson</dt><dd>Highest comment ratio (30/100). A two-sided verdict with a stated preference invites disagreement from users of other models.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>7 · Career roadmap listicle</b><span class="cite">Aakash Gupta (~325K followers) · text · ~2,300 chars</span></div>
+      <div class="stats"><span><strong>396</strong> reactions</span><span><strong>24</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>Updated version of a previously viral roadmap, with a high-paying AI lab role as the payoff.</dd>
+      <dt>Flow</dt><dd>7 headed steps with sub-lists and emoji markers; ~8 shortened links (one "guide" per step).</dd>
+      <dt>CTA</dt><dd>Stacked: comment a keyword + DM for hi-res → repost → follow.</dd>
+      <dt>Lesson</dt><dd>Lowest comment ratio. Many links, a hard CTA and a recycled premise run into three things the 2026 update demotes. Correlation from one post only.</dd></dl>
+    </article>
+    <article class="post">
+      <div class="post-top"><b>8 · News → PM lesson</b><span class="cite">Aakash Gupta · text · ~330 words</span></div>
+      <div class="stats"><span><strong>440</strong> reactions</span><span><strong>48</strong> comments</span></div>
+      <dl><dt>Hook</dt><dd>A $3T-company CEO is acting as a hands-on PM.</dd>
+      <dt>Flow</dt><dd>Context (competitive pressure) → contrast of products on the same models → thesis (integration and UX, not models) → 6-item linked list → warning to PMs.</dd>
+      <dt>CTA</dt><dd>Implicit (last list item points to a bootcamp).</dd>
+      <dt>Lesson</dt><dd>A strong thesis ("it's integration, not models") weakened by a link list. The same argument without the list, with links in the comments, would likely do better. <span class="ev e">Expert</span></dd></dl>
+    </article>
+  </div>
+  <div class="callout"><p><strong>Pattern across the 8:</strong> none of the top 5 by comments used a question CTA, a link in the body or a hashtag. All had a first-hand element: a test, a class, an office visit, early access, a family story. Treat this as a hypothesis to test on your own posts. The sample is small, and audience size and author authority aren't controlled.</p></div>
+</section>
+
+<!-- 13 -->
+<section id="conflicts">
+  <div class="num">13</div>
+  <h2>Where sources conflict</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Question</th><th>Position A</th><th>Position B</th><th>Best reading</th></tr></thead>
+    <tbody>
+      <tr><td>Is video good on LinkedIn?</td><td>Buffer: 7.35% ER, 2nd best. LinkedIn: watch time +36%.</td><td>AuthoredUp: 0.86× reach, lowest format.</td><td>Video gets engagement from people who see it, but reaches fewer of them. Long (3 min+), on-topic video does better.</td></tr>
+      <tr><td>Do polls still work?</td><td>LinkedIn (2022–23) said it was reducing poll visibility.</td><td>AuthoredUp 2026: polls 1.78× reach.</td><td>Reach yes, conversation no (0.37× engagement).</td></tr>
+      <tr><td>Link penalty size</td><td>Ordinal −26.5%; van der Blom −18.8%; a 358K-post study −36%.</td><td>ContentIn: largely a myth. AuthoredUp: 4+ links beat 1 link. LinkedIn: no intentional penalty.</td><td>Real but moderate for personal profiles, larger for company pages.</td></tr>
+      <tr><td>Hashtags</td><td>Usera 2025: 2–3 hashtags increase reactions.</td><td>AuthoredUp: no reach effect at 1–2, negative at 3+.</td><td>Different outcomes (reactions vs reach). 0–2 is safe either way.</td></tr>
+      <tr><td>Ideal length</td><td>AuthoredUp: 1,000+ chars for text.</td><td>Mollick's 50–100 word posts outperform most of the sample.</td><td>Length helps the median creator; authority can replace length.</td></tr>
+      <tr><td>Scale of reach decline</td><td>Van der Blom 2025: ~47–50%.</td><td>Van der Blom 2026: ~60% over 2 years; company pages 60–66%.</td><td>Different editions and windows. The direction is consistent.</td></tr>
+      <tr><td>"See more" cutoff</td><td>~140 mobile / ~210 desktop.</td><td>~150 / 250 / 370, or line-based.</td><td>Plan for ~140 characters and 2 lines.</td></tr>
+      <tr><td>Best posting time</td><td>Hootsuite: 4–6am Tue/Wed.</td><td>Another Hootsuite-attributed page: 8–9am; Sprout: Mon 11am CT.</td><td>No reliable universal answer; use your own analytics.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 14 -->
+<section id="checklist">
+  <div class="num">14</div>
+  <h2>One-page checklist</h2>
+  <p>Use it while writing and again in a 2-minute review before posting. Ticks are saved in this browser only.</p>
+  <div class="check-bar"><span id="ck-count">0 / 30 checked</span><button type="button" id="ck-reset">Clear all</button></div>
+  <form class="check" id="ck" onsubmit="return false">
+    <fieldset><legend>Before writing</legend>
+      <label><input type="checkbox" id="c1"><span>The topic is in one of my 3 lanes (e.g. evals · enterprise rollout · AI PM careers)</span></label>
+      <label><input type="checkbox" id="c2"><span>I have first-hand evidence: a test, a build, a meeting, a number</span></label>
+      <label><input type="checkbox" id="c3"><span>I can state the takeaway in one sentence</span></label>
+      <label><input type="checkbox" id="c4"><span>The format fits: text for opinions, document for frameworks, image for a real artifact</span></label>
+      <label><input type="checkbox" id="c5"><span>Profile headline and About section reflect this topic</span></label>
+    </fieldset>
+    <fieldset><legend>Hook</legend>
+      <label><input type="checkbox" id="c6"><span>Core idea lands in ≤140 characters / 2 lines</span></label>
+      <label><input type="checkbox" id="c7"><span>Contains a number, named tool or named situation</span></label>
+      <label><input type="checkbox" id="c8"><span>Tension opens above the fold and resolves below it</span></label>
+      <label><input type="checkbox" id="c9"><span>No "BREAKING", "game-changer", "humbled to announce"</span></label>
+      <label><input type="checkbox" id="c10"><span>Checked in a mobile preview</span></label>
+    </fieldset>
+    <fieldset><legend>Body</legend>
+      <label><input type="checkbox" id="c11"><span>Context line answers "why trust me?"</span></label>
+      <label><input type="checkbox" id="c12"><span>3–5 beats; paragraphs ≤3 lines; rhythm varies</span></label>
+      <label><input type="checkbox" id="c13"><span>Text post is ~900–1,500 characters (or deliberately short with a sharp finding)</span></label>
+      <label><input type="checkbox" id="c14"><span>Includes at least one failure, caveat or trade-off</span></label>
+      <label><input type="checkbox" id="c15"><span>Model/tool names and dates are specific</span></label>
+      <label><input type="checkbox" id="c16"><span>Read aloud: it sounds like me, not a template</span></label>
+    </fieldset>
+    <fieldset><legend>Close</legend>
+      <label><input type="checkbox" id="c17"><span>Takeaway sentence is quotable</span></label>
+      <label><input type="checkbox" id="c18"><span>CTA asks for experience, not agreement (or ends on a clean statement)</span></label>
+      <label><input type="checkbox" id="c19"><span>No "comment X", no stacked follow/repost asks</span></label>
+      <label><input type="checkbox" id="c20"><span>0–2 hashtags; tags only for people actually in the post</span></label>
+      <label><input type="checkbox" id="c21"><span>Links moved to the first comment</span></label>
+    </fieldset>
+    <fieldset><legend>Publish &amp; first 2 hours</legend>
+      <label><input type="checkbox" id="c22"><span>Posting when I can reply for 60–90 minutes</span></label>
+      <label><input type="checkbox" id="c23"><span>No other post of mine in the last 24h</span></label>
+      <label><input type="checkbox" id="c24"><span>First comment posted (resource + one extra detail)</span></label>
+      <label><input type="checkbox" id="c25"><span>Replied to every substantive comment with a follow-up question</span></label>
+      <label><input type="checkbox" id="c26"><span>Left 3–5 specific comments on others' AI posts that day</span></label>
+    </fieldset>
+    <fieldset><legend>Review after 7 days</legend>
+      <label><input type="checkbox" id="c27"><span>Logged impressions, comments, saves, comments per 100 reactions</span></label>
+      <label><input type="checkbox" id="c28"><span>Compared with my median, not with influencers</span></label>
+      <label><input type="checkbox" id="c29"><span>Noted the hook pattern and format used</span></label>
+      <label><input type="checkbox" id="c30"><span>Turned the best comment into a future post idea</span></label>
+    </fieldset>
+  </form>
+</section>
+
+<!-- 15 -->
+<section id="templates">
+  <div class="num">15</div>
+  <h2>Fill-in templates (3 formats)</h2>
+  <p>Blanks are highlighted. Each filled example is <strong>illustrative</strong>: swap in your own real numbers. Don't publish invented figures.</p>
+
+  <div class="tpl">
+    <div class="tpl-head"><b>A · Build log (text + 1 screenshot)</b><span>Credibility level 3–4 · Expectation → Reality → Fix</span></div>
+    <div class="tpl-cols">
+      <div class="tpl-col"><h5>Template</h5>
+<pre class="post-text">I built <i>[thing]</i> with <i>[tool/model]</i> in <i>[time]</i>.
+It <i>[good outcome with number]</i>, and <i>[surprising failure]</i>.
+
+Context: <i>[who it's for, scale, why it mattered]</i>.
+
+What worked:
+1. <i>[decision + result]</i>
+2. <i>[decision + result]</i>
+
+What broke:
+→ <i>[failure, the specific example]</i>
+
+What I changed:
+→ <i>[fix + new number]</i>
+
+<i>[One-sentence takeaway a PM can reuse]</i>.
+
+<i>[Experience question for people who've built similar]</i>?</pre></div>
+      <div class="tpl-col"><h5>Filled example <button type="button" data-copy="tA">Copy</button></h5>
+<pre class="post-text" id="tA">I built a PRD reviewer with Claude in 3 hours.
+It flagged 2 real gaps our team missed, and invented a third.
+
+Context: 14 PRDs from last quarter, 4 PMs, all for our enterprise search product.
+
+What worked:
+1. A rubric with 6 named checks (not "review this PRD") → 11 of 14 flags were useful
+2. Forcing it to quote the PRD line for every flag → near-zero vague feedback
+
+What broke:
+→ It "found" a missing security review that was in a linked doc it couldn't see
+
+What I changed:
+→ Added "only flag what you can quote." False flags dropped from 3 to 0 on a re-run.
+
+An AI reviewer is only as good as the evidence you force it to cite.
+
+If you've put an LLM into your spec review: what check did you add after the first false alarm?</pre></div>
+    </div>
+    <div class="tpl-notes"><p>Attach a cropped screenshot of the rubric or output (image format: 1.20× reach). Put the rubric itself in the first comment.</p></div>
+  </div>
+
+  <div class="tpl">
+    <div class="tpl-head"><b>B · Contrarian field note (text-only, short)</b><span>Credibility level 3 · Claim → Test → Result → Caveat</span></div>
+    <div class="tpl-cols">
+      <div class="tpl-col"><h5>Template</h5>
+<pre class="post-text">Everyone says <i>[common AI belief]</i>.
+We tested it on <i>[real sample]</i>. <i>[Result that contradicts it]</i>.
+
+<i>[One line: how you tested]</i>.
+<i>[One line: the number]</i>.
+<i>[One line: the caveat, where it might still hold]</i>.
+
+<i>[Reframe: what to do instead]</i>.
+
+<i>[Optional: "Method in comments."]</i></pre></div>
+      <div class="tpl-col"><h5>Filled example <button type="button" data-copy="tB">Copy</button></h5>
+<pre class="post-text" id="tB">Everyone says bigger context windows mean you can skip retrieval.
+We tested it on 300 real support questions. Retrieval still won.
+
+Same model, two setups: full 400-page manual in context vs top-8 retrieved chunks.
+Retrieved: 86% correct. Full manual: 71%, and 9× the cost per answer.
+Caveat: on questions that span many sections, full context closed most of the gap.
+
+Long context is a fallback for hard cases, not a replacement for search.
+
+Method and question set in comments.</pre></div>
+    </div>
+    <div class="tpl-notes"><p>Keep it under ~700 characters only if the finding is sharp. Otherwise expand with "why this happens" to reach ~1,000. End on a statement; the caveat gives commenters something to discuss.</p></div>
+  </div>
+
+  <div class="tpl">
+    <div class="tpl-head"><b>C · Career framework (document carousel + short caption)</b><span>Credibility level 5 · Reusable artifact</span></div>
+    <div class="tpl-cols">
+      <div class="tpl-col"><h5>Caption template (≤100 chars)</h5>
+<pre class="post-text"><i>[N]</i> <i>[things]</i> I <i>[saw/learned]</i> <i>[doing specific work]</i>. #<i>[1 tag]</i></pre>
+<h5 style="margin-top:14px">Slide template</h5>
+<pre class="post-text">1  Title: <i>[outcome promise]</i> + <i>[your evidence base]</i>
+2  The problem: <i>[what most candidates/teams get wrong]</i>
+3–8  One idea per slide:
+     <i>[question or skill]</i>
+     Weak answer: <i>[example]</i>
+     Strong answer: <i>[example]</i>
+9  The pattern across all of them
+10 <i>[Question for the reader]</i> (no "follow me" slide)</pre></div>
+      <div class="tpl-col"><h5>Filled example <button type="button" data-copy="tC">Copy</button></h5>
+<pre class="post-text" id="tC">Caption:
+6 questions that sank AI PM candidates in our 2026 loop. #AIProductManagement
+
+Slides:
+1  6 AI PM interview questions, and what strong answers had in common (from 40 interviews)
+2  Most candidates describe the model. Strong ones describe the failure modes.
+3  "How would you evaluate this feature?" Weak: "accuracy". Strong: golden set + user-defined success + regression check.
+4  "When would you NOT use an LLM here?" Weak: never. Strong: names the deterministic alternative and its cost.
+5  "Latency vs quality: who decides?" Weak: engineering. Strong: maps it to a user moment.
+6  "How do you price an AI feature?" Weak: per seat. Strong: ties to cost per task + margin floor.
+7  "Your agent did something harmful. First 24 hours?" Strong: containment, logs, comms, eval added.
+8  "What did you cut from your last AI launch?" Strong: names it and the data behind it.
+9  Pattern: strong candidates talk about evidence and trade-offs, not features.
+10 Which question would you add to an AI PM loop?</pre></div>
+    </div>
+    <div class="tpl-notes"><p>Documents: 1.39× reach overall, 1.72× for top-5% profiles, and short captions do best (1.28× at 0–100 chars). The "40 interviews" figure must be your real number; if you don't have interview data, rebuild the deck around your own loop or a public rubric you credit.</p></div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section id="sources">
+  <div class="num">16</div>
+  <h2>Sources</h2>
+  <p>Grouped by tier. Third-party figures were read from the publisher's page where it loaded; items marked "secondary" were seen only through write-ups.</p>
+  <h3>LinkedIn (primary)</h3>
+  <ol class="sources">
+    <li>LinkedIn Pressroom, "How LinkedIn Is Improving the Feed to Show More Relevant, Authentic Professional Content," 12 Mar 2026. <a href="https://news.linkedin.com/2026/ImprovingTheFeed" target="_blank" rel="noopener">news.linkedin.com/2026/ImprovingTheFeed</a></li>
+    <li>LinkedIn Engineering, "Understanding dwell time to improve LinkedIn feed ranking," 2020. <a href="https://engineering.linkedin.com/blog/2020/understanding-feed-dwell-time" target="_blank" rel="noopener">engineering.linkedin.com</a></li>
+    <li>Firooz, Sanjabi et al. (LinkedIn), "360Brew: A Decoder-only Foundation Model for Personalized Ranking and Recommendation," arXiv 2501.16450, Jan 2025. <a href="https://arxiv.org/pdf/2501.16450" target="_blank" rel="noopener">arxiv.org/pdf/2501.16450</a></li>
+    <li>LinkedIn, "Large Scale Retrieval for the LinkedIn Feed using Causal Language Models," arXiv 2510.14223, Oct 2025. <a href="https://arxiv.org/html/2510.14223v1" target="_blank" rel="noopener">arxiv.org/html/2510.14223v1</a></li>
+    <li>LinkedIn Engineering (H. Danchev), feed retrieval + Generative Recommender, Mar 2026. Secondary: <a href="https://ppc.land/linkedin-rebuilds-its-feed-from-scratch-with-llms-and-gpu-powered-ranking/" target="_blank" rel="noopener">PPC Land</a>, <a href="https://www.zenml.io/llmops-database/next-generation-feed-ranking-with-llms-and-sequential-transformers" target="_blank" rel="noopener">ZenML</a></li>
+    <li>LinkedIn video figures (watch time +36% YoY), Feb 2025, via <a href="https://techcrunch.com/2025/02/04/linkedin-amps-up-vertical-video-tools-as-uploads-jump-36" target="_blank" rel="noopener">TechCrunch</a> and <a href="https://www.searchenginejournal.com/linkedin-video-views-up-36-new-tools-courses-available/539151/" target="_blank" rel="noopener">Search Engine Journal</a>.</li>
+  </ol>
+  <h3>Large-scale datasets</h3>
+  <ol class="sources" start="7">
+    <li>AuthoredUp, "Best Performing Content on LinkedIn in 2026" (Mar 2025–Feb 2026 data; updated Sep 2026). <a href="https://authoredup.com/blog/best-performing-content-on-linkedin" target="_blank" rel="noopener">authoredup.com</a></li>
+    <li>AuthoredUp, "LinkedIn polls" analysis (Mar 2025–Feb 2026). <a href="https://authoredup.com/blog/linkedin-polls" target="_blank" rel="noopener">authoredup.com/blog/linkedin-polls</a></li>
+    <li>AuthoredUp, "How the LinkedIn Algorithm Works in 2025" (621,833 posts; hashtags, comments, links). <a href="https://authoredup.com/blog/linkedin-algorithm" target="_blank" rel="noopener">authoredup.com/blog/linkedin-algorithm</a></li>
+    <li>Buffer, "Best Content Format on Social Platforms in 2026: 45M+ Posts Analyzed," 19 Mar 2026. <a href="https://buffer.com/resources/data-best-content-format-social-media/" target="_blank" rel="noopener">buffer.com</a></li>
+    <li>Buffer, "How Often Should You Post on LinkedIn? Data From 2 Million+ Posts," 28 Aug 2025. <a href="https://buffer.com/resources/how-often-to-post-on-linkedin/" target="_blank" rel="noopener">buffer.com</a></li>
+    <li>Buffer, "I Posted LinkedIn Carousels for a Week" (note on carousel clicks as engagement). <a href="https://buffer.com/resources/linkedin-carousels-experiment/" target="_blank" rel="noopener">buffer.com</a></li>
+    <li>Richard van der Blom, Algorithm InSights 2025 (1.8M posts) and 2026 (1.3M posts, 50K creators). Report not opened; figures via <a href="https://creatorscience.com/podcast/richard-van-der-blom-2/" target="_blank" rel="noopener">Creator Science podcast #307</a>, <a href="https://siecledigital.fr/2025/11/03/pourquoi-les-publications-linkedin-font-de-moins-en-moins-de-vues-et-ce-que-lalgorithme-change/" target="_blank" rel="noopener">Siècle Digital (Nov 2025)</a>, <a href="https://meet-lea.com/en/blog/linkedin-algorithm-explained" target="_blank" rel="noopener">meet-lea</a></li>
+    <li>Ordinal, "LinkedIn link penalty study" (2023–2026 data). <a href="https://www.tryordinal.com/blog/linkedin-link-penalty-study" target="_blank" rel="noopener">tryordinal.com</a></li>
+    <li>ContentIn, "LinkedIn external link penalty" (counter-view). <a href="https://contentin.io/glossary/external-link-penalty/" target="_blank" rel="noopener">contentin.io</a></li>
+    <li>Socialinsider, LinkedIn benchmarks 2025 (1M posts, 9K company pages), via <a href="https://www.socialmediatoday.com/news/linkedin-company-pages-best-practices-2025-socialinsider/745350/" target="_blank" rel="noopener">Social Media Today</a></li>
+    <li>Originality.ai, "Over ½ of long posts on LinkedIn are likely AI-generated," Nov 2024 (8,795 posts). <a href="https://originality.ai/pt/blog/ai-content-published-linkedin" target="_blank" rel="noopener">originality.ai</a>; context: <a href="https://www.fastcompany.com/91237998/how-linkedin-opened-the-door-to-ai-slop" target="_blank" rel="noopener">Fast Company</a></li>
+  </ol>
+  <h3>Academic</h3>
+  <ol class="sources" start="18">
+    <li>Usera, D. (UT Arlington), LinkedIn engagement study, SAGE, 2025 (n=991; DOI 10.1177/23294906251336710). <a href="https://www.uta.edu/news/news-releases/2025/09/10/what-makes-a-linked-in-post-take-off" target="_blank" rel="noopener">UTA release, Sep 2025</a></li>
+    <li>Usera, D., follow-up on content types (~1,000 posts), May 2026. <a href="https://www.uta.edu/news/news-releases/2026/05/21/youre-using-linked-in-wrong" target="_blank" rel="noopener">UTA release</a></li>
+    <li>LSE, "Posting vulnerability on LinkedIn." <a href="https://researchonline.lse.ac.uk/id/eprint/122390" target="_blank" rel="noopener">researchonline.lse.ac.uk</a></li>
+    <li>Humblebragging research (Sezer, Gino, Norton), summarized by APS. <a href="https://www.psychologicalscience.org/news/research-confirms-that-humble-bragging-doesnt-work-its-just-really-annoying.html" target="_blank" rel="noopener">psychologicalscience.org</a></li>
+  </ol>
+  <h3>Reporting and practitioner sources</h3>
+  <ol class="sources" start="22">
+    <li>Social Media Today, comment ranking by relevance, Aug 2026. <a href="https://socialmediatoday.com/news/linkedin-updates-feed-display-to-drive-more-post-replies-and-comments/827394" target="_blank" rel="noopener">socialmediatoday.com</a>; <a href="https://www.lindseygamble.com/blog/linkedin-is-now-ranking-comments-based-on-relevance-and-personalization" target="_blank" rel="noopener">Lindsey Gamble</a></li>
+    <li>Search Engine Land, LinkedIn reducing polls and engagement bait. <a href="https://searchengineland.com/linkedin-feed-less-polls-engagement-bait-384986" target="_blank" rel="noopener">searchengineland.com</a></li>
+    <li>Hashtag following removal (2024), via <a href="https://www.digitalinformationworld.com/2025/07/linkedin-plans-to-remove-hashtag-feed.html" target="_blank" rel="noopener">Digital Information World</a>, <a href="https://www.tryordinal.com/blog/linkedin-hashtags" target="_blank" rel="noopener">Ordinal</a></li>
+    <li>"See more" truncation estimates: <a href="https://medium.com/@artyom.shimanski/the-linkedin-see-more-cutoff-why-210-characters-decide-your-posts-fate-bc05bf211e0f" target="_blank" rel="noopener">Medium (Shimanski)</a>, <a href="https://eden.so/blog/linkedin-character-limits/" target="_blank" rel="noopener">Eden</a></li>
+    <li>Posting time: <a href="https://blog.hootsuite.com/best-time-to-post-on-social-media/" target="_blank" rel="noopener">Hootsuite</a>; Sprout 2024 via <a href="https://www.shopify.com/blog/best-time-to-post-on-linkedin" target="_blank" rel="noopener">Shopify</a></li>
+    <li>Shield shutdown context (2026). <a href="https://www.hyperclapper.com/blog-posts/what-happened-to-shield-analytics" target="_blank" rel="noopener">hyperclapper.com</a></li>
+  </ol>
+  <h3>Posts analyzed (LinkedIn public pages, read Nov 2026)</h3>
+  <ol class="sources" start="28">
+    <li><a href="https://www.linkedin.com/posts/emollick_we-tested-one-of-the-most-common-prompting-activity-7403830246401114112-1e3v" target="_blank" rel="noopener">Mollick: persona prompting test</a></li>
+    <li><a href="https://www.linkedin.com/posts/emollick_among-many-weird-things-about-ai-is-that-activity-7396370388127232000-XWJE" target="_blank" rel="noopener">Mollick: builders vs users</a></li>
+    <li><a href="https://www.linkedin.com/posts/emollick_teaching-an-experimental-class-for-mbas-on-activity-7417291651468918785-6JlU" target="_blank" rel="noopener">Mollick: vibefounding class</a></li>
+    <li><a href="https://www.linkedin.com/posts/alliekmiller_voice-ai-is-going-to-explode-in-2026-here-activity-7407836043674296320-v9Ms" target="_blank" rel="noopener">Miller: voice AI 2026</a></li>
+    <li><a href="https://www.linkedin.com/posts/alliekmiller_picture-this-a-64-year-old-woman-in-nyc-activity-7403105192923246592-CG-a" target="_blank" rel="noopener">Miller: 64-year-old's first prompt</a></li>
+    <li><a href="https://www.linkedin.com/posts/alliekmiller_openai-has-released-gpt-52-i-had-early-activity-7404958796726288385-eQ3n" target="_blank" rel="noopener">Miller: GPT-5.2 verdict</a></li>
+    <li><a href="https://www.linkedin.com/posts/aagupta_heres-everything-you-need-to-do-to-become-activity-7407641028041605120-AJVs" target="_blank" rel="noopener">Gupta: AI PM roadmap</a></li>
+    <li><a href="https://www.linkedin.com/posts/aagupta_the-ceo-of-a-3-trillion-company-just-made-activity-7409307552770859008-4OUk" target="_blank" rel="noopener">Gupta: CEO as PM</a></li>
+  </ol>
+  <h3>Could not verify</h3>
+  <ul>
+    <li>Comment weight multipliers ("15× a like"), a "15-word minimum" for comments, "edit penalty", "golden hour" percentages.</li>
+    <li>Van der Blom report internals (full report not accessed); Shield-era benchmarks (tool discontinued).</li>
+    <li>Any independent dataset on newsletters/articles reach, or on tagging beyond the UTA study.</li>
+  </ul>
+</section>
+
+<footer>Compiled 1 Nov 2026. LinkedIn changes ranking continuously; re-check sections 02 and 08 every quarter.</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  var form=document.getElementById('ck');
+  var boxes=form.querySelectorAll('input[type=checkbox]');
+  var count=document.getElementById('ck-count');
+  var KEY='ai-post-anatomy-checklist';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+  var state=load();
+  function update(){var n=0;boxes.forEach(function(b){if(b.checked)n++});count.textContent=n+' / '+boxes.length+' checked';}
+  boxes.forEach(function(b){b.checked=!!state[b.id];b.addEventListener('change',function(){state[b.id]=b.checked;save(state);update();});});
+  document.getElementById('ck-reset').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false});state={};save(state);update();});
+  update();
+  document.querySelectorAll('button[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-copy'));
+      var txt=el.innerText;
+      function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600);}
+      function fallback(){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press Ctrl+C';}
+      try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(e){fallback();}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
