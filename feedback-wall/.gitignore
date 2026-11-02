@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# SQLite database (and WAL siblings)
+server/data/*
+!server/data/.gitkeep
+
+*.log
+.DS_Store
+coverage/
