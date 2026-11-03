@@ -1,0 +1,16 @@
+# Files that must NEVER be uploaded to Vercel
+# Secret keys (the key is set in the Vercel dashboard instead)
+.env
+.env.local
+.env*.local
+.env*
+
+# Not needed: Vercel installs and builds these itself
+node_modules
+.next
+.git
+
+# Our notes and AI-helper files (not part of the website)
+docs
+CLAUDE.md
+AGENTS.md

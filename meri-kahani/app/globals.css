@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Night-sky colours used across the website */
+@theme inline {
+  --color-night: #0b1437;      /* deep dark blue */
+  --color-dusk: #1c2a5e;       /* lighter blue for cards */
+  --color-moon: #fde68a;       /* soft moon yellow */
+  --color-starlight: #e0e7ff;  /* soft white-blue text */
+  --font-sans: var(--font-baloo), system-ui, sans-serif;
+
+  /* Theme colours used by the SHARED parts (voice player, share buttons, home button).
+     Each page picks its theme with class "theme-night" or "theme-masti". */
+  --color-accent: var(--accent);       /* main button colour */
+  --color-on-accent: var(--on-accent); /* text on main buttons */
+  --color-field: var(--field);         /* small button / box background */
+  --color-ink: var(--ink);             /* normal text */
+  --color-line: var(--line);           /* borders */
+}
+
+/* Story page: calm night sky */
+.theme-night {
+  --accent: #fde68a;
+  --on-accent: #0b1437;
+  --field: #0b1437;
+  --ink: #e0e7ff;
+  --line: rgb(255 255 255 / 0.2);
+}
+
+/* Poem page: bright and playful */
+.theme-masti {
+  --accent: #15803d;
+  --on-accent: #ffffff;
+  --field: #fffbeb;
+  --ink: #3b2a0a;
+  --line: rgb(154 52 18 / 0.3);
+}
+
+body {
+  color: var(--color-starlight);
+  font-family: var(--font-sans);
+  /* Dark blue sky that gets a little lighter near the bottom */
+  background-color: #0b1437;
+  background-image: linear-gradient(180deg, #070d26 0%, #0b1437 50%, #1c2a5e 100%);
+  background-attachment: fixed;
+}
+
+/* Tiny twinkling stars, drawn with CSS dots (no images needed) */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 120px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 160px 60px, #fde68a, transparent),
+    radial-gradient(1px 1px at 230px 170px, #fff, transparent),
+    radial-gradient(1px 1px at 300px 40px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 50px 200px, #fff, transparent);
+  background-size: 320px 240px;
+  opacity: 0.8;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.5; }
+  to   { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stars { animation: none; }
+}
