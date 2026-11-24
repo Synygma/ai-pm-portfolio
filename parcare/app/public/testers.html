@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>ParCare Tester Guide</title>
+<link rel="icon" href="/icons/favicon-32.png">
+<style>
+  /* Tester guide (P-035): a plain public page, not part of the app. One phone-width column. */
+  :root {
+    --bg: #EFEAE2; --card: #ffffff; --fg: #111b21; --muted: #54656f;
+    --brand: #008069; --brand-ink: #ffffff; --bubble: #D9FDD3; --warn-bg: #fff4e0; --warn-fg: #7a4b00;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b141a; --card: #1f2c34; --fg: #e9edef; --muted: #aebac1; --brand: #00a884; --brand-ink: #06231b; --bubble: #005c4b; --warn-bg: #3a2c12; --warn-fg: #f5d08a; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, "Segoe UI", Roboto, sans-serif; }
+  .pad { max-width: 640px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header { background: var(--brand); color: var(--brand-ink); padding-block: 24px 22px; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .brand img { width: 52px; height: 52px; border-radius: 50%; background: #fff; }
+  h1 { font-size: 1.9rem; line-height: 1.15; margin: 0; }
+  header p { margin: 0; font-size: 1.05rem; }
+  .link { display: inline-block; margin-top: 14px; background: var(--brand-ink); color: var(--brand); font-weight: 600; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-size: 1.05rem; }
+  .promise { background: var(--bubble); color: var(--fg); border-radius: 0 14px 14px 14px; padding: 12px 14px; margin-top: 16px; }
+  main { display: flex; flex-direction: column; gap: 16px; padding-block: 16px 40px; }
+  section { background: var(--card); border-radius: 16px; padding: 18px; }
+  h2 { font-size: 1.3rem; margin: 0 0 4px; }
+  .who { color: var(--muted); margin: 0 0 12px; }
+  h3 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 16px 0 8px; }
+  ol, ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
+  b { font-weight: 600; }
+  .note { background: var(--warn-bg); color: var(--warn-fg); border-radius: 12px; padding: 12px 14px; margin: 0; }
+  .small { color: var(--muted); font-size: .95rem; margin: 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="pad">
+    <div class="brand"><img src="/icons/icon-192.png" alt=""><h1>ParCare test version</h1></div>
+    <p>Stay part of your parent's day when you live apart. With the parent's agreement, an AI companion checks in at times they choose: waking up, medicine, a walk. The child gets an evening summary in the parent's own words, and an alert if check-ins go unanswered.</p>
+    <a class="link" href="/">Open ParCare</a>
+    <div class="promise">Not an emergency or medical service. Please use <b>made-up names and details only</b>.</div>
+  </div>
+</header>
+
+<main class="pad">
+  <section>
+    <h2>If you are the child</h2>
+    <p class="who">You start here and invite your "parent".</p>
+    <ol>
+      <li>Open <b>parcare-six.vercel.app</b> in <b>Chrome</b> (Android) or <b>Safari</b> (iPhone).</li>
+      <li>Tap <b>I am the child</b> → <b>Create account</b> → tick that you agree.</li>
+      <li>Follow the setup: your details, your parent's details, describe their day (talk or type).</li>
+      <li>At <b>Invite link</b>, send the link to the person playing your parent.</li>
+      <li>Turn on notifications in <b>Settings</b>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>If you are the parent</h2>
+    <p class="who">You got a link from your "child".</p>
+    <h3>Android</h3>
+    <ol>
+      <li>Touch and hold the link → <b>Copy</b>. Paste it into <b>Chrome</b>.</li>
+      <li>Tap <b>Open my ParCare</b>.</li>
+      <li>Chrome <b>⋮</b> menu → <b>Add to Home screen</b>. Use the new icon from now on.</li>
+    </ol>
+    <h3>iPhone</h3>
+    <ol>
+      <li>In Safari, open parcare-six.vercel.app → <b>Share</b> → <b>Add to Home Screen</b>.</li>
+      <li>Touch and hold the link in the message → <b>Copy</b>.</li>
+      <li>Open the new ParCare icon → <b>I am the parent</b> → paste the link → <b>Open</b> → <b>Open my ParCare</b>.</li>
+    </ol>
+    <h3>Then</h3>
+    <ul>
+      <li>Choose your companion, describe your day, tick the check-ins you agree to.</li>
+      <li>Say <b>Allow</b> to notifications and the microphone.</li>
+      <li>Answer check-ins in the chat: tap the buttons, type or talk.</li>
+      <li>Use <b>Ask for help</b> to send a request to your child.</li>
+    </ul>
+  </section>
+
+  <p class="note">Each parent link works <b>once</b>. If it says "already used", ask your child for a new one: <b>Settings → link for the parent's phone</b>.</p>
+  <p class="note">Already using ParCare? <b>Close it and open it again</b> to get the latest version.</p>
+  <p class="small">Found a problem? Send a screenshot to the team.</p>
+</main>
+</body>
+</html>

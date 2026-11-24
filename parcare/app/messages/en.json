@@ -1,0 +1,1253 @@
+{
+  "meta": {
+    "description": "Stay part of your parent's day, with their say."
+  },
+  "avatar": {
+    "helperBadge": "Helper",
+    "photoOf": "Picture of {name}"
+  },
+  "common": {
+    "loading": "Loading…",
+    "back": "Back"
+  },
+  "entry": {
+    "tagline": "Stay part of your parent’s day, with their say.",
+    "child": "I am the child",
+    "parent": "I am the parent",
+    "termsLink": "What ParCare can and cannot do"
+  },
+  "login": {
+    "title": "Log in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "or": "or",
+    "demo": "Demo login",
+    "demoHint": "Logs in as Priya, a fictional demo user.",
+    "noAccount": "New here?",
+    "signupLink": "Create an account",
+    "demoNew": "Demo: start a new setup",
+    "demoNewHint": "Logs in as a fresh fictional account and opens the setup wizard.",
+    "forgotLink": "Forgot password?"
+  },
+  "signup": {
+    "title": "Create an account",
+    "passwordHint": "At least 8 characters.",
+    "submit": "Create account",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log in"
+  },
+  "authErrors": {
+    "missing": "Please enter your email and password.",
+    "invalid": "That email and password do not match.",
+    "exists": "An account with this email already exists. Please log in.",
+    "weakPassword": "Please use at least 8 characters for the password.",
+    "badEmail": "Please check the email address.",
+    "failed": "Something went wrong. Please try again.",
+    "demoOff": "Demo login is switched off."
+  },
+  "shell": {
+    "tabsLabel": "Main sections",
+    "tabs": {
+      "chats": "Chats",
+      "digest": "Digest",
+      "helper": "Helper",
+      "reminders": "Reminders",
+      "settings": "Settings"
+    }
+  },
+  "chatList": {
+    "pinned": "Pinned chat",
+    "unread": "{count, plural, one {# unread message} other {# unread messages}}",
+    "noMessages": "No messages yet",
+    "companionFallback": "Your parent’s companion",
+    "alertHistory": "Alert history",
+    "noConsents": "Nothing is checked yet. {parentPetName} chooses the check-ins in their app.",
+    "seeCheckins": "See check-ins"
+  },
+  "chat": {
+    "subtitle": "{parentPetName}’s ParCare AI companion",
+    "subtitleNoParent": "ParCare AI companion",
+    "back": "Back to chats",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "footer": "Only {name} writes here. To send {parentPetName} a voice reminder, use Reminders.",
+    "footerLink": "Open Reminders",
+    "yourParent": "your parent",
+    "openDigest": "Open digest",
+    "empty": "No messages yet.",
+    "sent": "Sent",
+    "read": "Read",
+    "reviewDone": "Done, we talked",
+    "delete": {
+      "button": "Delete",
+      "title": "Delete this message?",
+      "meNote": "It is removed from your chat only. Everything is deleted automatically at the end of your family's keeping period.",
+      "me": "Delete for me",
+      "cancel": "Cancel",
+      "failed": "That did not work. Please try again.",
+      "everyoneNote": "“Delete for everyone” also removes it from {otherName}’s app. “Delete for me” hides it only here.",
+      "everyone": "Delete for everyone"
+    }
+  },
+  "bubbles": {
+    "teamNote": "A note from the ParCare team: {text}",
+    "setupHello": "Hi {childPetName}! I am {name}, {parentPetName}’s ParCare AI companion. I am an AI voice, not a person.",
+    "setupWhat": "With {parentPetName}’s consent, I check in with them at the times they chose, and send you a daily digest in their own words.",
+    "digest": "Daily digest for {parentPetName}: {count, plural, =0 {no updates} one {# update} other {# updates}} in their own words.",
+    "digestFlags": "{count, plural, one {# change} other {# changes}} from the usual pattern.",
+    "digestMissing": "A daily digest was here but is no longer available.",
+    "alertMissing": "An alert was here but is no longer available.",
+    "missedCheckin": "I checked in with {petName} twice and did not hear back.",
+    "emergencyWord": "{petName} used an emergency word. The app asked them to contact local help.",
+    "allDisabled": "All check-ins are switched off. Please talk to {petName}.",
+    "review": "Check with {petName} that all is OK, and ask if they want to change any check-in.",
+    "alarmOff": "You switched off the alarm at {time}.",
+    "alarmOn": "The alarm is still ringing.",
+    "helper": "{petName} asked for help. See the Helper tab.",
+    "reminder": "Your voice reminder for {petName} is set.",
+    "setupHelloNoCompanion": "Hi {childPetName}! Setup is done. {parentPetName} will choose their ParCare AI companion in their app. The companion is an AI voice, not a person.",
+    "reviewDone": "You marked this done at {time}.",
+    "parentSetupDone": "{parentPetName} finished their setup and agreed to {count, plural, =0 {no check-ins yet} one {# check-in} other {# check-ins}}. See Settings for the list.",
+    "parentTimeChanged": "{parentPetName} changed the time of “{label}” to {time, select, none {no fixed time} other {{time}}}.",
+    "parentCheckinAdded": "{parentPetName} added a check-in: “{label}” at {time, select, none {no fixed time} other {{time}}}."
+  },
+  "voiceNote": {
+    "play": "Play voice note",
+    "pause": "Pause voice note",
+    "speed": "Playback speed {speed}. Tap to change.",
+    "sample": "Sample"
+  },
+  "inputBar": {
+    "placeholder": "Message",
+    "mic": "Record a voice message",
+    "send": "Send"
+  },
+  "settings": {
+    "title": "Settings",
+    "signedInAs": "Signed in as {name}",
+    "dataMemory": "Data: built-in sample data (in-memory)",
+    "dataSupabase": "Data: Supabase",
+    "logOut": "Log out",
+    "alertsLink": "Alert history",
+    "demoLink": "Demo tools (clock and parent simulator)",
+    "push": {
+      "title": "Alarm notifications",
+      "turnOn": "Turn on alarm notifications",
+      "turnOff": "Turn off alarm notifications",
+      "status": {
+        "unsupported": "This browser cannot show notifications. Keep the app open to hear alarms.",
+        "notConfigured": "Notifications are not set up on this server yet (no push keys). Alarms still ring while the app is open.",
+        "denied": "Notifications are blocked for this site. Allow them in the browser settings.",
+        "off": "Off. Turn on to get alarms when the app is in the background.",
+        "on": "On for this browser.",
+        "failed": "Could not turn on notifications on this phone. Please try again. If it keeps failing, allow the browser to show notifications in the phone's settings."
+      },
+      "limit": "A web app cannot ring when the browser is fully closed. Keep it open or installed for the best chance of hearing alarms."
+    },
+    "digest": {
+      "title": "Daily digest time",
+      "hint": "Your time ({timeZone}). The digest covers your parent’s 24 hours before it.",
+      "save": "Save",
+      "saved": "Saved. The next digest arrives at {time}.",
+      "invalid": "Please choose a time like 19:00."
+    },
+    "termsLink": "What ParCare can and cannot do, and terms",
+    "termsAccepted": "You agreed to terms version {version} on {date}.",
+    "deleteLink": "Delete all our data",
+    "checkins": {
+      "title": "{parentPetName}’s check-ins",
+      "controls": "Your parent controls these. Only {parentPetName} can change, pause or stop them, in their app.",
+      "time": "{time}, {parentPetName}’s time ({childTime} your time)",
+      "noTime": "No fixed time",
+      "onDate": "On {date}",
+      "inDigest": "Shared in your digest",
+      "notInDigest": "Not shared in your digest",
+      "none": "{parentPetName} has not agreed to any check-ins yet. Nothing is checked until they agree, item by item, in their app.",
+      "waitingTitle": "Waiting for {parentPetName} to agree",
+      "waitingHint": "You described these at setup. {parentPetName} will give their own version and confirm or change it."
+    },
+    "companion": {
+      "title": "{parentPetName}’s companion",
+      "chosen": "{name}, {parentPetName}’s ParCare AI companion",
+      "notChosen": "{parentPetName} will choose a companion in their app.",
+      "readOnly": "Your parent chooses this.",
+      "gallery": "See all companions"
+    },
+    "timeZone": {
+      "title": "Your time zone",
+      "hint": "Used for your digest time and for every time shown to you.",
+      "save": "Save",
+      "saved": "Saved: {timeZone}",
+      "invalid": "Please choose a time zone from the list."
+    },
+    "emergency": {
+      "title": "Emergency contact",
+      "none": "No emergency contact saved.",
+      "saved": "{name}, {phone}",
+      "change": "Change or remove",
+      "add": "Add a contact",
+      "note": "Shown to you when check-ins go unanswered. The app never calls anyone."
+    },
+    "language": {
+      "title": "Language",
+      "english": "English",
+      "hindiSoon": "हिन्दी (Hindi): coming soon",
+      "hint": "Hindi is coming soon. Companion names always stay in English."
+    },
+    "review": {
+      "title": "Check-in review",
+      "about": "ParCare reminds you a week after setup, then every 3 months, to check with {parentPetName} that all is OK.",
+      "next": "Next reminder: {date}."
+    },
+    "retention": {
+      "title": "How long we keep your family’s data",
+      "what": "{parentPetName}’s words (written transcripts of check-ins and help requests), voice clips and the daily digests are deleted automatically after:",
+      "options": {
+        "8": "8 days",
+        "15": "15 days",
+        "30": "1 month (the longest)"
+      },
+      "save": "Save",
+      "saved": "Saved. Older items are deleted after {days, plural, other {# days}}.",
+      "invalid": "Please choose 8 days, 15 days or 1 month.",
+      "max": "Whatever you choose, these are never kept longer than a month: after a month they are deleted.",
+      "kept": "Kept until you delete all your data: your details, {parentPetName}’s check-in list and consents, check-in times, alerts, reminders and the emergency contact.",
+      "always": "Kept always: the record that you agreed to the terms (date, time, version and a fingerprint of your internet address)."
+    },
+    "parentLink": {
+      "title": "{parentPetName}’s phone",
+      "hint": "If {parentPetName} has a new phone, make a new link and send it. Their old phone is signed out when the new link is opened.",
+      "make": "Make a new link",
+      "made": "New link (works once, for 7 days):",
+      "share": "Share the link",
+      "shareText": "Hello {parentPetName}, here is your ParCare link again: {url}"
+    }
+  },
+  "checkinTypes": {
+    "woken_up": "Woken up",
+    "medicine": "Medicine",
+    "help_arrived": "Help arrived",
+    "social": "Social activity",
+    "physical_activity": "Physical activity",
+    "puja": "Puja / spiritual",
+    "appointment": "Appointment / test",
+    "last_checkin": "Last check-in of the day"
+  },
+  "commitments": {
+    "canTitle": "ParCare can",
+    "cannotTitle": "ParCare cannot",
+    "termsTitle": "Terms in short",
+    "version": "Terms version {version}",
+    "canDo": {
+      "p1": "Check in with your parent by voice at times they chose, only about things they agreed to.",
+      "p2": "Send you a daily digest that quotes your parent’s own words.",
+      "p3": "Alert you when check-ins go unanswered, and show the emergency contact you added.",
+      "p4": "Pass on your parent’s non-urgent requests for help to you as a list.",
+      "p5": "Play your recorded voice reminders to your parent."
+    },
+    "cannotDo": {
+      "p1": "It is not an emergency service and never calls anyone. In an emergency, contact local emergency services.",
+      "p2": "It is not a medical service. It never diagnoses or gives medical advice.",
+      "p3": "It cannot ring when the browser is fully closed, and alerts may be late or missed if a phone is off or offline.",
+      "p4": "It does not track location, use the camera, or listen in the background.",
+      "p5": "Its companion is an AI voice, not a person, and it never speaks as you."
+    },
+    "terms": {
+      "p1": "Your parent’s consent comes first. They choose what is checked and can pause or stop it at any time.",
+      "p2": "Your parent’s words (written transcripts), short voice clips and the digests are deleted after the period chosen in Settings: 8 days, 15 days or one month. One month is the longest.",
+      "p3": "Voice recordings are never used to train AI models.",
+      "p4": "You can delete all of your family’s data at any time in Settings.",
+      "p5": "We keep a record that you agreed to these terms: the date and time, the terms version and a one-way fingerprint of your internet address (the address itself is not stored). This record is kept even after you delete your data, as proof of consent.",
+      "p6": "This is a student capstone demo, not a commercial service."
+    }
+  },
+  "setup": {
+    "title": "Set up ParCare",
+    "progress": "Step {current} of {total}",
+    "back": "Back",
+    "next": "Next",
+    "saving": "Saving…",
+    "errors": {
+      "required": "Please fill this in.",
+      "tooLong": "Please keep this shorter.",
+      "age": "Please enter an age between 18 and 120.",
+      "timeZone": "Please choose a valid time zone, e.g. Asia/Kolkata.",
+      "phone": "Please check the phone number.",
+      "time": "Please use a time like 08:30.",
+      "type": "Please choose a check-in type.",
+      "noItems": "Please keep at least one check-in ticked.",
+      "generic": "Something went wrong. Please try again.",
+      "signedOut": "You were signed out. Please log in again.",
+      "order": "Please finish the earlier steps first.",
+      "termsRequired": "Please tick the box to finish setup.",
+      "incomplete": "Please finish the earlier steps first.",
+      "country": "Please choose a country from the list.",
+      "city": "Please pick the city from the list under the box (it shows once you type 2 letters).",
+      "timeZoneCountry": "This time zone is not used in the country you chose. Please pick the right one."
+    },
+    "fields": {
+      "country": "Country",
+      "city": "City",
+      "age": "Age",
+      "timeZone": "Time zone",
+      "optional": "optional",
+      "cityHint": "Pick the city from the list. Its time zone is filled in for you."
+    },
+    "child": {
+      "title": "About you",
+      "intro": "This helps the companion talk about you warmly.",
+      "fullName": "Your name",
+      "petName": "Pet name your parents use for you",
+      "petNameHint": "For example Gudiya or Munna",
+      "timeZoneHint": "Detected from this device. Change it if needed."
+    },
+    "parent": {
+      "title": "About your parent",
+      "intro": "Add one or both parents.",
+      "parentN": "Parent {n}",
+      "name": "Name",
+      "petName": "What you call them",
+      "petNameHint": "For example Maa or Papa",
+      "gender": "Gender",
+      "choose": "Choose…",
+      "genders": {
+        "female": "Female",
+        "male": "Male",
+        "other": "Other / prefer not to say"
+      },
+      "timeZoneHint": "Their local time. For India use Asia/Kolkata.",
+      "addSecond": "Add second parent",
+      "removeSecond": "Remove second parent",
+      "whichTitle": "Which parent will ParCare check in with?",
+      "whichNote": "In this version ParCare checks in with one parent. The other parent’s details are kept but not used for check-ins."
+    },
+    "howItWorks": {
+      "title": "How setup works",
+      "points": {
+        "p1": "You describe your parent’s day. ParCare turns it into a short list of check-ins.",
+        "p2": "You send your parent a one-time link.",
+        "p3": "Your parent opens it, picks their AI companion, and chooses which check-ins they agree to.",
+        "p4": "Nothing is checked until your parent agrees, item by item. They can change or stop it at any time.",
+        "p5": "You get a daily digest in their own words, and an alert if check-ins go unanswered."
+      }
+    },
+    "introduce": {
+      "title": "How to introduce the app",
+      "intro": "Some ideas for what to say to {parentPetName}:",
+      "points": {
+        "p1": "“I want to be a bigger part of your day, even though I live away.”",
+        "p2": "“A friendly companion will check in with you at times you choose, like a friend standing in for me.”",
+        "p3": "“The companion is an AI voice, not a real person, and it is not me.”",
+        "p4": "“You decide what it asks about, and you can switch it off any time.”",
+        "p5": "“You can pick the companion you like.”"
+      },
+      "avatarsTitle": "Companions {parentPetName} can choose from"
+    },
+    "day": {
+      "title": "Describe {parentPetName}’s day",
+      "intro": "Talk or type: when do they wake up, take medicines, walk, pray, meet people, go to sleep?",
+      "micOn": "Mic on, listening. Tap the mic again when you finish.",
+      "micBlocked": "The microphone is blocked. In Chrome: tap ⋮ → Settings → Site settings → Microphone, allow ParCare, then try again. Or type instead.",
+      "micError": "Could not hear that. Please try again, or type.",
+      "micUnsupported": "Voice input is not available in this browser. Please type instead.",
+      "typeLabel": "Description",
+      "placeholder": "For example: Maa wakes up at 6, walks at 6:30, takes her BP tablet at 8:30 and 8:30 pm…",
+      "suggest": "Make the check-in list",
+      "suggesting": "Making the list…",
+      "listTitle": "Suggested check-ins",
+      "listIntro": "Tick what matters. Edit the words or time, or add an item.",
+      "parentNote": "{parentPetName} will later give their own version in their app and confirm or change each item. Nothing is checked until they agree.",
+      "include": "Include {label}",
+      "label": "What",
+      "time": "Time",
+      "type": "Type",
+      "remove": "Remove",
+      "addItem": "Add item",
+      "newItem": "New check-in",
+      "geminiNote": "Demo note: this text is sent to Google’s free AI service to make the list. Use made-up details only.",
+      "mockNote": "The list is made by a simple built-in helper (no AI key is set).",
+      "fellBack": "The AI service was not available, so a simple built-in helper made this list.",
+      "empty": "Please describe the day first.",
+      "noSuggestions": "No check-ins found in that description. Add items yourself, or describe a bit more.",
+      "tapToTalk": "Tap to talk",
+      "tapToStop": "Tap to stop",
+      "micStarting": "Starting the microphone… If the browser asks, allow it.",
+      "micNothing": "I did not hear anything. Tap the mic, speak, then tap it again. Or type.",
+      "micNoStart": "The microphone did not start. Please try again, or type.",
+      "micNetwork": "Voice input needs an internet connection. Please type instead.",
+      "micUnavailable": "Voice input does not work in this browser or app. Please type instead."
+    },
+    "emergency": {
+      "title": "Emergency contact (optional)",
+      "intro": "Someone near {parentPetName} that the app can show you when check-ins go unanswered. The app never calls anyone.",
+      "name": "Name",
+      "phone": "Phone number",
+      "toldQuestion": "Have you told this person they are the first point of contact in an emergency?",
+      "yes": "Yes",
+      "no": "No",
+      "save": "Save and continue",
+      "skip": "Skip for now",
+      "notStored": "Not saved. Please tell {name} first and add them later in Settings. We only keep a contact who knows.",
+      "existing": "Saved contact: {name}, {phone}",
+      "continue": "Continue"
+    },
+    "invite": {
+      "title": "Invite {parentPetName}",
+      "intro": "Create a one-time link for {parentPetName}’s phone. It works once and expires in 7 days.",
+      "create": "Create invite link",
+      "share": "Share the link",
+      "copy": "Copy link",
+      "copied": "Copied",
+      "recreate": "Create a new link",
+      "recreateNote": "A new link stops the old one from working.",
+      "shareMessage": "Hi {parentPetName}, I have set up ParCare so I can be part of your day even though I live away. Please open this link on your phone: {url}",
+      "resumeNote": "For safety the link is shown only once. Create a new one if you need it again."
+    },
+    "call": {
+      "title": "Call {parentPetName} now",
+      "points": {
+        "p1": "Call {parentPetName} on your phone and put them on speaker.",
+        "p2": "Ask them to open the link you sent.",
+        "p3": "Stay on the call while they meet their companion and choose their check-ins."
+      },
+      "note": "ParCare never makes calls. Use your own phone."
+    },
+    "terms": {
+      "title": "What ParCare can and cannot do",
+      "accept": "I have read this and agree",
+      "parentNote": "{parentPetName} will also read and tick this in their app.",
+      "finish": "Finish setup"
+    },
+    "saveLater": "Save and finish later",
+    "paused": {
+      "title": "Setup saved",
+      "where": "You stopped at step {step} of {total}. You can carry on whenever you are ready.",
+      "kept": "Everything you entered on earlier steps is kept.",
+      "comeBack": "Next time, just log in: setup opens where you stopped.",
+      "linkWorks": "The link you made for {petName} keeps working for {days} days from when you made it. {petName} can open it whenever they are free.",
+      "noLinkYet": "You will make the link for {petName} in a later step, so there is no rush.",
+      "yourParent": "your parent",
+      "continue": "Continue setup now",
+      "logOut": "Log out"
+    }
+  },
+  "push": {
+    "alarmTitle": "ParCare alarm",
+    "noticeTitle": "ParCare",
+    "digestTitle": "ParCare daily digest"
+  },
+  "alarm": {
+    "titleMissed": "Check-in not answered",
+    "titleEmergency": "Emergency word used",
+    "time": "At {time}",
+    "missedDetail": "The check-in was: {label}.",
+    "contactTitle": "Emergency contact",
+    "contactNote": "ParCare never calls anyone. Use your own phone if you need to.",
+    "soundOn": "Tap to turn on the alarm sound",
+    "switchOff": "Switch off",
+    "more": "{count, plural, one {# more alarm after this one} other {# more alarms after this one}}",
+    "none": "No alarm is ringing.",
+    "history": "Alert history",
+    "backToChats": "Back to chats",
+    "switchOffAll": "Switch off all {count} missed check-in alarms",
+    "switchedNext": "Switched off. This is the next alarm.",
+    "switching": "Switching off…"
+  },
+  "alerts": {
+    "title": "Alert history",
+    "back": "Back to chats",
+    "empty": "No alerts yet.",
+    "switchedOff": "Switched off: {time}",
+    "stillRinging": "Not switched off yet.",
+    "open": "Open alarm",
+    "kinds": {
+      "missed_checkin": "Missed check-in",
+      "emergency_word": "Emergency word",
+      "all_disabled": "All check-ins off",
+      "review": "Review"
+    },
+    "reviewDone": "Done: {time}",
+    "reviewOpen": "Not marked done yet."
+  },
+  "demo": {
+    "title": "Demo tools",
+    "back": "Back to chats",
+    "banner": "For the capstone demo only. All data is fictional.",
+    "noHousehold": "Finish setup first to use the demo tools.",
+    "clockTitle": "Demo clock",
+    "realTime": "Real time.",
+    "ahead": "{minutes} minutes ahead of real time.",
+    "clockNote": "Every change runs the check-in engine, as the server does every minute.",
+    "steps": {
+      "5m": "+5 min",
+      "1h": "+1 hour",
+      "1d": "+1 day",
+      "1w": "+1 week",
+      "3mo": "+3 months",
+      "reset": "Reset"
+    },
+    "upcomingTitle": "Next check-ins for {parentPetName}",
+    "gaps": "Prompt 2 after {gapA} min without a reply; your alarm {gapB} min after that.",
+    "times": "{parent} their time · {child} your time",
+    "noConsents": "No check-ins are switched on. Use “Parent agrees to all check-ins” below.",
+    "noUpcoming": "Nothing scheduled in the next 36 hours.",
+    "status": {
+      "scheduled": "Scheduled",
+      "prompted1": "Prompt 1 sent",
+      "prompted2": "Prompt 2 sent",
+      "answered": "Answered",
+      "escalated": "Alarm ringing",
+      "acknowledged": "Alarm switched off",
+      "lapsed": "Lapsed"
+    },
+    "parentTitle": "Parent simulator ({parentPetName})",
+    "answerLabel": "Answer the next check-in",
+    "answerPlaceholder": "For example: Took my tablet after breakfast.",
+    "outcome": {
+      "yes": "Done",
+      "no": "Not done"
+    },
+    "answerButton": "Send answer",
+    "answered": "Answer saved in the parent’s own words.",
+    "unansweredButton": "Let the next check-in go unanswered",
+    "unansweredNote": "Moves the clock through prompt 1, prompt 2 (+{gapA} min) and your alarm (+{gapB} min).",
+    "helperLabel": "Send a helper request",
+    "helperFillNormal": "Fill a normal request",
+    "helperFillEmergency": "Fill with an emergency word",
+    "helperSampleNormal": "Please ask someone to bring vegetables tomorrow.",
+    "helperSampleEmergency": "Help me, I fell in the bathroom.",
+    "helperButton": "Send helper request",
+    "helperSent": "Helper request sent.",
+    "consents": "{active} of {total} check-ins switched on by the parent.",
+    "allOffButton": "Parent switches off all check-ins",
+    "allOnButton": "Parent agrees to all check-ins",
+    "switchedOff": "All check-ins switched off.",
+    "switchedOn": "Check-ins switched on.",
+    "companionLabel": "Parent changes their companion",
+    "save": "Save",
+    "companionChanged": "Companion changed.",
+    "resetTitle": "Reset demo data",
+    "resetNote": "Puts back the original sample data (Priya and Maa). Built-in database only.",
+    "resetButton": "Reset demo data",
+    "resetDone": "Sample data restored.",
+    "errors": {
+      "demoOff": "Demo tools are switched off.",
+      "noHousehold": "Finish setup first.",
+      "nothingDue": "No upcoming check-in. Switch check-ins on first.",
+      "empty": "Please type something first.",
+      "invalid": "That is not possible here.",
+      "noReminder": "No reminder is ringing."
+    },
+    "answerTarget": "Goes to: {label} ({parentTime} their time).",
+    "answerNoTarget": "No check-in is due, so the answer is saved without one.",
+    "reminderTitle": "Your voice reminder",
+    "reminderRinging": "Ringing for the parent now: {label}",
+    "reminderNone": "No reminder is ringing. Move the clock to a reminder’s time.",
+    "reminderOk": "Parent says OK",
+    "reminderSnooze": "Snooze 10 min",
+    "reminderOkDone": "Parent said OK.",
+    "reminderSnoozeDone": "Snoozed for 10 minutes.",
+    "voiceReminder": "voice reminder",
+    "openParent": "Open Maa’s app (parent app, new tab)",
+    "openParentHint": "Signs in as the parent in this browser too, so both apps can be open side by side.",
+    "askNow": "Ask Maa the next check-in now",
+    "askNowDone": "Asked. Open Maa’s app to answer."
+  },
+  "digest": {
+    "listTitle": "Daily digests for {parentPetName}",
+    "listIntro": "One a day at {time} your time, in your parent’s own words.",
+    "empty": "No digest yet. The first one arrives at {time} your time.",
+    "rowSummary": "{count, plural, =0 {No updates} one {# update} other {# updates}}",
+    "rowFlags": "{count, plural, one {# change from usual} other {# changes from usual}}",
+    "back": "Back to digests",
+    "title": "Daily digest · {day}",
+    "covers": "Covers the 24 hours before {time} (your time).",
+    "wordsTitle": "In {parentPetName}’s own words",
+    "timesNote": "Times are {parentPetName}’s local time.",
+    "noItems": "No updates from {parentPetName} in this period.",
+    "flagsTitle": "Changes from the usual pattern",
+    "flagsNote": "Facts from the check-ins only. This is not medical advice.",
+    "flags": {
+      "not_done": "{label}: usually around {time}. This time {parentPetName} said it did not happen.",
+      "not_doneNoTime": "{label}: usually happens. This time {parentPetName} said it did not happen.",
+      "not_mentioned": "{label}: usually around {time}. Not mentioned this time.",
+      "not_mentionedNoTime": "{label}: usually happens. Not mentioned this time."
+    },
+    "sharedNote": "Only the check-ins {parentPetName} chose to share appear here.",
+    "feedback": {
+      "question": "Did this match what {parentPetName} told you?",
+      "matched": "Matched what my parent told me",
+      "not_matched": "Did not match",
+      "matchedShort": "Matched",
+      "not_matchedShort": "Did not match",
+      "saved": "Thank you, saved. You can change it any time.",
+      "skipped": "Skip, I have not checked",
+      "skippedShort": "Skipped"
+    }
+  },
+  "helper": {
+    "title": "Requests from {parentPetName}",
+    "intro": "Things {parentPetName} would like help with. Not urgent: you arrange the help yourself.",
+    "empty": "No requests from {parentPetName} yet.",
+    "transcript": "What they said",
+    "status": {
+      "new": "New",
+      "seen": "Seen",
+      "done": "Done"
+    },
+    "markDone": "Mark as done",
+    "emergencyNote": "This request used an emergency word, so an alarm was raised.",
+    "note": "ParCare does not book services. It only passes the request on to you."
+  },
+  "reminders": {
+    "title": "Reminders for {parentPetName}",
+    "intro": "Record a short voice note in your own voice. {parentPetName} hears it at the time you choose, in their time zone.",
+    "new": "New reminder",
+    "newTitle": "New reminder",
+    "back": "Back to reminders",
+    "empty": "No reminders yet.",
+    "voiceOnly": "Voice reminder",
+    "when": "{parentDay} {parentTime}, {parentPetName}’s time",
+    "whenChild": "{childDay} {childTime}, your time",
+    "repeat": {
+      "none": "Once",
+      "daily": "Every day",
+      "weekly": "Every week"
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "ringing": "Ringing",
+      "parent_ok": "Parent said OK",
+      "snoozed": "Snoozed"
+    },
+    "delete": "Delete",
+    "recorder": {
+      "record": "Record your voice",
+      "again": "Record again",
+      "stop": "Stop",
+      "recording": "Recording, {seconds} of {max} seconds",
+      "blocked": "The microphone is blocked. Allow it in the browser, or type a short note instead.",
+      "unsupported": "Recording is not available in this browser. You can type a short note instead.",
+      "note": "Up to {max} seconds. The mic is on only while recording."
+    },
+    "form": {
+      "voiceTitle": "Your voice for {parentPetName}",
+      "label": "Short note",
+      "labelPlaceholder": "For example: Drink water after your walk",
+      "labelHint": "Shown with the reminder. Needed if you do not record.",
+      "whenTitle": "When, in {parentPetName}’s time",
+      "date": "Date",
+      "time": "Time",
+      "childTime": "That is {date} {time} your time.",
+      "repeat": "Repeat",
+      "repeatNone": "Once",
+      "repeatDaily": "Every day",
+      "repeatWeekly": "Every week",
+      "save": "Save reminder",
+      "saving": "Saving…",
+      "retention": "Voice notes are deleted after 30 days."
+    },
+    "errors": {
+      "content": {
+        "required": "Record your voice or type a short note."
+      },
+      "label": {
+        "tooLong": "Please keep the note under 80 characters."
+      },
+      "date": {
+        "required": "Please choose a date."
+      },
+      "time": {
+        "required": "Please choose a time.",
+        "past": "Please choose a time in the future (their time)."
+      },
+      "repeat": {
+        "required": "Please choose how often."
+      },
+      "audio": {
+        "type": "This recording format is not supported.",
+        "tooBig": "The recording is too long. Please keep it under a minute.",
+        "empty": "The recording is empty. Please try again."
+      },
+      "failed": "Something went wrong. Please try again."
+    }
+  },
+  "settingsCompanions": {
+    "title": "Companions",
+    "back": "Back to Settings",
+    "intro": "{parentPetName} chooses their companion in their app. You cannot change it here.",
+    "chosen": "Chosen by {parentPetName}",
+    "aiNote": "Every companion is an AI voice, not a person. It never claims to be a deity or a real person, and never speaks as you.",
+    "myChildTitle": "Not an AI companion",
+    "myChildNote": "My Child is shown only next to your own recorded voice reminders. It can never be chosen as a companion.",
+    "helperTitle": "Helper look",
+    "helperNote": "The chosen companion with a small helper badge marks {parentPetName}’s requests for help."
+  },
+  "emergencyContact": {
+    "title": "Emergency contact",
+    "back": "Back to Settings",
+    "current": "Saved contact: {name}, {phone}",
+    "replaceHint": "Saving a new contact replaces the saved one.",
+    "save": "Save contact",
+    "remove": "Remove this contact",
+    "saved": "Saved. {name} is your emergency contact.",
+    "removed": "Contact removed."
+  },
+  "deleteData": {
+    "title": "Delete all our data",
+    "back": "Back to Settings",
+    "intro": "This permanently deletes everything ParCare holds for your family:",
+    "list": {
+      "p1": "your details and {parentPetName}’s details",
+      "p2": "check-ins, {parentPetName}’s answers and the daily digests",
+      "p3": "alerts, help requests and voice reminders, including every voice clip",
+      "p4": "the emergency contact, consent and terms records"
+    },
+    "keepLogin": "Your login stays, so you can set up again later. It cannot be undone.",
+    "demoNote": "Demo: Demo login brings the sample data back.",
+    "confirm": "I understand this cannot be undone",
+    "button": "Delete everything",
+    "cancel": "Cancel",
+    "done": "Your family’s data has been deleted.",
+    "home": "Back to start"
+  },
+  "termsPage": {
+    "back": "Back"
+  },
+  "places": {
+    "loading": "Loading…",
+    "chooseCountry": "Choose a country",
+    "countryFirst": "Choose the country first",
+    "cityPlaceholder": "Start typing, then pick from the list",
+    "chooseTimeZone": "Choose a time zone",
+    "noCity": "No city with that name in {country}. Check the spelling, or try a nearby larger city.",
+    "cityOk": "City found. Its time zone is filled in below.",
+    "usedIn": "Used in {country}",
+    "zoneNotInCountry": "This time zone is not used in {country}. Pick one from \"Used in {country}\" at the top of the list."
+  },
+  "agree": {
+    "title": "Before you start",
+    "intro": "Please read what ParCare can and cannot do. You need to agree once before using the app.",
+    "accept": "I understand what ParCare can and cannot do, and I agree to the terms",
+    "record": "When you continue, we record the date and time, the terms version and a one-way fingerprint of your internet address. This record is kept even if you later delete your data.",
+    "continue": "Continue",
+    "required": "Please tick the box to continue."
+  },
+  "summary": {
+    "title": {
+      "week": "Weekly summary",
+      "month": "Monthly summary"
+    },
+    "open": {
+      "week": "Weekly summary",
+      "month": "Monthly summary"
+    },
+    "openHint": "Major check-ins over the last 7 or 30 days, in words.",
+    "back": "Back to digests",
+    "covers": "{from} to {to} ({parentPetName}’s days)",
+    "checkinsTitle": "{parentPetName}’s check-ins",
+    "asPlanned": "Happened as planned whenever {parentPetName} was asked.",
+    "notDone": "Did not happen on {dates}.",
+    "noAnswer": "No answer on {dates}.",
+    "unclear": "Answer not clear on {dates}.",
+    "notDue": "Not due in this period.",
+    "noItems": "{parentPetName} has no shared check-ins in this period.",
+    "wordsTitle": "In {parentPetName}’s own words",
+    "noWords": "No words from {parentPetName} in this period.",
+    "note": "Facts from the check-ins only, in words, with no totals. This is not medical advice.",
+    "kept": "Only what is still kept is included: your data setting is {days, plural, other {# days}}."
+  },
+  "parentChat": {
+    "hello": "Hello {firstName}! I am {name}, your ParCare AI companion. I am an AI voice, not a person.",
+    "helloWhy": "{childName} wants to be a bigger part of your day, even though they live away. I will check in with you at the times you chose.",
+    "helloNoCompanion": "Hello {firstName}! Welcome to ParCare. {childName} invited you.",
+    "prompt": {
+      "woken_up": "Good morning, {firstName}! Are you up? How did you sleep?",
+      "medicine": "{firstName}, is it time for your medicine? Have you taken it?",
+      "help_arrived": "Has the help you were expecting arrived, {firstName}?",
+      "social": "Did you meet anyone today, {firstName}? Tell me about it.",
+      "physical_activity": "Did you manage your walk or exercise today, {firstName}? How was it?",
+      "puja": "Is it time for your puja, {firstName}? How was it today?",
+      "appointment": "{firstName}, you have an appointment today. Are you all set?",
+      "last_checkin": "Before you sleep, {firstName}: how was your day? Anything special?"
+    },
+    "promptGeneric": "{firstName}, it is time for a check-in. How are you?",
+    "answerDeleted": "(Your answer was deleted after the time your family chose.)",
+    "review": "Did {childName} speak to you recently? Would you like to change any check-in?",
+    "reminder": "{childName} sent you a voice reminder: “{label}”",
+    "helperSent": "Your request was sent to {childName}. {childName} will arrange it; nothing is booked by ParCare.",
+    "again": "{firstName}, I am asking again, just to be sure you are all right.",
+    "promptAgain": "{firstName}, I am asking again: {question}",
+    "thanks": "Thank you, {firstName}! I will let {childName} know in the evening summary, if you chose to share it.",
+    "snoozed": "All right. I will ask again at {time}.",
+    "paused": "PAUSE. Please contact local help now: someone near you, or your local emergency number. I have told {childName}.",
+    "photoPrompt": "If something today was worth sharing, send {childName} a photo through your usual chat app. ParCare does not keep photos.",
+    "lastQuestions": {
+      "walkHow": "How did your walk go today, {firstName}?",
+      "movedToday": "Did you get to move about today, {firstName}? Where did you go?",
+      "pujaSpecial": "Was there anything special in your puja today, {firstName}?",
+      "metAnyone": "Did you meet anyone nice today, {firstName}?",
+      "friendsNews": "Any news from your friends today, {firstName}?",
+      "appointmentHow": "How did your appointment go, {firstName}?",
+      "helpWent": "Did the help you had today go well, {firstName}?",
+      "daySpecial": "Before you sleep, {firstName}: anything special about your day?",
+      "smileToday": "What made you smile today, {firstName}?",
+      "ateToday": "What did you have for dinner today, {firstName}?",
+      "lookForward": "Is there something you are looking forward to tomorrow, {firstName}?",
+      "heardToday": "Did you hear anything nice today, {firstName}, on the phone or the radio?"
+    }
+  },
+  "admin": {
+    "title": "ParCare admin",
+    "login": {
+      "title": "Admin login",
+      "intro": "For the ParCare team only. Child and parent accounts cannot sign in here.",
+      "email": "Admin email",
+      "password": "Admin password",
+      "submit": "Sign in",
+      "wrong": "That email and password do not match.",
+      "tooMany": "Too many tries. Please wait 15 minutes.",
+      "off": "The admin login is not set up on this server (ADMIN_EMAIL and ADMIN_PASSWORD, at least 10 characters)."
+    },
+    "logOut": "Log out",
+    "bands": {
+      "title": "Activity bands (last {days} days)",
+      "intro": "The share of check-ins the parent answered before the child's alarm. For the team only: never shown to families, and not a score of the parent.",
+      "active": "Active",
+      "partly": "Partly active",
+      "low": "Low",
+      "notStarted": "Not started",
+      "activeRule": "{high}% or more answered",
+      "partlyRule": "{mid}–{below}% answered",
+      "lowRule": "under {mid}% answered",
+      "notStartedRule": "no check-ins asked yet",
+      "detail": "{answered} of {asked} answered · {alarms, plural, =0 {no alarms} one {# alarm} other {# alarms}}"
+    },
+    "users": {
+      "title": "Logins ({count})",
+      "none": "No logins yet.",
+      "created": "Joined {date}",
+      "noName": "(setup not started)",
+      "setupDone": "Child setup done",
+      "setupNotDone": "Child setup not finished",
+      "parentDone": "Parent ({name}) set up their app",
+      "parentNotDone": "Parent has not set up their app yet",
+      "sample": "Sample family for Demo login: cannot be deleted here.",
+      "confirm": "Delete this user, their family's data and their login",
+      "delete": "Delete user",
+      "deleted": "User deleted. The same email can sign up again.",
+      "deleteFailed": "That user could not be deleted. Please try again."
+    },
+    "note": {
+      "title": "Send a gentle check-in",
+      "intro": "Goes to the child's app (a chat note from the ParCare team plus a notification) for every family where all is OK: setup done and no alarm ringing. Never to the parent.",
+      "rule": "Gentle check-ins only. No marketing, offers, prices, links or product news.",
+      "choose": "Choose a message",
+      "presets": {
+        "hello": "Hope you and your family are keeping well. A quick hello can brighten someone's day.",
+        "weekend": "Wishing you a calm weekend. Maybe a good moment to say hello to your parent.",
+        "thanks": "Thank you for staying close to your parent with ParCare. We hope all is well with you both.",
+        "working": "Just checking in: we hope ParCare is working well for you and your parent."
+      },
+      "custom": "Write my own",
+      "customLabel": "Your message (up to {max} characters)",
+      "customConfirm": "This is a gentle check-in, not a marketing message.",
+      "send": "Send to all families where all is OK",
+      "sending": "Sending…",
+      "sent": "Sent to {families, plural, =0 {no families} one {# family} other {# families}} ({pushed} phone notifications).",
+      "skipped": "Not sent to {count, plural, one {# family} other {# families}} with an alarm ringing.",
+      "pushTitle": "A note from the ParCare team",
+      "errors": {
+        "empty": "Please choose a message or write one.",
+        "tooLong": "Please keep it to {max} characters.",
+        "marketing": "This looks like marketing (offers, prices, products, sales words). Only gentle check-ins can be sent.",
+        "link": "Links, web addresses and email addresses cannot be sent.",
+        "wording": "Please do not mention illness or health conditions.",
+        "confirm": "Please tick that this is a gentle check-in, not marketing.",
+        "failed": "That did not send. Please try again (on Supabase, run migration 0007 first)."
+      },
+      "history": "Sent recently",
+      "historyItem": "{date} · {families, plural, one {# family} other {# families}}"
+    }
+  },
+  "onOff": {
+    "on": "On",
+    "off": "Off"
+  },
+  "parentApp": {
+    "appTitle": "ParCare",
+    "companionSubtitle": "Your ParCare AI companion",
+    "empty": "No messages yet.",
+    "readAloud": "Read aloud",
+    "stopReading": "Stop reading",
+    "bar": {
+      "label": "Main buttons",
+      "sos": "SOS",
+      "help": "Ask for help",
+      "settings": "Settings",
+      "chat": "Chat"
+    },
+    "sos": {
+      "title": "Need urgent help?",
+      "body": "Please contact local help now: someone near you, or your local emergency number.",
+      "cannot": "ParCare cannot call anyone and is not an emergency service.",
+      "contactTitle": "Your emergency contact",
+      "contactNone": "No emergency contact has been added. {childName} can add one.",
+      "back": "Back to chat"
+    },
+    "help": {
+      "title": "Ask for help",
+      "intro": "Ask {childName} for help with something that is not urgent: medicines, groceries, a doctor's appointment, a repair.",
+      "notEmergency": "Not for emergencies. In an emergency, contact local help or use SOS.",
+      "voiceTitle": "Record a voice note (optional)",
+      "label": "What do you need?",
+      "placeholder": "For example: please get my BP tablets this week",
+      "send": "Send to {childName}",
+      "sending": "Sending…",
+      "sent": "Sent. {childName} will see it in their Helper list.",
+      "errors": {
+        "empty": "Please record a voice note or write what you need.",
+        "tooLong": "Please keep it shorter.",
+        "audio": "That recording could not be used. Please record again.",
+        "failed": "That did not work. Please try again."
+      },
+      "listTitle": "Your requests",
+      "none": "No requests yet.",
+      "status": {
+        "new": "Sent",
+        "seen": "{childName} has seen it",
+        "done": "Done"
+      },
+      "voiceOnly": "(voice note)"
+    },
+    "settings": {
+      "title": "Settings",
+      "readAloudTitle": "Read messages aloud",
+      "readAloudOn": "On: your companion's messages are read aloud.",
+      "readAloudOff": "Off: messages are shown only. Tap On to hear them.",
+      "voiceNote": "The voice comes from your phone. If you hear nothing, check the volume.",
+      "terms": "What ParCare can and cannot do",
+      "language": "Language: English (Hindi coming soon)",
+      "who": {
+        "title": "Who can see what",
+        "intro": "You decide what is checked and what {childName} sees. {childName} cannot change this.",
+        "on": "On",
+        "paused": "Paused",
+        "pause": "Pause",
+        "resume": "Turn on again",
+        "shared": "{childName} can see your answer",
+        "notShared": "Only you see your answer",
+        "share": "Let {childName} see it",
+        "unshare": "Keep it to myself",
+        "none": "You have no check-ins yet.",
+        "stopAll": "Stop all check-ins",
+        "stopAllNote": "{childName} will be told that all check-ins are switched off.",
+        "noTime": "no fixed time",
+        "timeFor": "Time for {label}",
+        "notChecked": "Not checked",
+        "turnOn": "Turn on",
+        "changeTime": "Change time"
+      },
+      "companion": {
+        "title": "Your companion",
+        "note": "An AI voice, not a person. Change it any time.",
+        "save": "Save companion"
+      },
+      "gaps": {
+        "title": "If you do not answer",
+        "gapA": "Second reminder after",
+        "gapB": "Then {childName} is told after",
+        "minutes": "{n} minutes",
+        "save": "Save"
+      },
+      "deleteMine": {
+        "title": "Delete my recordings and words",
+        "body": "Deletes your answers to check-ins, the evening summaries made from them, and every voice recording of yours. Your requests for help stay on {childName}'s list as text, without the recordings.",
+        "confirm": "I understand this cannot be undone",
+        "button": "Delete my recordings and words",
+        "done": "Done. Your recordings and words have been deleted."
+      }
+    },
+    "welcome": {
+      "title": "Welcome to ParCare",
+      "body": "{childName} invited you. Tap the button to open your ParCare on this phone. No password needed.",
+      "open": "Open my ParCare",
+      "invalid": "This link does not work. Please ask {childName} for a new one.",
+      "invalidNoName": "This link does not work. Please ask your child for a new link.",
+      "used": "This link has already been used. If you changed your phone, ask {childName} for a new link.",
+      "expired": "This link has expired. Please ask {childName} for a new one."
+    },
+    "noSession": {
+      "title": "Parent app",
+      "body": "Open the link your child sent you. It opens your ParCare on this phone, with no password.",
+      "back": "Back",
+      "paste": {
+        "label": "Paste the link here",
+        "hint": "Copy the link your child sent you (touch and hold it in the message, then Copy), then paste it here. Useful on an iPhone after adding ParCare to the home screen.",
+        "open": "Open",
+        "bad": "That does not look like a ParCare link. Copy the whole link your child sent and paste it again."
+      }
+    },
+    "answer": {
+      "title": "Your answer",
+      "yes": "Yes, done",
+      "no": "Not today",
+      "snooze": "Snooze 30 min",
+      "okay": "I’m okay today",
+      "ownWords": "Or say it in your own words",
+      "send": "Send",
+      "sent": "Thank you!",
+      "snoozedUntil": "I will ask again at {time}.",
+      "failed": "That did not work. Please try again.",
+      "answerHere": "Answer here",
+      "childTold": "{childName} has been told that you did not answer. Answer now so they know you are all right.",
+      "stored": {
+        "yes": "Yes, done.",
+        "no": "Not today.",
+        "okay": "I’m okay today."
+      }
+    },
+    "pause": {
+      "title": "PAUSE",
+      "body": "Please contact local help now: someone near you, or your local emergency number.",
+      "told": "{childName} has been told.",
+      "cannot": "ParCare cannot call anyone.",
+      "contact": "Your emergency contact:",
+      "back": "Back to chat"
+    },
+    "ringing": {
+      "title": "{name} is asking again",
+      "titleNoCompanion": "ParCare is asking again",
+      "hint": "Please answer so {childName} knows you are all right."
+    },
+    "push": {
+      "title": "Notifications",
+      "turnOn": "Turn on notifications",
+      "turnOff": "Turn off notifications",
+      "status": {
+        "unsupported": "This browser cannot show notifications. Keep the app open to hear alarms.",
+        "notConfigured": "Notifications are not set up on this server yet. Questions still show while the app is open.",
+        "denied": "Notifications are blocked for this site. Allow them in the browser settings.",
+        "off": "Off. Turn on so your companion's questions reach you when the app is in the background.",
+        "on": "On for this browser.",
+        "failed": "Could not turn on notifications on this phone. Please try again. If it keeps failing, allow Chrome to show notifications in the phone's settings."
+      },
+      "limit": "A web app cannot ring when the browser is fully closed. Keep it open for the best chance of hearing your companion.",
+      "nudge": "Notifications are off on this phone, so you only see my questions when you open ParCare. Turn them on to be told when I ask."
+    },
+    "reminder": {
+      "pushTitle": "A voice reminder from {childName}",
+      "title": "A voice reminder from {childName}",
+      "play": "Tap to hear {childName}",
+      "playing": "Playing {childName}'s message. It repeats until you tap OK.",
+      "noVoice": "{childName} wrote:",
+      "sample": "(sample sound)",
+      "ok": "OK, thank you",
+      "snooze": "Snooze 10 min",
+      "failed": "That did not work. Please try again."
+    },
+    "chat": {
+      "shareChild": "Share a photo with {childName}",
+      "shareText": "A photo from my day, {childName}",
+      "reviewFine": "All is fine",
+      "reviewChange": "Change my check-ins",
+      "reviewDone": "Thank you.",
+      "delete": {
+        "button": "Delete",
+        "title": "Delete this message?",
+        "everyoneNote": "“Delete for everyone” also removes it from {childName}'s app and any evening summary. “Delete for me” hides it only here.",
+        "everyone": "Delete for everyone",
+        "me": "Delete for me",
+        "cancel": "Cancel",
+        "failed": "That did not work. Please try again."
+      },
+      "myChildPicture": "Picture of My Child"
+    }
+  },
+  "parentSetup": {
+    "title": "Your ParCare",
+    "progress": "Step {n} of {total}",
+    "next": "Next",
+    "back": "Back",
+    "saving": "Saving…",
+    "later": "We can finish this later. Everything so far is saved; just open ParCare again.",
+    "error": "Something went wrong. Please try again.",
+    "companion": {
+      "title": "Choose your companion",
+      "intro": "Your companion will check in with you. Whichever you choose is an AI voice, not a person. You can change it any time.",
+      "chosen": "Chosen"
+    },
+    "day": {
+      "title": "Your day",
+      "question": "{firstName}, can you tell me about your day, from when you wake up to when you go to sleep?",
+      "hint": "Tap the mic and speak, then tap it again. Or type. Say it in your own words.",
+      "label": "Your day",
+      "parts": "Answer in three parts instead",
+      "oneQuestion": "Answer in one go instead",
+      "morning": "Your morning",
+      "afternoon": "Your afternoon",
+      "evening": "Your evening and night",
+      "empty": "Please tell me a little about your day first.",
+      "thinking": "Listening to what you said…",
+      "skip": "Skip this. I will add my check-ins myself"
+    },
+    "followups": {
+      "title": "A few questions",
+      "intro": "{childName} mentioned a few things you did not. Only answer what is true for you.",
+      "question": "{childName} said you have “{label}”{time, select, none {} other { around {time}}}. Shall I check in with you about it?",
+      "yes": "Yes, add it",
+      "no": "No",
+      "count": "Question {n} of {total}"
+    },
+    "checklist": {
+      "title": "Your check-ins",
+      "say": "Here is what I understood. For each one, tell me if I may check in with you, and at what time. I do not want to micromanage you. I want to make sure you are healthy and happy.",
+      "intro": "Tick only what you want. Change any time from the list. You can pause, change or stop any of them later in Settings.",
+      "time": "Time",
+      "timeFor": "Time for {label}",
+      "noTime": "No fixed time",
+      "yes": "Yes, check in with me about this",
+      "share": "Share it with {childName}",
+      "none": "You have not chosen any check-ins. That is fine: nothing will be checked.",
+      "summaryTitle": "The check-ins you agreed to",
+      "shared": "{childName} can see it",
+      "notShared": "only you",
+      "notChecked": "{n, plural, one {# more item is not checked} other {# more items are not checked}}. You can turn it on later in Settings.",
+      "edit": "Edit my check-ins",
+      "empty": "Your list is empty. Add the check-ins you want below."
+    },
+    "thanks": {
+      "title": "Thank you",
+      "note": "I am happy to be in touch with you. Your kids want to be a bigger part of your day even though they live away.",
+      "summary": "Send {childName} a short summary each evening of the check-ins I share",
+      "summaryHint": "Only the check-ins you marked “Share” are included, in your own words."
+    },
+    "alarms": {
+      "title": "If you do not answer",
+      "intro": "Decide this together with {childName}.",
+      "gapA": "Second reminder after",
+      "gapB": "Then {childName} is told after",
+      "minutes": "{n} minutes",
+      "explain": "First I remind you. If you do not answer, I remind you again after {a} minutes with an alarm sound. If you still do not answer, I tell {childName} after {b} more minutes: “I checked in twice and did not hear back.” I never call anyone.",
+      "notifyTitle": "Let me reach you",
+      "notify": "Turn on notifications so my questions reach your phone even when ParCare is not open. The alarm sound plays when you open the app; when it is closed, your phone shows a notification with its own sound."
+    },
+    "terms": {
+      "title": "What ParCare can and cannot do",
+      "accept": "I have read this and agree",
+      "required": "Please tick the box to finish.",
+      "finish": "Finish"
+    },
+    "add": {
+      "open": "+ Add a check-in",
+      "title": "Add a check-in",
+      "hint": "Anything I missed, or anything new. You can change or pause it later.",
+      "what": "What should I check in about?",
+      "whatPlaceholder": "For example: thyroid tablet",
+      "kind": "Kind of check-in",
+      "time": "Time",
+      "noTime": "No fixed time",
+      "share": "Share it with {childName}",
+      "add": "Add to my list",
+      "saveOn": "Add and turn on",
+      "cancel": "Cancel",
+      "bad": "Please write what to check in about (up to 80 letters) and pick a time from the list.",
+      "done": "Added to your list."
+    }
+  },
+  "forgot": {
+    "title": "Reset your password",
+    "intro": "Enter the email you log in with. We will email you a link to choose a new password.",
+    "email": "Email",
+    "send": "Email me a link",
+    "sentTo": "If an account exists for {email}, we have emailed it a link to reset the password. It works once, for 1 hour. Check your spam folder too.",
+    "sameBrowser": "Open the link on this phone, in this browser.",
+    "demoLink": "Demo mode: no email is sent. Use this link instead:",
+    "demoLinkButton": "Open the reset link",
+    "resend": "Send the link again",
+    "resent": "A new link is on its way. Only the newest link works.",
+    "otherEmail": "Use a different email",
+    "backToLogin": "Back to log in"
+  },
+  "forgotErrors": {
+    "badEmail": "Please check the email address.",
+    "tooSoon": "A link was sent a moment ago. Please wait a minute before asking again.",
+    "demoAccount": "This is a shared demo account, so its password cannot be changed.",
+    "failed": "Something went wrong. Please try again."
+  },
+  "resetPassword": {
+    "title": "Choose a new password",
+    "intro": "For {email}.",
+    "newPassword": "New password",
+    "passwordHint": "At least 8 characters.",
+    "confirm": "Type the new password again",
+    "submit": "Save and log in",
+    "expired": "This reset link has expired or was already used. Please ask for a new one.",
+    "askAgain": "Email me a new link"
+  },
+  "resetPasswordErrors": {
+    "weakPassword": "Please use at least 8 characters for the new password.",
+    "mismatch": "The two passwords are not the same.",
+    "samePassword": "Please choose a password different from your old one.",
+    "linkExpired": "This reset link has expired. Please ask for a new one.",
+    "failed": "Something went wrong. Please try again."
+  },
+  "replies": {
+    "up": "Thumbs up",
+    "down": "Thumbs down",
+    "record": "Voice reply",
+    "send": "Send voice reply",
+    "cancel": "Cancel",
+    "yours": "You reacted {reaction, select, up {👍} other {👎}}",
+    "failed": "That did not work. Please try again.",
+    "audio": "That recording did not work. Please record again (up to 60 seconds).",
+    "notEmergency": "Not for emergencies.",
+    "reacted": {
+      "parent": {
+        "reminder": "{name} reacted {reaction, select, up {👍} other {👎}} to your voice reminder “{label}”.",
+        "reply": "{name} reacted {reaction, select, up {👍} other {👎}} to your voice reply."
+      },
+      "child": {
+        "summary": "{name} reacted {reaction, select, up {👍} other {👎}} to your evening summary.",
+        "help": "{name} reacted {reaction, select, up {👍} other {👎}} to your help request.",
+        "setup": "{name} reacted {reaction, select, up {👍} other {👎}} to your check-ins.",
+        "time": "{name} reacted {reaction, select, up {👍} other {👎}} to the new time for “{label}”.",
+        "reply": "{name} reacted {reaction, select, up {👍} other {👎}} to your voice reply."
+      }
+    },
+    "voice": {
+      "parent": {
+        "reminder": "{name} sent you a voice reply about your voice reminder “{label}”:",
+        "reply": "{name} sent you a voice reply:"
+      },
+      "child": {
+        "summary": "{name} sent you a voice reply about your evening summary:",
+        "help": "{name} sent you a voice reply about your help request:",
+        "setup": "{name} sent you a voice reply about your check-ins:",
+        "time": "{name} sent you a voice reply about the new time for “{label}”:",
+        "reply": "{name} sent you a voice reply:"
+      }
+    },
+    "sent": {
+      "parent": {
+        "reminder": "Your voice reply to {other} about “{label}”",
+        "reply": "Your voice reply to {other}"
+      },
+      "child": {
+        "summary": "Your voice reply to {other} about their evening summary",
+        "help": "Your voice reply to {other} about their help request",
+        "setup": "Your voice reply to {other} about their check-ins",
+        "time": "Your voice reply to {other} about the new time for “{label}”",
+        "reply": "Your voice reply to {other}"
+      }
+    },
+    "push": {
+      "title": {
+        "child": "A voice reply from your child",
+        "parent": "A voice reply from your parent"
+      },
+      "body": "Open ParCare to listen."
+    }
+  }
+}

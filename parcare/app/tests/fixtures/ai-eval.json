@@ -1,0 +1,225 @@
+{
+  "_note": "Fictional descriptions only: the child's description (A1) and, from the parent app, the parent's own words (A2). Expected items are (checkinType, localTime). A time within 30 minutes counts as a match; null must match null. Used by tests/unit/ai.test.ts (mock) and `npm run ai:eval` (configured provider). See docs/AI_EVAL.md.",
+  "cases": [
+    {
+      "id": "kamla-full-day",
+      "parentPetName": "Maa",
+      "transcript": "Maa wakes up at 6. She goes for a walk in the park around 6:30 with her neighbour. She takes her BP tablet at 8:30 and 8:30 pm. In the evening she does puja at 6:30. She usually goes to bed by 9.",
+      "expected": [
+        [
+          "woken_up",
+          "06:00"
+        ],
+        [
+          "physical_activity",
+          "06:30"
+        ],
+        [
+          "medicine",
+          "08:30"
+        ],
+        [
+          "medicine",
+          "20:30"
+        ],
+        [
+          "puja",
+          "18:30"
+        ],
+        [
+          "last_checkin",
+          "21:00"
+        ]
+      ]
+    },
+    {
+      "id": "papa-short",
+      "parentPetName": "Papa",
+      "transcript": "Papa gets up at 5:30 am and does yoga. The cook comes at 9. He sleeps at 10 pm.",
+      "expected": [
+        [
+          "woken_up",
+          "05:30"
+        ],
+        [
+          "physical_activity",
+          "05:30"
+        ],
+        [
+          "help_arrived",
+          "09:00"
+        ],
+        [
+          "last_checkin",
+          "22:00"
+        ]
+      ]
+    },
+    {
+      "id": "amma-dayparts",
+      "parentPetName": "Amma",
+      "transcript": "Amma prays in the morning, takes her sugar medicine after breakfast, meets her friends at the temple in the evening and sleeps early.",
+      "expected": [
+        [
+          "puja",
+          "07:00"
+        ],
+        [
+          "medicine",
+          "09:00"
+        ],
+        [
+          "social",
+          "17:00"
+        ],
+        [
+          "last_checkin",
+          "21:30"
+        ]
+      ]
+    },
+    {
+      "id": "appointment",
+      "parentPetName": "Ma",
+      "transcript": "Ma has a doctor appointment at 11 am. Then she takes her tablets at 1 pm.",
+      "expected": [
+        [
+          "appointment",
+          "11:00"
+        ],
+        [
+          "medicine",
+          "13:00"
+        ]
+      ]
+    },
+    {
+      "id": "numbers-that-are-not-times",
+      "parentPetName": "Nani",
+      "transcript": "Nani is 78. She walks 2 rounds of the colony at 7. The maid comes at 10.",
+      "expected": [
+        [
+          "physical_activity",
+          "07:00"
+        ],
+        [
+          "help_arrived",
+          "10:00"
+        ]
+      ]
+    },
+    {
+      "id": "nothing-to-check",
+      "parentPetName": "Dadi",
+      "transcript": "Dadi loves gardening and watching old films.",
+      "expected": []
+    },
+    {
+      "id": "parent-own-words",
+      "parentPetName": "",
+      "transcript": "I wake up at 5:30 and have my tea. I go for a walk with my friend around 6:30. I take my BP tablet after breakfast at 8:30 and again at night at 9. In the evening I do my puja at 7. I sleep by 10.",
+      "expected": [
+        [
+          "woken_up",
+          "05:30"
+        ],
+        [
+          "physical_activity",
+          "06:30"
+        ],
+        [
+          "medicine",
+          "08:30"
+        ],
+        [
+          "puja",
+          "19:00"
+        ],
+        [
+          "medicine",
+          "21:00"
+        ],
+        [
+          "last_checkin",
+          "22:00"
+        ]
+      ]
+    },
+    {
+      "id": "parent-three-parts",
+      "parentPetName": "",
+      "transcript": "In the morning I get up at 6 and say my prayers. In the afternoon I rest. In the evening my neighbour comes over at 5 and I take my sugar tablet at 8.",
+      "expected": [
+        [
+          "woken_up",
+          "06:00"
+        ],
+        [
+          "puja",
+          "06:00"
+        ],
+        [
+          "social",
+          "17:00"
+        ],
+        [
+          "medicine",
+          "20:00"
+        ]
+      ]
+    },
+    {
+      "id": "parent-sparse",
+      "parentPetName": "",
+      "transcript": "Nothing much happens. I watch TV and go to bed around 10.",
+      "expected": [
+        [
+          "last_checkin",
+          "22:00"
+        ]
+      ]
+    },
+    {
+      "id": "parent-help-and-friends",
+      "parentPetName": "",
+      "transcript": "My maid comes at 9. I take insulin before lunch at 1 pm. I meet my friends at the club at 6 in the evening.",
+      "expected": [
+        [
+          "help_arrived",
+          "09:00"
+        ],
+        [
+          "medicine",
+          "13:00"
+        ],
+        [
+          "social",
+          "18:00"
+        ]
+      ]
+    },
+    {
+      "id": "parent-again-at-night",
+      "parentPetName": "",
+      "transcript": "I wake up at 6 and take my BP tablet at 8:30 and again at 8:30 at night. I sleep at 10.",
+      "expected": [
+        [
+          "woken_up",
+          "06:00"
+        ],
+        [
+          "medicine",
+          "08:30"
+        ],
+        [
+          "medicine",
+          "20:30"
+        ],
+        [
+          "last_checkin",
+          "22:00"
+        ]
+      ]
+    }
+  ]
+}

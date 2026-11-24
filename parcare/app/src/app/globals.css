@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111b21;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* System font stack: Roboto on Android (like the WhatsApp look), Segoe UI on Windows. No web-font download. */
+  --font-sans: Roboto, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}

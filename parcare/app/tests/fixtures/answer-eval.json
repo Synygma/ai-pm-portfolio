@@ -1,0 +1,17 @@
+{
+  "_note": "Fictional check-in answers in the parent's own words (parent app, P3). expected: did the activity happen? yes / no / unclear. Used by tests/unit/parent-checkins.test.ts (mock) and documented in docs/AI_EVAL.md.",
+  "cases": [
+    { "question": "Did you manage your walk today?", "answer": "Went for my walk, it was pleasant.", "expected": "yes" },
+    { "question": "Did you manage your walk today?", "answer": "No walk today, it was raining. I stayed in.", "expected": "no" },
+    { "question": "Did you manage your walk today?", "answer": "Not yet, I will go in the evening.", "expected": "no" },
+    { "question": "Did you manage your walk today?", "answer": "I was tired but I still went round the park once.", "expected": "yes" },
+    { "question": "Have you taken your medicine?", "answer": "Took my BP tablet after breakfast.", "expected": "yes" },
+    { "question": "Have you taken your medicine?", "answer": "I forgot, I will take it now.", "expected": "no" },
+    { "question": "Have you taken your medicine?", "answer": "Haan, taken.", "expected": "yes" },
+    { "question": "Are you up? How did you sleep?", "answer": "Up early today, the birds woke me.", "expected": "yes" },
+    { "question": "Are you up? How did you sleep?", "answer": "Slept badly, too hot.", "expected": "unclear" },
+    { "question": "How was your puja today?", "answer": "Did the evening aarti.", "expected": "yes" },
+    { "question": "Has the help you were expecting arrived?", "answer": "The cook came at ten.", "expected": "yes" },
+    { "question": "Before you sleep: how was your day?", "answer": "Watched a nice film with Mrs. Verma.", "expected": "unclear" }
+  ]
+}

@@ -1,0 +1,10 @@
+# Store text files with LF line endings (CI runs on Linux; avoids CRLF churn on Windows).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.docx binary
