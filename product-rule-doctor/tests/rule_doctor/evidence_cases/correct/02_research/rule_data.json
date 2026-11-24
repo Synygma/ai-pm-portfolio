@@ -1,0 +1,206 @@
+{
+  "read_at_utc": "2026-11-06T07:49:20+00:00",
+  "request": {
+    "rule_name": "Maintenance Kit Quantity Limit (Demo)",
+    "rule_id": "a0pg8000003CI2fAAG",
+    "requested_at_utc": "2026-11-06T07:48:10+00:00",
+    "cheap_check": {
+      "query": "SELECT Id, Name, SBQQ__Type__c, SBQQ__Active__c FROM SBQQ__ProductRule__c WHERE Name = 'Maintenance Kit Quantity Limit (Demo)'",
+      "matches": 1
+    }
+  },
+  "config": {
+    "bundle_name": "Process Instrumentation Pack (Demo)"
+  },
+  "rule": {
+    "Id": "a0pg8000003CI2fAAG",
+    "Name": "Maintenance Kit Quantity Limit (Demo)",
+    "SBQQ__Active__c": true,
+    "SBQQ__Type__c": "Alert",
+    "SBQQ__Scope__c": "Product",
+    "SBQQ__EvaluationEvent__c": "Always",
+    "SBQQ__EvaluationOrder__c": 20,
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__AdvancedCondition__c": null,
+    "SBQQ__ErrorMessage__c": "Maintenance Kit quantity should not be more than 8 for one pack. Please reduce it.",
+    "LastModifiedDate": "2026-11-06T05:01:20.000+0000"
+  },
+  "conditions": [
+    {
+      "Id": "a0Ig8000001wcAnEAI",
+      "Name": "000001",
+      "SBQQ__Index__c": 1,
+      "SBQQ__TestedObject__c": "Product Option",
+      "SBQQ__TestedField__c": "SBQQ__ProductCode__c",
+      "SBQQ__TestedVariable__c": null,
+      "SBQQ__TestedVariable__r": null,
+      "SBQQ__TestedAttribute__c": null,
+      "SBQQ__Operator__c": "equals",
+      "SBQQ__FilterType__c": "Value",
+      "SBQQ__FilterValue__c": "DEMO-MAINT-KIT",
+      "SBQQ__FilterVariable__c": null,
+      "SBQQ__FilterVariable__r": null,
+      "LastModifiedDate": "2026-11-06T04:29:00.000+0000"
+    },
+    {
+      "Id": "a0Ig8000001wcCPEAY",
+      "Name": "000002",
+      "SBQQ__Index__c": 2,
+      "SBQQ__TestedObject__c": "Product Option",
+      "SBQQ__TestedField__c": "SBQQ__Quantity__c",
+      "SBQQ__TestedVariable__c": null,
+      "SBQQ__TestedVariable__r": null,
+      "SBQQ__TestedAttribute__c": null,
+      "SBQQ__Operator__c": "greater than",
+      "SBQQ__FilterType__c": "Value",
+      "SBQQ__FilterValue__c": "8",
+      "SBQQ__FilterVariable__c": null,
+      "SBQQ__FilterVariable__r": null,
+      "LastModifiedDate": "2026-11-06T04:29:07.000+0000"
+    }
+  ],
+  "actions": [],
+  "configuration_rules": [
+    {
+      "Id": "a06g800000AtAiXAAV",
+      "Name": "CR-000001",
+      "SBQQ__Active__c": true,
+      "SBQQ__Product__c": "01tg8000008MrfNAAS",
+      "SBQQ__Product__r": {
+        "Name": "Process Instrumentation Pack (Demo)",
+        "IsActive": true
+      },
+      "SBQQ__ProductFeature__c": null,
+      "SBQQ__ProductFeature__r": null,
+      "SBQQ__RuleType__c": "Alert",
+      "SBQQ__RuleEvaluationEvent__c": "Always",
+      "LastModifiedDate": "2026-11-06T04:43:49.000+0000"
+    }
+  ],
+  "summary_variables": [],
+  "bundle": [
+    {
+      "Id": "01tg8000008MrfNAAS",
+      "Name": "Process Instrumentation Pack (Demo)",
+      "IsActive": true,
+      "LastModifiedDate": "2026-11-05T04:45:36.000+0000"
+    }
+  ],
+  "used_product_codes": [
+    {
+      "source": "condition 000001",
+      "code": "DEMO-MAINT-KIT"
+    }
+  ],
+  "products_by_code": [
+    {
+      "Id": "01tg8000008MryjAAC",
+      "Name": "Maintenance Kit (Demo)",
+      "ProductCode": "DEMO-MAINT-KIT",
+      "IsActive": true,
+      "Family": "Spare"
+    }
+  ],
+  "products_by_action_name": [],
+  "options_used": [
+    {
+      "Id": "a0og8000000KTaXAAW",
+      "SBQQ__OptionalSKU__c": "01tg8000008MryjAAC",
+      "SBQQ__OptionalSKU__r": {
+        "Name": "Maintenance Kit (Demo)"
+      },
+      "SBQQ__ProductCode__c": "DEMO-MAINT-KIT",
+      "SBQQ__Feature__r": {
+        "Name": "Spares & Consumables"
+      },
+      "SBQQ__Type__c": "Component",
+      "SBQQ__Quantity__c": 5,
+      "SBQQ__QuantityEditable__c": true,
+      "SBQQ__MinQuantity__c": 5,
+      "SBQQ__MaxQuantity__c": 10,
+      "SBQQ__Selected__c": false,
+      "SBQQ__Required__c": false,
+      "LastModifiedDate": "2026-11-04T14:00:01.000+0000"
+    }
+  ],
+  "metadata": {
+    "error_condition_tested_field": {
+      "object": "SBQQ__ErrorCondition__c",
+      "field": "SBQQ__TestedField__c",
+      "found": true,
+      "dependent": true,
+      "controller": "SBQQ__TestedObject__c",
+      "values": [
+        {
+          "value": "Group Line Items",
+          "valid_for": [
+            "Quote"
+          ]
+        },
+        {
+          "value": "Unit Price",
+          "valid_for": [
+            "Product Option",
+            "Configuration Attributes"
+          ]
+        },
+        {
+          "value": "Demo_Region__c",
+          "valid_for": [
+            "Configuration Attributes"
+          ]
+        },
+        {
+          "value": "SBQQ__ProductCode__c",
+          "valid_for": [
+            "Product Option"
+          ]
+        },
+        {
+          "value": "SBQQ__Quantity__c",
+          "valid_for": [
+            "Product Option"
+          ]
+        }
+      ]
+    },
+    "product_action_filter_field": {
+      "object": "SBQQ__ProductAction__c",
+      "field": "SBQQ__FilterField__c",
+      "found": true,
+      "dependent": false,
+      "controller": null,
+      "values": [
+        {
+          "value": "Product Code"
+        },
+        {
+          "value": "Product Family"
+        },
+        {
+          "value": "Demo_Filter_Family__c"
+        }
+      ]
+    },
+    "custom_filter_fields": []
+  },
+  "features_used": [
+    {
+      "Id": "a0ng8000000w91JAAQ",
+      "Name": "Spares & Consumables",
+      "SBQQ__Number__c": 3,
+      "SBQQ__MinOptionCount__c": 2,
+      "SBQQ__MaxOptionCount__c": 3,
+      "SBQQ__OptionSelectionMethod__c": "Click",
+      "option_count": 3
+    }
+  ],
+  "_fixture": {
+    "saved_input_for": "step 2 test",
+    "source": "live read-only read of 2026-11-06 07:49 UTC (attempt 1 reader output, archived) plus features_used from two read-only queries on 2026-11-06",
+    "features_used_queries": [
+      "SELECT Id, Name, SBQQ__Number__c, SBQQ__MinOptionCount__c, SBQQ__MaxOptionCount__c, SBQQ__OptionSelectionMethod__c FROM SBQQ__ProductFeature__c WHERE SBQQ__ConfiguredSKU__c = '01tg8000008MrfNAAS' AND Name = 'Spares & Consumables'",
+      "SELECT COUNT() FROM SBQQ__ProductOption__c WHERE SBQQ__Feature__c = 'a0ng8000000w91JAAQ'"
+    ]
+  }
+}

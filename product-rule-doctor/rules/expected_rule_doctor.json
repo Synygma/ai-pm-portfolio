@@ -1,0 +1,13 @@
+{
+  "_note": "Answer key written by a human. Blocking = any FAIL in checks 1 to 5, 8, 10 or 12.",
+  "healthy": {
+    "Region India Selection Rule (Demo)": "NO_BLOCKING_PROBLEM",
+    "Maintenance Kit Quantity Limit (Demo)": "NO_BLOCKING_PROBLEM",
+    "O-Ring Kit per Transmitter (Demo)": "NO_BLOCKING_PROBLEM",
+    "Extra Services Filter (Demo)": "NO_BLOCKING_PROBLEM"
+  },
+  "broken_scenarios": {
+    "filter_rule_inactive": {"rule": "Extra Services Filter (Demo)", "expected_fail_check": 1},
+    "filter_feature_not_dynamic": {"rule": "Extra Services Filter (Demo)", "expected_fail_check": 4}
+  }
+}

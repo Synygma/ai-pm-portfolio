@@ -1,0 +1,17 @@
+{
+  "status": "final",
+  "rule_name": "Region India Selection Rule (Demo)",
+  "rule_id": "a0pg8000003CHbFAAW",
+  "overall": "NO_BLOCKING_PROBLEM",
+  "blocking_checks": [],
+  "evidence_review": "PASS",
+  "fix_rounds": 0,
+  "compliance": "not applicable: read only",
+  "approved": "not applicable",
+  "approval_gate": "not applicable: read only",
+  "action_channel": "not applicable: read only",
+  "history": "not applicable: read only",
+  "salesforce_changes": "none",
+  "run_dir": "C:\\Users\\PRAVIN\\Desktop\\cpq demo\\runs\\2026-11-06_rule-doctor-region-india-selection-rule-demo",
+  "finished_at_utc": "2026-11-06T10:16:54+00:00"
+}

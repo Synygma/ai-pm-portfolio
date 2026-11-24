@@ -1,0 +1,4 @@
+- Org: my default org (Developer Edition, synthetic data only)
+- Bundle: Process Instrumentation Pack (Demo)
+- Mode: READ ONLY. Never create, update or delete records.
+- Reports go to runs/<YYYY-MM-DD>_rule-doctor-<rule-slug>/ with folders 01_input, 02_research, 03_draft, 04_review, 05_final, and one line in runs/INDEX.md.

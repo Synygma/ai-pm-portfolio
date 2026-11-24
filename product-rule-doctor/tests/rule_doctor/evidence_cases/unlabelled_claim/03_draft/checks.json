@@ -1,0 +1,303 @@
+{
+  "rule": {
+    "Id": "a0pg8000003CI2fAAG",
+    "Name": "Maintenance Kit Quantity Limit (Demo)"
+  },
+  "source_read_at_utc": "2026-11-06T07:49:20+00:00",
+  "overall": "NO_BLOCKING_PROBLEM",
+  "blocking_checks": [],
+  "blocking_definition": "any FAIL in checks 1 to 5, 8, 10 or 12",
+  "results": [
+    {
+      "check": 1,
+      "title": "Rule is Active",
+      "status": "PASS",
+      "summary": "Rule is active.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Active__c",
+          "value": true
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 2,
+      "title": "Type matches its parts",
+      "status": "PASS",
+      "summary": "Alert rule has a Message and no product actions.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Alert"
+        },
+        {
+          "path": "rule.SBQQ__ErrorMessage__c",
+          "value": "Maintenance Kit quantity should not be more than 8 for one pack. Please reduce it."
+        },
+        {
+          "path": "actions.count",
+          "value": 0
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 3,
+      "title": "Condition Tested Field values exist in the picklist",
+      "status": "PASS",
+      "summary": "All 2 condition(s) with a Tested Field use an existing picklist value.",
+      "evidence": [
+        {
+          "path": "metadata.error_condition_tested_field.values",
+          "value": [
+            "Demo_Region__c",
+            "Group Line Items",
+            "SBQQ__ProductCode__c",
+            "SBQQ__Quantity__c",
+            "Unit Price"
+          ]
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedField__c",
+          "value": "SBQQ__ProductCode__c"
+        },
+        {
+          "path": "conditions.1.SBQQ__TestedField__c",
+          "value": "SBQQ__Quantity__c"
+        }
+      ],
+      "details": [
+        "Condition 000001: Tested Field 'SBQQ__ProductCode__c' exists in the picklist.",
+        "Condition 000002: Tested Field 'SBQQ__Quantity__c' exists in the picklist."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 4,
+      "title": "Active configuration rule on a real bundle (Filter: Dynamic feature)",
+      "status": "PASS",
+      "summary": "Usable configuration rule(s): CR-000001.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Alert"
+        },
+        {
+          "path": "configuration_rules.count",
+          "value": 1
+        },
+        {
+          "path": "configuration_rules.0.Name",
+          "value": "CR-000001"
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Active__c",
+          "value": true
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Product__r.Name",
+          "value": "Process Instrumentation Pack (Demo)"
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Product__r.IsActive",
+          "value": true
+        }
+      ],
+      "details": [
+        "CR-000001: OK."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 5,
+      "title": "Product codes used exist on exactly one active product",
+      "status": "PASS",
+      "summary": "Every product code used matches exactly one active product.",
+      "evidence": [
+        {
+          "path": "used_product_codes",
+          "value": [
+            {
+              "source": "condition 000001",
+              "code": "DEMO-MAINT-KIT"
+            }
+          ]
+        },
+        {
+          "path": "products_by_code[DEMO-MAINT-KIT]",
+          "value": [
+            {
+              "Id": "01tg8000008MryjAAC",
+              "Name": "Maintenance Kit (Demo)",
+              "IsActive": true
+            }
+          ]
+        }
+      ],
+      "details": [
+        "DEMO-MAINT-KIT: exactly one active product (Maintenance Kit (Demo), 01tg8000008MryjAAC)."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 6,
+      "title": "Action products exist exactly once by name",
+      "status": "NOT_APPLICABLE",
+      "summary": "No product action names a product.",
+      "evidence": [
+        {
+          "path": "actions.count",
+          "value": 0
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 7,
+      "title": "Quantity settings of options used by the rule",
+      "status": "INFO",
+      "summary": "Quantity settings reported; no limit found that blocks the rule's scenario.",
+      "evidence": [
+        {
+          "path": "options_used.0",
+          "value": {
+            "product": "Maintenance Kit (Demo)",
+            "QuantityEditable": true,
+            "MinQuantity": 5,
+            "MaxQuantity": 10,
+            "Quantity": 5
+          }
+        }
+      ],
+      "details": [
+        "Maintenance Kit (Demo): Quantity Editable True, Min Quantity 5, Max Quantity 10."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 8,
+      "title": "Custom Conditions Met has a valid Advanced Condition",
+      "status": "NOT_APPLICABLE",
+      "summary": "Conditions Met is 'All', not Custom.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__ConditionsMet__c",
+          "value": "All"
+        },
+        {
+          "path": "rule.SBQQ__AdvancedCondition__c",
+          "value": null
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 9,
+      "title": "How Conditions Met combines the conditions",
+      "status": "INFO",
+      "summary": "Conditions Met is 'All': all 2 condition(s) must be true.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__ConditionsMet__c",
+          "value": "All"
+        },
+        {
+          "path": "conditions.count",
+          "value": 2
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 10,
+      "title": "Tested Field is mapped under its Tested Object",
+      "status": "PASS",
+      "summary": "All 2 condition(s) use a Tested Field mapped under their Tested Object.",
+      "evidence": [
+        {
+          "path": "metadata.error_condition_tested_field.dependent",
+          "value": true
+        },
+        {
+          "path": "metadata.error_condition_tested_field.controller",
+          "value": "SBQQ__TestedObject__c"
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedObject__c",
+          "value": "Product Option"
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedField__c",
+          "value": "SBQQ__ProductCode__c"
+        },
+        {
+          "path": "metadata.error_condition_tested_field.values[SBQQ__ProductCode__c].valid_for",
+          "value": [
+            "Product Option"
+          ]
+        },
+        {
+          "path": "conditions.1.SBQQ__TestedObject__c",
+          "value": "Product Option"
+        },
+        {
+          "path": "conditions.1.SBQQ__TestedField__c",
+          "value": "SBQQ__Quantity__c"
+        },
+        {
+          "path": "metadata.error_condition_tested_field.values[SBQQ__Quantity__c].valid_for",
+          "value": [
+            "Product Option"
+          ]
+        }
+      ],
+      "details": [
+        "Condition 000001: 'SBQQ__ProductCode__c' is included under Tested Object 'Product Option'.",
+        "Condition 000002: 'SBQQ__Quantity__c' is included under Tested Object 'Product Option'."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 11,
+      "title": "Min and Max Options of features used by the rule",
+      "status": "INFO",
+      "summary": "1 feature setting(s) could block the rule's scenario.",
+      "evidence": [
+        {
+          "path": "features_used.0",
+          "value": {
+            "Name": "Spares & Consumables",
+            "MinOptions": 2,
+            "MaxOptions": 3,
+            "option_count": 3
+          }
+        }
+      ],
+      "details": [
+        "Spares & Consumables: Min Options 2, Max Options 3, 3 option(s) in the feature.",
+        "FLAG: Spares & Consumables: the rep must select at least 2 option(s) in this feature before saving; a 'too few options' message here comes from the feature, not from the rule."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 12,
+      "title": "Filter rule's Filter Field exists on both objects, is readable and is in the picklist",
+      "status": "NOT_APPLICABLE",
+      "summary": "Rule Type is 'Alert', not Filter.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Alert"
+        }
+      ],
+      "details": [],
+      "blocking": false
+    }
+  ]
+}

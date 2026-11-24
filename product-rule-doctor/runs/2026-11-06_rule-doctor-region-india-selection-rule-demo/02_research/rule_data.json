@@ -1,0 +1,253 @@
+{
+  "read_at_utc": "2026-11-06T10:15:52+00:00",
+  "request": {
+    "rule_name": "Region India Selection Rule (Demo)",
+    "source": "live read",
+    "requested_at_utc": "2026-11-06T10:14:20+00:00"
+  },
+  "config": {
+    "bundle_name": "Process Instrumentation Pack (Demo)"
+  },
+  "rule": {
+    "Id": "a0pg8000003CHbFAAW",
+    "Name": "Region India Selection Rule (Demo)",
+    "SBQQ__Active__c": true,
+    "SBQQ__Type__c": "Selection",
+    "SBQQ__Scope__c": "Product",
+    "SBQQ__EvaluationEvent__c": "Always",
+    "SBQQ__EvaluationOrder__c": null,
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__AdvancedCondition__c": null,
+    "SBQQ__ErrorMessage__c": null,
+    "LastModifiedDate": "2026-11-06T04:05:10.000+0000"
+  },
+  "conditions": [
+    {
+      "Id": "a0Ig8000001wbcvEAA",
+      "Name": "000000",
+      "SBQQ__Index__c": 1,
+      "SBQQ__TestedObject__c": "Configuration Attributes",
+      "SBQQ__TestedField__c": "Demo_Region__c",
+      "SBQQ__TestedVariable__c": null,
+      "SBQQ__TestedVariable__r": null,
+      "SBQQ__TestedAttribute__c": null,
+      "SBQQ__Operator__c": "equals",
+      "SBQQ__FilterType__c": "Value",
+      "SBQQ__FilterValue__c": "India",
+      "SBQQ__FilterVariable__c": null,
+      "SBQQ__FilterVariable__r": null,
+      "LastModifiedDate": "2026-11-06T04:05:21.000+0000"
+    }
+  ],
+  "actions": [
+    {
+      "Id": "a0kg8000008OuE9AAK",
+      "Name": "PA-0000000",
+      "SBQQ__Type__c": "Show & Add",
+      "SBQQ__Product__c": "01tg8000008MrvVAAS",
+      "SBQQ__Product__r": {
+        "Name": "Sunshade Cover (Demo)",
+        "ProductCode": null,
+        "IsActive": true
+      },
+      "SBQQ__Required__c": false,
+      "SBQQ__FilterField__c": null,
+      "SBQQ__Operator__c": null,
+      "SBQQ__FilterValue__c": null,
+      "SBQQ__ValueObject__c": null,
+      "SBQQ__ValueField__c": null,
+      "SBQQ__ParentRuleIsActive__c": true,
+      "LastModifiedDate": "2026-11-06T04:05:28.000+0000"
+    },
+    {
+      "Id": "a0kg8000008OuFlAAK",
+      "Name": "PA-0000001",
+      "SBQQ__Type__c": "Hide & Remove",
+      "SBQQ__Product__c": "01tg8000008Ms6nAAC",
+      "SBQQ__Product__r": {
+        "Name": "Wireless Gateway (Demo)",
+        "ProductCode": null,
+        "IsActive": true
+      },
+      "SBQQ__Required__c": false,
+      "SBQQ__FilterField__c": null,
+      "SBQQ__Operator__c": null,
+      "SBQQ__FilterValue__c": null,
+      "SBQQ__ValueObject__c": null,
+      "SBQQ__ValueField__c": null,
+      "SBQQ__ParentRuleIsActive__c": true,
+      "LastModifiedDate": "2026-11-06T04:05:38.000+0000"
+    }
+  ],
+  "configuration_rules": [
+    {
+      "Id": "a06g800000At3dpAAB",
+      "Name": "CR-000000",
+      "SBQQ__Active__c": true,
+      "SBQQ__Product__c": "01tg8000008MrfNAAS",
+      "SBQQ__Product__r": {
+        "Name": "Process Instrumentation Pack (Demo)",
+        "IsActive": true
+      },
+      "SBQQ__ProductFeature__c": null,
+      "SBQQ__ProductFeature__r": null,
+      "SBQQ__RuleType__c": "Selection",
+      "SBQQ__RuleEvaluationEvent__c": "Always",
+      "LastModifiedDate": "2026-11-06T04:05:44.000+0000"
+    }
+  ],
+  "summary_variables": [],
+  "bundle": [
+    {
+      "Id": "01tg8000008MrfNAAS",
+      "Name": "Process Instrumentation Pack (Demo)",
+      "IsActive": true,
+      "LastModifiedDate": "2026-11-05T04:45:36.000+0000"
+    }
+  ],
+  "used_product_codes": [],
+  "products_by_code": [],
+  "products_by_action_name": [
+    {
+      "Id": "01tg8000008MrvVAAS",
+      "Name": "Sunshade Cover (Demo)",
+      "ProductCode": null,
+      "IsActive": true,
+      "Family": "Accessory"
+    },
+    {
+      "Id": "01tg8000008Ms6nAAC",
+      "Name": "Wireless Gateway (Demo)",
+      "ProductCode": null,
+      "IsActive": true,
+      "Family": "Communication"
+    }
+  ],
+  "options_used": [
+    {
+      "Id": "a0og8000000KTXJAA4",
+      "SBQQ__OptionalSKU__c": "01tg8000008MrvVAAS",
+      "SBQQ__OptionalSKU__r": {
+        "Name": "Sunshade Cover (Demo)"
+      },
+      "SBQQ__ProductCode__c": null,
+      "SBQQ__Feature__c": "a0ng8000000w8zhAAA",
+      "SBQQ__Feature__r": {
+        "Name": "Accessories"
+      },
+      "SBQQ__Type__c": "Component",
+      "SBQQ__Number__c": 6,
+      "SBQQ__Quantity__c": 1,
+      "SBQQ__QuantityEditable__c": false,
+      "SBQQ__MinQuantity__c": null,
+      "SBQQ__MaxQuantity__c": null,
+      "SBQQ__Selected__c": false,
+      "SBQQ__Required__c": false,
+      "LastModifiedDate": "2026-11-04T13:31:45.000+0000"
+    },
+    {
+      "Id": "a0og8000000KTfNAAW",
+      "SBQQ__OptionalSKU__c": "01tg8000008Ms6nAAC",
+      "SBQQ__OptionalSKU__r": {
+        "Name": "Wireless Gateway (Demo)"
+      },
+      "SBQQ__ProductCode__c": null,
+      "SBQQ__Feature__c": "a0ng8000000w92vAAA",
+      "SBQQ__Feature__r": {
+        "Name": "Communication & Services"
+      },
+      "SBQQ__Type__c": "Accessory",
+      "SBQQ__Number__c": 11,
+      "SBQQ__Quantity__c": 1,
+      "SBQQ__QuantityEditable__c": false,
+      "SBQQ__MinQuantity__c": null,
+      "SBQQ__MaxQuantity__c": null,
+      "SBQQ__Selected__c": false,
+      "SBQQ__Required__c": false,
+      "LastModifiedDate": "2026-11-05T04:32:23.000+0000"
+    }
+  ],
+  "features_used": [
+    {
+      "Id": "a0ng8000000w8zhAAA",
+      "Name": "Accessories",
+      "SBQQ__Number__c": 2,
+      "SBQQ__MinOptionCount__c": 1,
+      "SBQQ__MaxOptionCount__c": 2,
+      "SBQQ__OptionSelectionMethod__c": "Click",
+      "LastModifiedDate": "2026-11-04T13:44:37.000+0000",
+      "option_count": 4
+    },
+    {
+      "Id": "a0ng8000000w92vAAA",
+      "Name": "Communication & Services",
+      "SBQQ__Number__c": 4,
+      "SBQQ__MinOptionCount__c": 0,
+      "SBQQ__MaxOptionCount__c": 3,
+      "SBQQ__OptionSelectionMethod__c": "Click",
+      "LastModifiedDate": "2026-11-05T04:21:44.000+0000",
+      "option_count": 3
+    }
+  ],
+  "metadata": {
+    "error_condition_tested_field": {
+      "object": "SBQQ__ErrorCondition__c",
+      "field": "SBQQ__TestedField__c",
+      "found": true,
+      "dependent": true,
+      "controller": "SBQQ__TestedObject__c",
+      "values": [
+        {
+          "value": "Group Line Items",
+          "valid_for": [
+            "Quote"
+          ]
+        },
+        {
+          "value": "Unit Price",
+          "valid_for": [
+            "Product Option",
+            "Configuration Attributes"
+          ]
+        },
+        {
+          "value": "Demo_Region__c",
+          "valid_for": [
+            "Configuration Attributes"
+          ]
+        },
+        {
+          "value": "SBQQ__ProductCode__c",
+          "valid_for": [
+            "Product Option"
+          ]
+        },
+        {
+          "value": "SBQQ__Quantity__c",
+          "valid_for": [
+            "Product Option"
+          ]
+        }
+      ]
+    },
+    "product_action_filter_field": {
+      "object": "SBQQ__ProductAction__c",
+      "field": "SBQQ__FilterField__c",
+      "found": true,
+      "dependent": false,
+      "controller": null,
+      "values": [
+        {
+          "value": "Product Code"
+        },
+        {
+          "value": "Product Family"
+        },
+        {
+          "value": "Demo_Filter_Family__c"
+        }
+      ]
+    },
+    "custom_filter_fields": []
+  }
+}

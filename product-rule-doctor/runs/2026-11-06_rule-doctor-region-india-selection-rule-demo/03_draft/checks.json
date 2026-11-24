@@ -1,0 +1,306 @@
+{
+  "rule": {
+    "Id": "a0pg8000003CHbFAAW",
+    "Name": "Region India Selection Rule (Demo)"
+  },
+  "source_read_at_utc": "2026-11-06T10:15:52+00:00",
+  "overall": "NO_BLOCKING_PROBLEM",
+  "blocking_checks": [],
+  "blocking_definition": "any FAIL in checks 1 to 5, 8, 10 or 12",
+  "results": [
+    {
+      "check": 1,
+      "title": "Rule is Active",
+      "status": "PASS",
+      "summary": "Rule is active.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Active__c",
+          "value": true
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 2,
+      "title": "Type matches its parts",
+      "status": "PASS",
+      "summary": "Selection rule has 2 product action(s).",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Selection"
+        },
+        {
+          "path": "rule.SBQQ__ErrorMessage__c",
+          "value": null
+        },
+        {
+          "path": "actions.count",
+          "value": 2
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 3,
+      "title": "Condition Tested Field values exist in the picklist",
+      "status": "PASS",
+      "summary": "All 1 condition(s) with a Tested Field use an existing picklist value.",
+      "evidence": [
+        {
+          "path": "metadata.error_condition_tested_field.values",
+          "value": [
+            "Demo_Region__c",
+            "Group Line Items",
+            "SBQQ__ProductCode__c",
+            "SBQQ__Quantity__c",
+            "Unit Price"
+          ]
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedField__c",
+          "value": "Demo_Region__c"
+        }
+      ],
+      "details": [
+        "Condition 000000: Tested Field 'Demo_Region__c' exists in the picklist."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 4,
+      "title": "Active configuration rule on a real bundle (Filter: Dynamic feature)",
+      "status": "PASS",
+      "summary": "Usable configuration rule(s): CR-000000.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Selection"
+        },
+        {
+          "path": "configuration_rules.count",
+          "value": 1
+        },
+        {
+          "path": "configuration_rules.0.Name",
+          "value": "CR-000000"
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Active__c",
+          "value": true
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Product__r.Name",
+          "value": "Process Instrumentation Pack (Demo)"
+        },
+        {
+          "path": "configuration_rules.0.SBQQ__Product__r.IsActive",
+          "value": true
+        }
+      ],
+      "details": [
+        "CR-000000: OK."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 5,
+      "title": "Product codes used exist on exactly one active product",
+      "status": "NOT_APPLICABLE",
+      "summary": "Rule uses no product codes.",
+      "evidence": [
+        {
+          "path": "used_product_codes",
+          "value": []
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 6,
+      "title": "Action products exist exactly once by name",
+      "status": "PASS",
+      "summary": "Every action product name exists exactly once.",
+      "evidence": [
+        {
+          "path": "actions[].SBQQ__Product__r.Name",
+          "value": [
+            "Sunshade Cover (Demo)",
+            "Wireless Gateway (Demo)"
+          ]
+        },
+        {
+          "path": "products_by_action_name",
+          "value": [
+            {
+              "Id": "01tg8000008MrvVAAS",
+              "Name": "Sunshade Cover (Demo)"
+            },
+            {
+              "Id": "01tg8000008Ms6nAAC",
+              "Name": "Wireless Gateway (Demo)"
+            }
+          ]
+        }
+      ],
+      "details": [
+        "PA-0000000: product 'Sunshade Cover (Demo)' exists 1 time(s) by name.",
+        "PA-0000001: product 'Wireless Gateway (Demo)' exists 1 time(s) by name."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 7,
+      "title": "Quantity settings of options used by the rule",
+      "status": "INFO",
+      "summary": "Quantity settings reported; no limit found that blocks the rule's scenario.",
+      "evidence": [
+        {
+          "path": "options_used.0",
+          "value": {
+            "product": "Sunshade Cover (Demo)",
+            "QuantityEditable": false,
+            "MinQuantity": null,
+            "MaxQuantity": null,
+            "Quantity": 1
+          }
+        },
+        {
+          "path": "options_used.1",
+          "value": {
+            "product": "Wireless Gateway (Demo)",
+            "QuantityEditable": false,
+            "MinQuantity": null,
+            "MaxQuantity": null,
+            "Quantity": 1
+          }
+        }
+      ],
+      "details": [
+        "Sunshade Cover (Demo): Quantity Editable False, Min Quantity None, Max Quantity None.",
+        "Wireless Gateway (Demo): Quantity Editable False, Min Quantity None, Max Quantity None."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 8,
+      "title": "Custom Conditions Met has a valid Advanced Condition",
+      "status": "NOT_APPLICABLE",
+      "summary": "Conditions Met is 'All', not Custom.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__ConditionsMet__c",
+          "value": "All"
+        },
+        {
+          "path": "rule.SBQQ__AdvancedCondition__c",
+          "value": null
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 9,
+      "title": "How Conditions Met combines the conditions",
+      "status": "INFO",
+      "summary": "Conditions Met is 'All': all 1 condition(s) must be true.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__ConditionsMet__c",
+          "value": "All"
+        },
+        {
+          "path": "conditions.count",
+          "value": 1
+        }
+      ],
+      "details": [],
+      "blocking": false
+    },
+    {
+      "check": 10,
+      "title": "Tested Field is mapped under its Tested Object",
+      "status": "PASS",
+      "summary": "All 1 condition(s) use a Tested Field mapped under their Tested Object.",
+      "evidence": [
+        {
+          "path": "metadata.error_condition_tested_field.dependent",
+          "value": true
+        },
+        {
+          "path": "metadata.error_condition_tested_field.controller",
+          "value": "SBQQ__TestedObject__c"
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedObject__c",
+          "value": "Configuration Attributes"
+        },
+        {
+          "path": "conditions.0.SBQQ__TestedField__c",
+          "value": "Demo_Region__c"
+        },
+        {
+          "path": "metadata.error_condition_tested_field.values[Demo_Region__c].valid_for",
+          "value": [
+            "Configuration Attributes"
+          ]
+        }
+      ],
+      "details": [
+        "Condition 000000: 'Demo_Region__c' is included under Tested Object 'Configuration Attributes'."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 11,
+      "title": "Min and Max Options of features used by the rule",
+      "status": "INFO",
+      "summary": "1 feature setting(s) could block the rule's scenario.",
+      "evidence": [
+        {
+          "path": "features_used.0",
+          "value": {
+            "Name": "Accessories",
+            "MinOptions": 1,
+            "MaxOptions": 2,
+            "option_count": 4
+          }
+        },
+        {
+          "path": "features_used.1",
+          "value": {
+            "Name": "Communication & Services",
+            "MinOptions": 0,
+            "MaxOptions": 3,
+            "option_count": 3
+          }
+        }
+      ],
+      "details": [
+        "Accessories: Min Options 1, Max Options 2, 4 option(s) in the feature.",
+        "Communication & Services: Min Options 0, Max Options 3, 3 option(s) in the feature.",
+        "FLAG: Accessories: the rep must select at least 1 option(s) in this feature before saving; a 'too few options' message here comes from the feature, not from the rule."
+      ],
+      "blocking": false
+    },
+    {
+      "check": 12,
+      "title": "Filter rule's Filter Field exists on both objects, is readable and is in the picklist",
+      "status": "NOT_APPLICABLE",
+      "summary": "Rule Type is 'Selection', not Filter.",
+      "evidence": [
+        {
+          "path": "rule.SBQQ__Type__c",
+          "value": "Selection"
+        }
+      ],
+      "details": [],
+      "blocking": false
+    }
+  ]
+}
